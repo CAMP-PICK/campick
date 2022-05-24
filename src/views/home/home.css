@@ -17,3 +17,12 @@
   padding: 10px;
   margin-left: 3rem;
 }
+
+.fa-house {
+  color : #82ada9;
+}
+
+.button {
+  background-color : #82ada9;
+  color : rgb(242, 242, 242)
+}
