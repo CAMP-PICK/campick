@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*breadcrumb*/
+
+h2 {
+  display: inline;
+  font-size: 40px; 
+}
+
+.breadcrumb-step {
+  display: inline-block;
+  color: gray;
+  font-size: 16px;
+}
+
+.breadcrumb-step::before {
+  content: ">";
+  margin: 5px;
+  color: black;
+  font-size: 16px;
+}
