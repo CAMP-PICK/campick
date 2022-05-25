@@ -2,8 +2,15 @@ import { Router } from 'express';
 import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import { productService } from '../services';
+import { ProductSchema } from '../db/schemas/product-schema';
 
 const productRouter = Router();
+
+// //테스트 api
+// productRouter.get('/', async (req, res, next) => {
+//   console.log(req.body);
+//   res.send('전송완료')
+// })
 
 // 상품등록 api
 productRouter.post('/create', async (req, res, next) => {
@@ -32,12 +39,22 @@ productRouter.post('/create', async (req, res, next) => {
         productShortDes,
         productLongDes,
     });
-
-    res.json(newProduct)
+    res.status(201).json(newProduct)
 
   } catch(error) {
       next(error);
   }
+
+
 });
+
+//상품상세 api
+productRouter.post('/list/:productName', async (req, res, next) => {
+  const productName = req.params.productName;
+  const findProduct = await productService.updateProduct(productName)
+  
+  res.json(findProduct)  
+})
+
 
 export { productRouter };

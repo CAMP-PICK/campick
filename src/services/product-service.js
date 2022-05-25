@@ -1,4 +1,4 @@
-import { productModel } from '../db';
+import { productModel } from '../db/models/product-model';
 
 class ProductService {
 
@@ -13,16 +13,29 @@ class ProductService {
         productManuf,
         productShortDes,
         productLongDes} = productInfo;
-       
-      console.log({
-        productName,
+      
+      const newProductInfo = {productName,
         productCategory,
         productManuf,
         productShortDes,
-        productLongDes
-      });
+        productLongDes};
+      
+      const createNewProduct = await this.productModel.create(newProductInfo)
+      
+      return createNewProduct;
     
     }
+
+    //상품수정
+    async updateProduct(productInfo) {
+      //상품 등록 여부 확인
+      const product = await this.productModel.findByName(productInfo);
+      if (!product || []) {
+        throw new Error('해당 제품은 등록되지 않았습니다.');
+      }
+      return product;
+    }
+
 }
 
 const productService = new ProductService(productModel);
