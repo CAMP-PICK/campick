@@ -24,7 +24,7 @@ class ProductService {
   //상품 전체목록
   async productList() {
     const totalProduct = await this.productModel.findAll();
-    if (!totalProduct || []) {
+    if (!totalProduct) {
       throw new Error("등록된 상품이 없습니다.");
     }
 
