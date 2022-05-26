@@ -21,6 +21,16 @@ class ProductService {
       return createNewProduct;
     }
 
+    //상품 전체목록
+    async productList() {
+      const totalProduct = await this.productModel.findAll();
+      if(!totalProduct || []) {
+        throw new Error("등록된 상품이 없습니다.");
+      }
+
+      return totalProduct;
+    }
+
     //상품상세정보
     async productInfo(productName) {
       //상품 등록 여부 확인

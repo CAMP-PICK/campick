@@ -34,6 +34,16 @@ productRouter.post('/create', async (req, res, next) => {
   }
 });
 
+//상품 전체목록 api
+productRouter.get('/list', async (req, res, next) => {
+  try{
+    const totalProduct = await productService.productList();
+    res.status(201).json(totalProduct);
+  } catch(err) {
+    next(err);
+  }
+})
+
 //상품상세정보 api
 productRouter.post('/list/:productName', async (req, res, next) => {
   try{
