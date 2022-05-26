@@ -28,11 +28,23 @@ class ProductService {
     }
     
     //상품 수정
-    async editProduct(productName) {
-      const product = await this.productModel.findByName(productName);
-      //const String12 = JSON.stringify(product._id)
-      console.log(product);
-      console.log(product[0]._id);
+    async editProduct(editProduct, updateInfo) {
+      //수정할 상품이 있는지 확인, 만약 존재하지 않는다면 에러 발생
+      let product = await this.productModel.findByName(editProduct);
+      if(!product) {
+        throw new Error('존재하지 않는 상품입니다.');
+      }
+      //상품의 _id값 추출
+      const productId = product._id;
+
+      //상품의 _id값과 변경 사항을 담아 update하여 수정 된 데이터를 product에 담음
+      product = await this.productModel.update({
+        productId,
+        update: updateInfo,
+      })
+
+      //수정된 상품 정보 반환
+      return product;
     }
 
 }
