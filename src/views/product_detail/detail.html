@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product_detail</title>
+      <!-- bulma css -->
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+  />
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- 폰트 어썸: 아이콘 -->
+  <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+    <h1>제품 상세</h1>
+    <hr>
+<<<<<<< HEAD
+        <!-- 헤더 -->
+=======
+    <section id="intro">
+      <div class="tabs">
+          <ul class="tabs-list">
+              <li class="active"><a href="#tab1">패키지</a></li>
+              <li ><a href="#tab2">텐트</a></li>
+              <li ><a href="#tab3">램프</a></li>
+          </ul>
+
+          <!-- <div id="tab1" class="tab active">
+              <h3>패키지</h3>
+              <p></p>
+          </div>
+          <div id="tab2" class="tab">
+              <h3>텐트</h3>
+              <p></p>
+          </div>
+          <div id="tab3" class="tab">
+              <h3>램프</h3>
+              <p></p>
+          </div> -->
+      </div>
+  </section>    
+    <!-- 헤더 -->
+>>>>>>> aa083e775e1ac9e49dbd5de0ea1fb76cfd648e9c
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="container mt-3">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img src="/elice-rabbit.png" width="30" height="30" />
+                <span class="has-text-link">쇼핑-데모</span>
+              </a>
+    
+              <a
+                role="button"
+                class="navbar-burger"
+                aria-label="menu"
+                aria-expanded="false"
+                data-target="navbarBasicExample"
+              >
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+    
+              <div class="navbar-end breadcrumb my-auto" aria-label="breadcrumbs">
+                <ul id="navbar">
+                  <li>
+                    <a href="/cart" aria-current="page">
+                      <span class="icon">
+                        <i class="fas fa-cart-shopping"></i>
+                      </span>
+                      <span>카트</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+    
+        <!-- 제품 상세 설명 카드 -->
+        <section class="section">
+          <div class="container">
+            <div class="tile is-ancestor product-detail-card">
+              <div class="tile is-6 is-parent">
+                <div class="tile is-child box product-image">
+                  <figure class="image is-sqaure">
+                    <img id="productImageTag" src="" />
+                  </figure>
+                </div>
+              </div>
+              <div class="tile is-parent is-vertical">
+                <div class="tile is-child box product-detail">
+                  <div class="tabs">
+                    <ul>
+                      <li id="manufacturerTag"></li>
+                    </ul>
+                  </div>
+                  <div class="content">
+                    <p class="subtitle is-3 is-family-monospace" id="titleTag"></p>
+                    <h1 id="priceTag"></h1>
+                    <p class="detail-description" id="detailDescriptionTag"></p>
+                  </div>
+                </div>
+                <div class="tile is-child box buttons-container">
+                  <button class="button is-warning" id="addToCartButton">
+                    장바구니 추가하기
+                  </button>
+                  <button class="button is-info ml-2" id="purchaseButton">
+                    바로 구매하기
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+</body>
+</html>

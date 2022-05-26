@@ -1,0 +1,1 @@
+let upload = document.getElementById("upload");

@@ -4,9 +4,96 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>category</title>
+        <!-- bulma css 관련 -->
+        <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+      />
+      <!-- 폰트 어썸: 아이콘 -->
+      <script
+        defer
+        src="https://kit.fontawesome.com/7630448495.js"
+        crossorigin="anonymous"
+      ></script>
 </head>
 <body>
-    
+    <!-- 헤더 -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container mt-3">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+              <span class="has-text-link">캠핑</span>
+            </a>
+  
+            <a
+              role="button"
+              class="navbar-burger"
+              aria-label="menu"
+              aria-expanded="false"
+              data-target="navbarBasicExample"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+            <div class="navbar-end breadcrumb my-auto" aria-label="breadcrumbs">
+              <ul id="navbar">
+                <li>
+                  <a href="/cart" aria-current="page">
+                    <span class="icon">
+                      <i class="fas fa-cart-shopping"></i>
+                    </span>
+                    <span>카트</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <hr>
+      <!-- 제품 목록 -->
+      <section class="section">
+        <div
+          class="container product-item-container"
+          id="producItemContainer"
+        >
+        </div>
+        <div class="message media product-item" id="apig7r">
+            <div class="media-left">
+              <figure class="image">
+                <img src="" alt="제품 이미지">
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p class="title">
+                  6-8인용 텐트
+                  <span class="tag is-success is-rounded">추천</span>
+                </p>
+                <p class="description">기능이 많고 비바람에도 튼튼한 프리미엄 텐트</p>
+                <p class="price">399,000원</p>
+              </div>
+            </div>
+          </div>
+          <div class="message media product-item" id="apig7r">
+            <div class="media-left">
+              <figure class="image">
+                <img src="" alt="제품 이미지">
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p class="title">
+                  4인용 텐트
+                </p>
+                <p class="description">가족이 사용하기 아담하고 설치가 간편한 텐트</p>
+                <p class="price">200,000원</p>
+              </div>
+            </div>
+          </div>
+      </section>
 </body>
 </html>
