@@ -1,4 +1,8 @@
 # Dependencies
 package-lock.json
 .env
+<<<<<<< HEAD
 node_modules/
+=======
+node_modules/
+>>>>>>> aa083e775e1ac9e49dbd5de0ea1fb76cfd648e9c
