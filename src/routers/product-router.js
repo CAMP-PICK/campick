@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { productService } from '../services';
+import { productService, categoryService } from '../services';
 
 const productRouter = Router();
 
@@ -12,6 +12,7 @@ productRouter.post('/create', async (req, res, next) => {
     const productName = req.body.productName;
     const productPrice = req.body.productPrice;
     const productCategory = req.body.productCategory;
+    const productImage = req.body.productImage;
     const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
     const productShortDes = req.body.productShortDes //상품의 요약 설명 description을 Des로 줄임
     const productLongDes = req.body.productLongDes
@@ -22,6 +23,7 @@ productRouter.post('/create', async (req, res, next) => {
       productName,
       productPrice,
       productCategory,
+      productImage,
       productManuf,
       productShortDes,
       productLongDes,
@@ -91,6 +93,25 @@ productRouter.delete('/del/:productName', async (req, res, next) => {
     const delProduct = await productService.deleteProduct(productName);
 
     res.status(201).json(delProduct)
+  } catch (err) {
+    next(err);
+  }
+})
+
+//카테고리 전체 목록 api
+productRouter.get('/category', async (req, res, next) => {
+  try {
+    //등록되어있는 전체 상품 불러오기
+    const totalProduct = await productService.productList();
+
+    //등록된 상품들의 카테고리만 뽑아오기
+    let categories = [];
+    totalProduct.forEach(products => {
+      categories.push(products.productCategory);
+    })
+
+    //배열로 카테고리 목록 보내줌
+    res.status(201).json(categories);
   } catch (err) {
     next(err);
   }

@@ -7,13 +7,17 @@ const ProductSchema = new Schema(
       required: true,
     },
     productCategory: {
-      type: Number,
+      type: String,
       required: false,
-      default: 0,
+      default: "지정안함",
     },
     productPrice: {
       type: Number,
       required: true,
+    },
+    productImage: {
+      type: String,
+      required: false,
     },
     productManuf: {
       type: String,
