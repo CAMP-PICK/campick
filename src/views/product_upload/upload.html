@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upload</title>
+    <link rel="stylesheet" href="upload.css">
+    <script src="upload.js"></script>
+    <!-- bulma css -->
+    <link
+     rel="stylesheet"
+     href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+     defer
+     src="https://kit.fontawesome.com/7630448495.js"
+     crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+    <div>상품명</div>
+    <form name="product_name" action="" method="post">
+        <input type="text" name="product_name">
+    </form>
+    <div>가격</div>
+    <form name="product_price" action="" method="post">
+        <input type="number" name="product_price">
+    </form>
+    <div>재고</div>
+    <form name="product_inventory" action="" method="post">
+        <input type="number" name="product_inventory">
+    </form>
+    <div>사진</div>
+    <form name="product_name" action="" method="post">
+        <input type="file" name="product_file">
+    </form>
+    <hr>
+    <div>제품 설명</div>
+    <textarea name="product_details" cols="30" rows="5" placeholder="제품 상세">
+    </textarea>
+    <hr>
+    <button id="upload" onclick="location.href='./product_detail/detail.html'">등록</button>
+</body>
+</html>
