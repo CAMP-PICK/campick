@@ -24,6 +24,7 @@ productRouter.post('/create', async (req, res, next) => {
 
     // req (request)의 body 에서 데이터 가져오기
     const productName = req.body.productName;
+    const productPrice = req.body.productPrice;
     const productCategory = req.body.productCategory;
     const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
     const productShortDes = req.body.productShortDes //상품의 요약 설명 description을 Des로 줄임
@@ -33,6 +34,7 @@ productRouter.post('/create', async (req, res, next) => {
     // 위 데이터를 상품 db에 추가하기
     const newProduct = await productService.addProduct({
         productName,
+        productPrice,
         productCategory,
         productManuf,
         productShortDes,
@@ -57,10 +59,31 @@ productRouter.post('/list/:productName', async (req, res, next) => {
 })
 
 //상품 수정 api
-productRouter.post('/edit/:productName', async (req, res, next) => {
-  const productName = req.params.productName;
-  const product = await productService.editProduct(productName)
-  res.json(product)
+productRouter.put('/edit/:editProduct', async (req, res, next) => {
+  // req (request)의 body 에서 수정할 상품 데이터 가져오기
+  const editProduct = req.params.editProduct;
+  
+  // req (request)의 body 에서 데이터 가져오기
+  const productName = req.body.productName;
+  const productPrice = req.body.productPrice;
+  const productCategory = req.body.productCategory;
+  const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
+  const productShortDes = req.body.productShortDes //상품의 요약 설명 description을 Des로 줄임
+  const productLongDes = req.body.productLongDes
+  
+  //update할 정보를 모아서 전달해주기 위해 새로운 객체변수 할당
+  const updateInfo = {
+    ...(productName && {productName}),
+    ...(productPrice && {productPrice}),
+    ...(productCategory && {productCategory}),
+    ...(productManuf && {productManuf}),
+    ...(productShortDes && {productShortDes}),
+    ...(productLongDes && {productLongDes}),
+  };
+
+  const productInfoUpdate = await productService.editProduct(editProduct, updateInfo);
+
+  res.status(200).json(productInfoUpdate)
 })
 
 

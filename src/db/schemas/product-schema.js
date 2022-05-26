@@ -7,7 +7,12 @@ const ProductSchema = new Schema(
       required: true,
     },
     productCategory: {
-      type: String,
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    productPrice: {
+      type: Number,
       required: true,
     },
     productManuf: {
@@ -24,7 +29,7 @@ const ProductSchema = new Schema(
     },
   },
   {
-    //collection: 'products',
+    collection: 'products',
     timestamps: true,
   }
 );
