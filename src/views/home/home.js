@@ -2,12 +2,13 @@
 // 다만, 앞으로 ~.js 파일을 작성할 때 아래의 코드 구조를 참조할 수 있도록,
 // 코드 예시를 남겨 두었습니다.
 
-import * as Api from '/api.js';
-import { randomId } from '/useful-functions.js';
+import * as Api from "/api.js";
+import {randomId} from "/useful-functions.js";
 
 // 요소(element), input 혹은 상수
-const landingDiv = document.querySelector('#landingDiv');
-const greetingDiv = document.querySelector('#greetingDiv');
+const landingDiv = document.querySelector("#landingDiv");
+const greetingDiv = document.querySelector("#greetingDiv");
+const navBar = document.querySelector(".navbar");
 
 addAllElements();
 addAllEvents();
@@ -20,13 +21,13 @@ async function addAllElements() {
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  landingDiv.addEventListener('click', alertLandingText);
-  greetingDiv.addEventListener('click', alertGreetingText);
+  landingDiv.addEventListener("click", alertLandingText);
+  greetingDiv.addEventListener("click", alertGreetingText);
 }
 
 function insertTextToLanding() {
   landingDiv.insertAdjacentHTML(
-    'beforeend',
+    "beforeend",
     `
       <h2>n팀 쇼핑몰의 랜딩 페이지입니다. 자바스크립트 파일에서 삽입되었습니다.</h2>
     `
@@ -35,7 +36,7 @@ function insertTextToLanding() {
 
 function insertTextToGreeting() {
   greetingDiv.insertAdjacentHTML(
-    'beforeend',
+    "beforeend",
     `
       <h1>반갑습니다! 자바스크립트 파일에서 삽입되었습니다.</h1>
     `
@@ -43,18 +44,77 @@ function insertTextToGreeting() {
 }
 
 function alertLandingText() {
-  alert('n팀 쇼핑몰입니다. 안녕하세요.');
+  alert("n팀 쇼핑몰입니다. 안녕하세요.");
 }
 
 function alertGreetingText() {
-  alert('n팀 쇼핑몰에 오신 것을 환영합니다');
+  alert("n팀 쇼핑몰에 오신 것을 환영합니다");
 }
 
 async function getDataFromApi() {
   // 예시 URI입니다. 현재 주어진 프로젝트 코드에는 없는 URI입니다.
-  const data = await Api.get('/api/user/data');
+  const data = await Api.get("/api/user/data");
   const random = randomId();
 
-  console.log({ data });
-  console.log({ random });
+  console.log({data});
+  console.log({random});
+}
+
+// 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
+
+if (!localStorage.getItem("token")) {
+  navBar.insertAdjacentHTML(
+    "afterbegin",
+    `<div class="navbar-brand">
+    <a href="/home.html">
+      <span><i class="fa-solid fa-house title is-size-3"></i></span>
+    </a>
+</div>
+
+<div class="navbar-end">
+  <div class="navbar-item">
+    <div class="buttons" id="navbutton">
+      <a href="/register" class="registerBtn button is-dark">
+        <strong>회원가입</strong>
+      </a>
+      <a href="/login" class="loginBtn button is-dark">
+        <strong>로그인</strong>
+      </a>
+      <a href="/cart" class="button is-dark">
+        <span class="icon">
+          <i class="fas fa-cart-shopping"></i>
+        </span>
+        <strong>장바구니</strong>
+      </a>
+    </div>
+  </div>
+</div>
+</div>`
+  );
+} else if (localStorage.getItem("token")) {
+  navBar.insertAdjacentHTML(
+    "afterbegin",
+    `<div class="navbar-brand">
+    <a href="/home.html">
+      <span><i class="fa-solid fa-house title is-size-3"></i></span>
+    </a>
+</div>
+
+<div class="navbar-end">
+  <div class="navbar-item">
+    <div class="buttons" id="navbutton">
+      <a href="/login" class="loginBtn button is-dark">
+        <strong>로그아웃</strong>
+      </a>
+      <a href="/cart" class="button is-dark">
+        <span class="icon">
+          <i class="fas fa-cart-shopping"></i>
+        </span>
+        <strong>장바구니</strong>
+      </a>
+    </div>
+  </div>
+</div>
+</div>`
+  );
 }
