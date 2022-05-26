@@ -22,14 +22,14 @@ function addAllEvents() {
 // 테스트 api(현재 사용 안함)
 async function test(e) {
     e.preventDefault();
-    const result = await Api.get(`/api/email/${sessionStorage.getItem('email')}`);
+    const result = await Api.get(`/api/email/${localStorage.getItem('email')}`);
     alert(result);
 }
 
 async function logOut(e) {
     e.preventDefault();
     try {
-        sessionStorage.clear()
+        localStorage.clear()
 
         alert('로그아웃이 완료 되었습니다.')
 
@@ -50,7 +50,7 @@ async function setUser(e) {
     const confirmNewPassword = confirmNewPasswordInput.value;
     const phoneNumber = telInput.value;
     const address = addressInput.value;
-    const id = await Api.get(`/api/email/${sessionStorage.getItem('email')}`);
+    const id = await Api.get(`/api/email/${localStorage.getItem('email')}`);
 
     // 잘 입력했는지 확인
     const isPasswordValid = (newPassword.length === 0 || newPassword.length >= 4);
