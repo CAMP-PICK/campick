@@ -5,25 +5,12 @@ import { productService } from '../services';
 
 const productRouter = Router();
 
-// //테스트 api
-// productRouter.get('/', async (req, res, next) => {
-//   console.log(req.body);
-//   res.send('전송완료')
-// })
-
 // 상품등록 api
 productRouter.post('/create', async (req, res, next) => {
   try {
-    // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
-    // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
-    if (is.emptyObject(req.body)) {
-      throw new Error(
-        'headers의 Content-Type을 application/json으로 설정해주세요'
-      );
-    }
-
     // req (request)의 body 에서 데이터 가져오기
     const productName = req.body.productName;
+    const productPrice = req.body.productPrice;
     const productCategory = req.body.productCategory;
     const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
     const productShortDes = req.body.productShortDes //상품의 요약 설명 description을 Des로 줄임
@@ -33,6 +20,7 @@ productRouter.post('/create', async (req, res, next) => {
     // 위 데이터를 상품 db에 추가하기
     const newProduct = await productService.addProduct({
         productName,
+        productPrice,
         productCategory,
         productManuf,
         productShortDes,
@@ -44,24 +32,69 @@ productRouter.post('/create', async (req, res, next) => {
   } catch(error) {
       next(error);
   }
-
-
 });
+
+//상품 전체목록 api
+productRouter.get('/list', async (req, res, next) => {
+  try{
+    const totalProduct = await productService.productList();
+    res.status(201).json(totalProduct);
+  } catch(err) {
+    next(err);
+  }
+})
 
 //상품상세정보 api
 productRouter.post('/list/:productName', async (req, res, next) => {
-  const productName = req.params.productName;
-  const findProduct = await productService.productInfo(productName)
-  
-  res.status(201).json(findProduct)  
+  try{
+    const productName = req.params.productName;
+    const findProduct = await productService.productInfo(productName)
+    
+    res.status(201).json(findProduct)
+  } catch(err) {
+    next(err);
+  }
 })
 
-// //상품 수정 api
-// productRouter.post('/edit/:productName', async (req, res, next) => {
-//   const productName = req.params.productName;
-//   const product = await productService.productInfo(productName)
-//   res.json(product._id)
-// })
+//상품 수정 api
+productRouter.put('/edit/:editProduct', async (req, res, next) => {
+  // req (request)의 body 에서 수정할 상품 데이터 가져오기
+  const editProduct = req.params.editProduct;
+  
+  // req (request)의 body 에서 데이터 가져오기
+  const productName = req.body.productName;
+  const productPrice = req.body.productPrice;
+  const productCategory = req.body.productCategory;
+  const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
+  const productShortDes = req.body.productShortDes //상품의 요약 설명 description을 Des로 줄임
+  const productLongDes = req.body.productLongDes
+  
+  //update할 정보를 모아서 전달해주기 위해 새로운 객체변수 할당
+  const updateInfo = {
+    ...(productName && {productName}),
+    ...(productPrice && {productPrice}),
+    ...(productCategory && {productCategory}),
+    ...(productManuf && {productManuf}),
+    ...(productShortDes && {productShortDes}),
+    ...(productLongDes && {productLongDes}),
+  };
+
+  const productInfoUpdate = await productService.editProduct(editProduct, updateInfo);
+
+  res.status(200).json(productInfoUpdate)
+})
+
+//상품 삭제 api
+productRouter.delete('/del/:productName', async (req, res, next) => {
+  try{
+    const productName = req.params.productName;
+    const delProduct = await productService.deleteProduct(productName);
+
+    res.status(201).json(delProduct)
+  } catch(err) {
+    next(err);
+  }
+})
 
 
 export { productRouter };
