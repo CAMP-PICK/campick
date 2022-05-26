@@ -56,12 +56,12 @@ productRouter.post('/list/:productName', async (req, res, next) => {
   res.status(201).json(findProduct)  
 })
 
-// //상품 수정 api
-// productRouter.post('/edit/:productName', async (req, res, next) => {
-//   const productName = req.params.productName;
-//   const product = await productService.productInfo(productName)
-//   res.json(product._id)
-// })
+//상품 수정 api
+productRouter.post('/edit/:productName', async (req, res, next) => {
+  const productName = req.params.productName;
+  const product = await productService.editProduct(productName)
+  res.json(product)
+})
 
 
 export { productRouter };
