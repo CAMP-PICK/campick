@@ -26,10 +26,15 @@ export class ProductModel {
 
     async update({productId, update}) {
         const filter = {_id: productId};
-
         const updatedProduct = await Product.updateOne(filter, update);
         
         return updatedProduct;
+    }
+
+    async delete(productId) {
+        const product = await Product.deleteOne({_id: productId});
+
+        return product;
     }
 }
 const productModel = new ProductModel();

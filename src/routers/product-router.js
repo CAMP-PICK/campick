@@ -5,23 +5,9 @@ import { productService } from '../services';
 
 const productRouter = Router();
 
-// //테스트 api
-// productRouter.get('/', async (req, res, next) => {
-//   console.log(req.body);
-//   res.send('전송완료')
-// })
-
 // 상품등록 api
 productRouter.post('/create', async (req, res, next) => {
   try {
-    // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
-    // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
-    if (is.emptyObject(req.body)) {
-      throw new Error(
-        'headers의 Content-Type을 application/json으로 설정해주세요'
-      );
-    }
-
     // req (request)의 body 에서 데이터 가져오기
     const productName = req.body.productName;
     const productPrice = req.body.productPrice;
@@ -46,16 +32,18 @@ productRouter.post('/create', async (req, res, next) => {
   } catch(error) {
       next(error);
   }
-
-
 });
 
 //상품상세정보 api
 productRouter.post('/list/:productName', async (req, res, next) => {
-  const productName = req.params.productName;
-  const findProduct = await productService.productInfo(productName)
-  
-  res.status(201).json(findProduct)  
+  try{
+    const productName = req.params.productName;
+    const findProduct = await productService.productInfo(productName)
+    
+    res.status(201).json(findProduct)
+  } catch(err) {
+    next(err);
+  }
 })
 
 //상품 수정 api
@@ -84,6 +72,18 @@ productRouter.put('/edit/:editProduct', async (req, res, next) => {
   const productInfoUpdate = await productService.editProduct(editProduct, updateInfo);
 
   res.status(200).json(productInfoUpdate)
+})
+
+//상품 삭제 api
+productRouter.delete('/del/:productName', async (req, res, next) => {
+  try{
+    const productName = req.params.productName;
+    const delProduct = await productService.deleteProduct(productName);
+
+    res.status(201).json(delProduct)
+  } catch(err) {
+    next(err);
+  }
 })
 
 

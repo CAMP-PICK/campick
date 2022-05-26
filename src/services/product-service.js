@@ -9,10 +9,14 @@ class ProductService {
     // 상품등록
     async addProduct(productInfo) {
       const {productName} = productInfo;
-      const createNewProduct = await this.productModel.create(productInfo);
-      if (createNewProduct.productName === productName) {
+
+      //상품 중복 확인
+      const product = await this.productModel.findByName(productName);
+      if (product) {
         throw new Error("이미 등록된 상품명입니다.");
       }
+      const createNewProduct = await this.productModel.create(productInfo);
+      
       
       return createNewProduct;
     }
@@ -45,6 +49,17 @@ class ProductService {
 
       //수정된 상품 정보 반환
       return product;
+    }
+
+    //상품 삭제
+    async deleteProduct(productName) {
+      const product = await this.productModel.findByName(productName);
+      if (!product) {
+        throw new Error("존재하지 않는 상품입니다.")
+      }
+      const deleteProduct = await this.productModel.delete(product._id);
+
+      return deleteProduct;
     }
 
 }
