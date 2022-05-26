@@ -27,13 +27,13 @@ class ProductService {
       return product;
     }
     
-    // //상품 수정
-    // async editProduct(productName) {
-    //   const product = await this.productModel.findByName(productName);
-    //   //const productId = await this.productModel.findById(product._id);
-
-      
-    // }
+    //상품 수정
+    async editProduct(productName) {
+      const product = await this.productModel.findByName(productName);
+      //const String12 = JSON.stringify(product._id)
+      console.log(product);
+      console.log(product[0]._id);
+    }
 
 }
 
