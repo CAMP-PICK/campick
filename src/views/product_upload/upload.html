@@ -22,27 +22,177 @@
     ></script>
 </head>
 <body>
-    <div>상품명</div>
-    <form name="product_name" action="" method="post">
-        <input type="text" name="product_name">
-    </form>
-    <div>가격</div>
-    <form name="product_price" action="" method="post">
-        <input type="number" name="product_price">
-    </form>
-    <div>재고</div>
-    <form name="product_inventory" action="" method="post">
-        <input type="number" name="product_inventory">
-    </form>
-    <div>사진</div>
-    <form name="product_name" action="" method="post">
-        <input type="file" name="product_file">
-    </form>
-    <hr>
-    <div>제품 설명</div>
-    <textarea name="product_details" cols="30" rows="5" placeholder="제품 상세">
-    </textarea>
-    <hr>
-    <button id="upload" onclick="location.href='./product_detail/detail.html'">등록</button>
+      <!-- 헤더 -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a href="/home.html">
+        <span><i class="fa-solid fa-house title is-size-3"></i></span>
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons" id="navbutton">
+          <a href="/register" class="registerBtn button is-dark">
+            <strong>회원가입</strong>
+          </a>
+          <a href="/login" class="loginBtn button is-dark">
+            <strong>로그인</strong>
+          </a>
+          <a href="/mypage" class="loginBtn button is-dark">
+            <strong>마이페이지</strong>
+          </a>
+          <a href="/cart" class="button is-dark">
+            <span class="icon">
+              <i class="fas fa-cart-shopping"></i>
+            </span>
+            <strong>장바구니</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </nav>
+      <!-- 제품 추가 폼(Form) -->
+      <section class="section">
+        <div class="container">
+          <div class="block account-header">
+            <h1 class="subtitle is-4">제품판매</h1>
+          </div>
+          <div class="register-product-form-container">
+            <form class="box register-product-form-box" id="registerProductForm">
+              <p class="title is-5 has-text-primary">제품을 판매해 보세요</p>
+              <div class="field">
+                <label class="label" for="titleInput">제품 이름</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    id="titleInput"
+                    type="text"
+                    placeholder="기능성 텐트"
+                    autocomplete="on"
+                  />
+                </div>
+              </div>
+  
+              <div class="field">
+                <label class="label" for="categorySelectBox">카테고리</label>
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select id="categorySelectBox">
+                      <option value="">카테고리를 선택해 주세요.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="field">
+                <label class="label" for="manufacturerInput">제조사</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    id="manufacturerInput"
+                    type="text"
+                    placeholder="코오롱 스포츠"
+                    autocomplete="on"
+                  />
+                </div>
+              </div>
+  
+              <div class="field">
+                <label class="label" for="shortDescriptionInput">요약 설명</label>
+                <div class="control">
+                  <textarea
+                    class="textarea"
+                    id="shortDescriptionInput"
+                    rows="3"
+                    placeholder="제품에 대한 1~2문장의 설명을 적어 주세요."
+                    autocomplete="on"
+                  ></textarea>
+                </div>
+              </div>
+  
+              <div class="field">
+                <label class="label" for="detailDescriptionInput"
+                  >상세 설명</label
+                >
+                <div class="control">
+                  <textarea
+                    class="textarea"
+                    id="detailDescriptionInput"
+                    rows="8"
+                    placeholder="제품에 대한 상세 설명을 적어 주세요."
+                    autocomplete="on"
+                  ></textarea>
+                </div>
+              </div>
+  
+              <div class="field is-fullwidth">
+                <label class="label" for="imageInput">제품 사진</label>
+                <div class="file has-name is-fullwidth">
+                  <label class="file-label">
+                    <input
+                      class="file-input"
+                      id="imageInput"
+                      type="file"
+                      name="image-file"
+                      accept=".png, .jpeg, .jpg"
+                    />
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label"> 사진 업로드 </span>
+                    </span>
+                    <span class="file-name" id="fileNameSpan">
+                      사진파일 (png, jpg, jpeg)
+                    </span>
+                  </label>
+                </div>
+              </div>
+  
+              <div class="field">
+                <label class="label" for="inventoryInput">재고</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    id="inventoryInput"
+                    type="number"
+                    placeholder="10"
+                    autocomplete="on"
+                  />
+                </div>
+              </div>
+  
+              <div class="field">
+                <label class="label" for="priceInput">가격</label>
+                <div class="field">
+                  <div class="control has-icons-right">
+                    <input
+                      class="input"
+                      id="priceInput"
+                      type="number"
+                      placeholder="10000"
+                      autocomplete="on"
+                    />
+                    <span class="icon is-small is-right"> 원 </span>
+                  </div>
+                </div>
+              </div>
+  
+              <div
+                class="field is-grouped is-grouped-multiline mt-3"
+                id="keywordContainer"
+              ></div>
+  
+              <div class="mt-5">
+                <button class="button is-primary is-fullwidth" id="submitButton">
+                  제품 판매하기
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
 </body>
 </html>
