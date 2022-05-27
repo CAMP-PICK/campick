@@ -27,6 +27,51 @@
 </head>
 <body>
   <header class="container">
+    <nav id="insertNavBar">
+      <div class="navbar">
+        <div class="navbar-brand">
+          <a href="/" class="button is-dark is-inverted">
+            <span>
+              <i class="fas fa-solid fa-house" style="margin-right: 0.5rem;"></i>
+            </span>
+            <strong>홈</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>전체상품</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>텐트</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>램프</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>기타</strong>
+          </a>
+        </div>
+      
+        <div class="navBarItems navbar-end">
+          <ul style="margin:0">
+            <a href="/register" class="button is-dark is-inverted">
+              <li><strong>회원가입</strong></li>
+            </a>
+            <a href="/login" class="button is-dark is-inverted">
+              <li><strong>로그인</strong></li>
+            </a>
+            <a href="/manager" class="button is-dark is-inverted">
+              <li><strong>계정관리</strong></li>
+            </a>
+            <a href="/cart" class="button is-dark is-inverted">
+              <span class="icon">
+                <i class="fas fa-cart-shopping"></i>
+              </span>
+              <li><strong>장바구니</strong></li>
+            </a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <!--
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <h1>
@@ -55,6 +100,7 @@
         </div>
       </div>
     </nav>
+  -->
   </header>
   <main class="container">
     <section class="box breadcrumb">
@@ -93,9 +139,9 @@
     </section>
     <footer class="box pay-info">
       <div class="columns is-vcentered">
-        <div class="column is-3">상품 합계: ₩ <span class="items-total-cost"><!-- 상품 합계 금액 위치--></span></div>
-        <div class="column is-3">배송비: ₩ <span class="delivery-cost"><!-- 배송비 위치--></span></div>
-        <div class="column is-3">총 합계: ₩ <strong><span class="grand-total-cost"><!-- 총 합계 금액 위치 --></span></strong></div>
+        <div class="column is-3">상품 합계: ₩<span class="items-total-cost"><!-- 상품 합계 금액 위치--></span></div>
+        <div class="column is-3">배송비: ₩<span class="delivery-cost"><!-- 배송비 위치--></span></div>
+        <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost"><!-- 총 합계 금액 위치 --></span></strong></div>
         <div class="column is-3">
           <button class="button is-primary btn-buy">구매하기</button>
         </div>
@@ -107,6 +153,7 @@
   <script>
     (function() {
       const $burger = document.querySelector('.navbar-burger');
+      if (!$burger) return;
       $burger.addEventListener('click', (e) => {
         let $dropMenu = document.querySelector('.navbar-menu');
         $burger.classList.toggle('is-active');
