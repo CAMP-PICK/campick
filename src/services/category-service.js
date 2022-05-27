@@ -8,7 +8,7 @@ class CategoryService {
 
   // 카테고리 추가
   async addCategory(categoryInfo) {
-    const {categoryName} = categoryInfo
+    const {categoryName} = categoryInfo;
     //body에서 가져온 카테고리명으로 카테고리 중복 확인
     const category = await this.categoryModel.findByName(categoryName);
     //동일한 카테고리 존재 시 오류 발생
@@ -27,10 +27,18 @@ class CategoryService {
     return categories;
   }
 
-  // //카테고리 수정
-  // async editCategory(categoryInfo) {
-    
-  // }
+  //카테고리 수정
+  async editCategory(categoryInfo) {
+    const {categoryName} = categoryInfo;
+    //body에서 가져온 카테고리명으로 카테고리 중복 확인
+    const category = await this.categoryModel.findByName(categoryName);
+    if (!category) {
+      throw new Error("등록되지 않은 카테고리 입니다.")
+    }
+    const upeatedCategory = await this.categoryModel.update(categoryInfo);
+
+    return upeatedCategory
+  }
 
 }
 
