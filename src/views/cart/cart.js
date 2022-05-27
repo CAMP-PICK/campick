@@ -1,115 +1,230 @@
-//indexedDB에서 상품정보 읽어오기
-//상품정보가지고 리스트아이템 랜더링
-//플,마,삭제 이벤트 리스너
-//이벤트 리스너 -,+,삭제
-
-const _DATA = [
-  {
-    "_id":"6278ad6f927a0d0520ff626a",
-    "title":"남성 정장 ",
-    "sellerId":"6273a8ecc61633555d33c37e",
-    "categoryId":"6278acb0927a0d0520ff6260",
-    "manufacturer":"스플래시",
-    "shortDescription":"세련된 느낌의 정장입니다.",
-    "detailDescription":"너무 두껍지 않고, 부담스럽지 않은 색상입니다.",
-    "imageKey":"Men%20Clothes/34qnr_mc-1.jpg",
-    "inventory":90,
-    "price":189000,
-    "searchKeywords":["남자옷","정장","남색","세트"],
-    "isRecommended":false,
-    "discountPercent":0,
-    "createdAt":"2022-05-09T05:58:07.858Z",
-    "updatedAt":"2022-05-09T05:58:07.858Z",
-    "__v":0,
-    "quantity":1
-  },
-{"_id":"6278adb9927a0d0520ff626d","title":"여성 니트","sellerId":"6273a8ecc61633555d33c37e","categoryId":"6278acd0927a0d0520ff6263","manufacturer":"스플래시","shortDescription":"봄, 가을에 어울리는 니트입니다.","detailDescription":"너무 부담스럽지 않은 색상의 니트입니다.","imageKey":"Women%20Clothes/5u446_wc-1.jpg","inventory":200,"price":24000,"searchKeywords":["여성","니트","여자 니트","따뜻","시원"],"isRecommended":false,"discountPercent":0,"createdAt":"2022-05-09T05:59:21.577Z","updatedAt":"2022-05-09T05:59:21.577Z","__v":0,"quantity":2}];
-
-let db;
-
-const getDB = (dbName, dbVersion, storeName, fn) => {
-  const req = indexedDB.open(dbName, dbVersion);
-
-  req.onsuccess = function (evt) { db = this.result; fn(); };
-
-  req.onerror = function (evt) { console.error('indexedDB 생성 오류'); };
-
-  req.onupgradeneeded = function (evt) {
-    console.log('indexedDB upgradeneeded');
-    const store = evt.currentTarget.result.createObjectStore(storeName, {
-      keyPath: 'id', autoIncrement: true
-    });
-  };
+const state = {
+  selectedAll: true,
+  deliveryCost: 3000,
+  items: [],
 };
 
-const getObjectStore = (storeName, mode) => {
-  return db.transaction(storeName, mode).objectStore(storeName);
-};
+const $cache = {
+  selectAll: document.querySelector(`.${cn.selectAll}`),
+  btnDelSelected: document.querySelector(`.${cn.deleteSelected}`),
+  items: document.querySelector(`.${cn.items}`),
+  totalCost: document.querySelector(`.${cn.itemsTotal}`),
+  deliveryCost: document.querySelector(`.${cn.deliveryCost}`),
+  grandTotal: document.querySelector(`.${cn.grandTotal}`),
+  btnBuy: document.querySelector(`.${cn.buy}`),
+}
 
-const addObjectToStore = (storeName, obj) => {
-  const store = getObjectStore(storeName, 'readwrite');
-  let req = store.add(obj);  ;
+function setSelectedAll() {
+  state.selectedAll = state.items.map(({ selected }) => selected).every(isTrue => isTrue);
+}
 
-  req.onerror = function (evt) {
-    console.error('indexedDB store add error', evt);
-  };
-};
+function renderSelectAll() {
+  const $0 = $cache.selectAll;
+  $0.checked = state.selectedAll;
+}
 
-(function() {
-  
-  // _DATA를 indexedDB에 저장한다.
-  getDB('shopping', 1, 'cart', () => {
-    _DATA.forEach((d) => {
-      addObjectToStore('cart', d);
-    });
-  });
-
-  // indexedDB에서 데이터를 읽어온다.
-  let items = [];
-  getDB('shopping', 1, 'cart', () => {
-    const store = getObjectStore('cart', 'readonly');
-    const storeReq = store.openCursor();
-    storeReq.onsuccess = function (evt) {
-      const cursor = evt.target.result;
-      if (cursor) {
-        const req = store.get(cursor.key);
-        req.onsuccess = function (evt) {
-          const value = evt.target.result;
-          items.push(value);
-        };
-        const $items = document.querySelector('.items');
-        const itemsTemplateArr = items.map((item) => {
-          const title = item['title'];
-          const imgKey = item['imageKey'];
-          const price = item['price'];
-          const quantity = item['quantity'];
-          const total = price * quantity;
-
-          const itemTemplate = `
-          <div class="item">
-            <input type="checkbox">
-            <a href="#"><img src="${imgKey}"></a>
-            <a href="#">${title}</a>
-            <div class="cost"><span>${price}</span>원</div>
-            <button type="button">-</button>
-            <div class="quantity"><input type="number" min="1" value="${quantity}"></div>
-            <button type="button">+</button>
-            <div class="total-cost"><span>${total}</span>원</div>
-            <button type="button">삭제</button>
+function renderItem ({
+  _id,
+  imageKey,
+  title,
+  selected,
+  price,
+  quantity,
+}) {
+  return `
+  <div class="column is-3 ${genItemClassNames(cn.item, _id)}" ${genDatasetIdAttr(_id)}>
+    <div class="card">
+      <div class="card-image">
+        <a href="#">
+          <figure class="image is-3by2">
+            <img class="${genItemClassNames(cn.itemImg, _id)}" ${genDatasetIdAttr(_id)} src="${imageKey}" alt="${title}">
+          </figure>
+        </a>
+      </div>
+      <div class="card-content">
+        <div class="columns is-mobile is-vcentered is-1">
+          <div class="column">
+            <h3 class="title is-5"><a href="#"><span class="${genItemClassNames(cn.itemName, _id)}" ${genDatasetIdAttr(_id)}>${title}<span></a></h3>
           </div>
-          `;
+          <div class="column is-narrow">
+            <input class="${genItemClassNames(cn.itemSelect, _id)}" ${genDatasetIdAttr(_id)} type="checkbox" ${selected ? 'checked' : ''}>
+          </div>
+        </div>
+        <div class="columns is-mobile is-vcentered">
+          <div class="column is-7">
+            <span>₩ <span class="${genItemClassNames(cn.itemPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(price)}</span></span><br>
+            <span>total: ₩ <strong><span class="${genItemClassNames(cn.itemTotalPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(price * quantity)}</span></strong></span>
+          </div>
+          <div class="column is-5"><input class="input ${genItemClassNames(cn.itemQuantity, _id)}" ${genDatasetIdAttr(_id)} type="number" min="1" value="${quantity}" ></div>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <button class="button is-ghost card-footer-item ${genItemClassNames(cn.plusItem, _id)}" ${genDatasetIdAttr(_id)}>
+          <span class="icon ${genItemClassNames(cn.plusItem, _id)}" ${genDatasetIdAttr(_id)}>
+            <i class="fa-solid fa-plus ${genItemClassNames(cn.plusItem, _id)}" ${genDatasetIdAttr(_id)}></i>
+            <span class="a11y-text-hidden">수량 1 증가</span>
+          </span>
+        </button>
+        <button class="button is-ghost card-footer-item ${genItemClassNames(cn.minusItem, _id)}" ${genDatasetIdAttr(_id)}>
+          <span class="icon ${genItemClassNames(cn.minusItem, _id)}" ${genDatasetIdAttr(_id)}>
+            <i class="fa-solid fa-minus ${genItemClassNames(cn.minusItem, _id)}" ${genDatasetIdAttr(_id)}></i>
+            <span class="a11y-text-hidden">수량 1 감소</span>
+          </span>
+        </button>
+        <button class="button is-ghost card-footer-item ${genItemClassNames(cn.deleteItem, _id)}" ${genDatasetIdAttr(_id)}>
+          <span class="icon ${genItemClassNames(cn.deleteItem, _id)}" ${genDatasetIdAttr(_id)}>
+            <i class="fa-solid fa-trash-can ${genItemClassNames(cn.deleteItem, _id)}" ${genDatasetIdAttr(_id)}></i>
+            <span class="a11y-text-hidden">상품 삭제</span>
+          </span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  `;
+};
 
-          return itemTemplate;
-        });
+function renderItems() {
+  const $items = $cache.items;
+  const items = state.items.map((item) => renderItem(item));
+  $items.innerHTML = items.join('\n');
+};
 
-        $items.innerHTML = itemsTemplateArr.join('\n');
-        cursor.continue();
-      }
-    };
+function getItemsTotalCost() {
+  return state.items.reduce((acc, cur) => {
+    const { price, quantity } = cur;
+    return acc + (price * quantity);
+  }, 0);
+}
 
+function renderItemsTotalCost() {
+  const $0 = $cache.totalCost;
+  const cost = getItemsTotalCost();
+  $0.innerHTML = numberWithCommas(cost);
+}
+
+function renderDeliveryCost() {
+  const $0 = $cache.deliveryCost;
+  $0.innerHTML = numberWithCommas(state.deliveryCost);
+}
+
+function renderGrandTotalCost() {
+  const $0 = $cache.grandTotal;
+  $0.innerHTML = numberWithCommas(getItemsTotalCost() + state.deliveryCost);
+}
+
+function renderBtnBuy() {
+  const $0 = $cache.btnBuy;
+  $0.disabled = !state.items.length;
+}
+
+function initItems() {
+  const itemsJSONStr = localStorage.getItem(cartName);
+  state.items = JSON.parse(itemsJSONStr);
+};
+
+function render() {
+  renderItems();
+  renderItemsTotalCost();
+  renderDeliveryCost();
+  renderGrandTotalCost();
+  renderSelectAll();
+  renderBtnBuy();
+};
+
+function addEventListenerChkSelectAll() {
+  const $0 = $cache.selectAll;
+  $0.addEventListener('change', e => {
+    state.items = state.items.map(({ selected, ...rest }) => ({ selected: e.target.checked, ...rest }));
+    setSelectedAll();
+    render();
+  });
+}
+
+function addEventListenerDelSelected() {
+  const $0 = $cache.btnDelSelected;
+  $0.addEventListener('click', e => {
+    state.items = state.items.filter(({ selected }) => !selected);
+    render();
+  });
+}
+
+function addEventListenerItems() {
+  const $0 = $cache.items;
+
+  // items 내에서의 모든 change 이벤트에 대한 처리
+  $0.addEventListener('change', e => {
+    const $target = e.target;
+
+    // 선택 체크박스 change 이벤트 처리
+    if ($target.classList.contains(cn.itemSelect)) {
+      const id = $target.dataset.id;
+      const index = state.items.findIndex(({ _id }) => id === _id );
+      state.items[index]['selected'] = $target.checked;
+      setSelectedAll();
+      render();
+    }
+
+    // 수량 인풋 change 이벤트 처리
+    if ($target.classList.contains(cn.itemQuantity)) {
+      const id = $target.dataset.id;
+      const index = state.items.findIndex(({ _id }) => id === _id );
+      state.items[index]['quantity'] = parseInt($target.value);
+      render();
+    }
   });
 
-  // 읽어온 데이터로 아이템 리스트를 렌더링한다.
+  // items 내에서의 모든 클릭 이벤트에 대한 처리
+  $0.addEventListener('click', e => {
+    const $target = e.target;
 
-  
-})();
+    // + 버튼 클릭 이벤트 처리
+    if ($target.classList.contains(cn.plusItem)) {
+      const id = $target.dataset.id;
+      const index = state.items.findIndex(({ _id }) => id === _id );
+      state.items[index]['quantity'] = state.items[index]['quantity'] + 1; 
+      render();
+    }
+
+    // - 버튼 클릭 이벤트 처리
+    if ($target.classList.contains(cn.minusItem)) {
+      const id = $target.dataset.id;
+      const index = state.items.findIndex(({ _id }) => id === _id );
+      let newValue = state.items[index]['quantity'] - 1;
+      state.items[index]['quantity'] = newValue < 1 ? 1 : newValue;
+      render();
+    }
+
+    // 삭제 버튼 클릭 이벤트 처리
+    if ($target.classList.contains(cn.deleteItem)) {
+      const id = $target.dataset.id;
+      state.items = state.items.filter(({ _id }) => id !== _id)
+      render();
+    }
+  });
+}
+
+function addEventListenerBtnBuy() {
+  const $0 = $cache.btnBuy;
+  $0.addEventListener('click', e => {
+    const itemsTotal = getItemsTotalCost();
+    const deliveryCost = state.deliveryCost;
+    const grandTotal = itemsTotal + deliveryCost;
+
+    localStorage.setItem('shopping-order', JSON.stringify({
+      ...state,
+      itemsTotal,
+      grandTotal,
+    }));
+  });
+};
+
+function init() {
+  initItems();
+  render();
+  addEventListenerChkSelectAll();
+  addEventListenerDelSelected();
+  addEventListenerItems();
+  addEventListenerBtnBuy();
+};
+
+init();

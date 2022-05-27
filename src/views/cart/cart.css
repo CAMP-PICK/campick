@@ -1,3 +1,9 @@
+@media screen and (max-width: 1024px) {
+  .navbar-end .navbar-item {
+    text-align: center;
+  }
+}
+
 .a11y-text-hidden {
   overflow: hidden;
   position: absolute;
