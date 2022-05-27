@@ -9,15 +9,28 @@ class CategoryService {
   // 카테고리 추가
   async addCategory(categoryInfo) {
     const {categoryName} = categoryInfo
-    //카테고리 중복 확인
+    //body에서 가져온 카테고리명으로 카테고리 중복 확인
     const category = await this.categoryModel.findByName(categoryName);
+    //동일한 카테고리 존재 시 오류 발생
     if (category) {
       throw new Error("이미 등록된 카테고리입니다.");
     }
+    //문제 없을 시 새로운 카테고리 생성
     const createNewCategory = await this.categoryModel.create(categoryInfo);
     
     return createNewCategory;
   }
+
+  //카테고리 전체목록 조회
+  async categoryList() {
+    const categories = await this.categoryModel.findAll();
+    return categories;
+  }
+
+  // //카테고리 수정
+  // async editCategory(categoryInfo) {
+    
+  // }
 
 }
 
