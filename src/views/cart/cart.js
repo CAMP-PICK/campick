@@ -113,3 +113,7 @@ const addObjectToStore = (storeName, obj) => {
 
   
 })();
+
+//+,-
+
+//삭제
