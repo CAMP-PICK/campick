@@ -215,6 +215,8 @@ function addEventListenerBtnBuy() {
       itemsTotal,
       grandTotal,
     }));
+
+    localStorage.removeItem('shopping-cart');
   });
 };
 
