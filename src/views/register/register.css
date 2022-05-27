@@ -18,6 +18,14 @@
 }
 
 .register-user-form-box .input:focus {
-  border-color: #00d1b2;
-  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+  border-color: #383E56;
+}
+
+.navbar {
+  padding: 8px 16px;
+}
+
+.navbar-brand {
+  margin: 0;
+  padding: 5px 0;
 }
