@@ -3,12 +3,11 @@
 // 코드 예시를 남겨 두었습니다.
 
 import * as Api from "/api.js";
-import {randomId} from "/useful-functions.js";
+import {randomId, navigationBar} from "/useful-functions.js";
 
 // 요소(element), input 혹은 상수
 const landingDiv = document.querySelector("#landingDiv");
 const greetingDiv = document.querySelector("#greetingDiv");
-const navBar = document.querySelector(".navbar");
 
 addAllElements();
 addAllEvents();
@@ -60,61 +59,76 @@ async function getDataFromApi() {
   console.log({random});
 }
 
+// const savedUserName = sessionStorage.getItem("token");
+
+// if (savedUserName !== null) {
+//   document.querySelector(".buttons").classList.add("hidden");
+// }
+
+insertNav();
+
+function insertNav(){
+  document.getElementById("insertNavBar").insertAdjacentHTML("afterbegin", navigationBar());
+}
+
 // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
 
-if (!localStorage.getItem("token")) {
-  navBar.insertAdjacentHTML(
-    "afterbegin",
-    `<div class="navbar-brand">
-    <a href="/home.html">
-      <span><i class="fa-solid fa-house title is-size-3"></i></span>
-    </a>
-</div>
+// if (localStorage.getItem("token") == null) {
+//   navBar.insertAdjacentHTML(
+//     "afterbegin",
+//     `<div class="navbar-brand">
+//       <a href="/home.html">
+//         <span><i class="fa-solid fa-house title is-size-3"></i></span>
+//       </a>
+//     </div>
 
-<div class="navbar-end">
-  <div class="navbar-item">
-    <div class="buttons" id="navbutton">
-      <a href="/register" class="registerBtn button is-dark">
-        <strong>회원가입</strong>
-      </a>
-      <a href="/login" class="loginBtn button is-dark">
-        <strong>로그인</strong>
-      </a>
-      <a href="/cart" class="button is-dark">
-        <span class="icon">
-          <i class="fas fa-cart-shopping"></i>
-        </span>
-        <strong>장바구니</strong>
-      </a>
-    </div>
-  </div>
-</div>
-</div>`
-  );
-} else if (localStorage.getItem("token")) {
-  navBar.insertAdjacentHTML(
-    "afterbegin",
-    `<div class="navbar-brand">
-    <a href="/home.html">
-      <span><i class="fa-solid fa-house title is-size-3"></i></span>
-    </a>
-</div>
+//     <div class="navbar-end">
+//       <div class="navbar-item">
+//         <div class="buttons" id="navbutton">
+//           <a href="/register" class="registerBtn button is-dark">
+//             <strong>회원가입</strong>
+//           </a>
+//           <a href="/login" class="loginBtn button is-dark">
+//             <strong>로그인</strong>
+//           </a>
+//           <a href="/mypage" class="loginBtn button is-dark">
+//             <strong>마이페이지</strong>
+//           </a>
+//           <a href="/cart" class="button is-dark">
+//             <span class="icon">
+//               <i class="fas fa-cart-shopping"></i>
+//             </span>
+//             <strong>장바구니</strong>
+//           </a>
+//         </div>
+//       </div>
+//     </div>
+//     </div>`
+//   );
+// } else {
+//   navBar.insertAdjacentHTML(
+//     "afterbegin",
+//     `<div class="navbar-brand">
+//     <a href="/home.html">
+//       <span><i class="fa-solid fa-house title is-size-3"></i></span>
+//     </a>
+// </div>
 
-<div class="navbar-end">
-  <div class="navbar-item">
-    <div class="buttons" id="navbutton">
-      <a href="/login" class="loginBtn button is-dark">
-        <strong>로그아웃</strong>
-      </a>
-      <a href="/cart" class="button is-dark">
-        <span class="icon">
-          <i class="fas fa-cart-shopping"></i>
-        </span>
-        <strong>장바구니</strong>
-      </a>
-    </div>
-  </div>
-</div>
-</div>`
-  );
-}
+// <div class="navbar-end">
+//   <div class="navbar-item">
+//     <div class="buttons" id="navbutton">
+//       <a href="/login" class="loginBtn button is-dark">
+//         <strong>로그아웃</strong>
+//       </a>
+//       <a href="/cart" class="button is-dark">
+//         <span class="icon">
+//           <i class="fas fa-cart-shopping"></i>
+//         </span>
+//         <strong>장바구니</strong>
+//       </a>
+//     </div>
+//   </div>
+// </div>
+// </div>`
+//   );
+// }
