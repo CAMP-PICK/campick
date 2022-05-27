@@ -2,14 +2,14 @@ import { Schema } from 'mongoose';
 
 const CategorySchema = new Schema (
   {
-  productCategory: {
+  categoryName: {
     type: String,
     required: false,
     default: "지정안함",
     },
   },
   {
-    collection: 'products',
+    collection: 'categories',
     timestamps: true,
   }
 )
