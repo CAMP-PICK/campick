@@ -1,8 +1,11 @@
 import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 
-const btn1 = document.querySelector('#testBtn1')
-const btn2 = document.querySelector('#submitButton')
+const testBtn1 = document.querySelector('#testBtn1')
+const submitButton = document.querySelector('#submitButton')
+const deleteUserBtn = document.querySelector('#deleteUserBtn')
+
+const deletePassword = document.querySelector('#deletePassword');
 
 const nameInput = document.querySelector('#nameInput');
 const passwordInput = document.querySelector('#passwordInput');
@@ -11,19 +14,44 @@ const confirmNewPasswordInput = document.querySelector('#confirmNewPasswordInput
 const telInput = document.querySelector('#telInput');
 const addressInput = document.querySelector('#addressInput');
 
+const userInfoEmail = document.querySelector('#userInfoEmail');
+const userInfoName = document.querySelector('#userInfoName');
+const userInfoPhone = document.querySelector('#userInfoPhone');
+const userInfoAddress = document.querySelector('#userInfoAddress');
+
 addAllEvents();
 
 function addAllEvents() {
-    btn1.addEventListener('click', logOut)
-    btn2.addEventListener('click', setUser)
+    testBtn1.addEventListener('click', logOut)
+    submitButton.addEventListener('click', setUser)
+    deleteUserBtn.addEventListener('click', deleteUser)
 }
 
 
 // 테스트 api(현재 사용 안함)
-async function test(e) {
+async function userInfo() {
+    const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
+}
+
+async function deleteUser(e) {
     e.preventDefault();
-    const result = await Api.get(`/api/email/${localStorage.getItem('email')}`);
-    alert(result);
+    const password = deletePassword.value;
+    console.log(password)
+    const email = localStorage.getItem('email');
+    console.log(userinfo)
+    try {
+        const data = { email , password}
+        await Api.post(`/api/userdelete`, data);
+        localStorage.clear()
+
+        alert('회원 탈퇴가 완료 되었습니다.')
+
+        // 기본 페이지로 이동
+        window.location.href = '/';
+    } catch (err) {
+        console.error(err.stack);
+        alert(`${err.message}`);
+    }
 }
 
 async function logOut(e) {
@@ -50,8 +78,9 @@ async function setUser(e) {
     const confirmNewPassword = confirmNewPasswordInput.value;
     const phoneNumber = telInput.value;
     const address = addressInput.value;
-    const id = await Api.get(`/api/email/${localStorage.getItem('email')}`);
-
+    const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
+    const id = data._id
+    
     // 잘 입력했는지 확인
     const isPasswordValid = (newPassword.length === 0 || newPassword.length >= 4);
     const isPasswordConfirm = newPassword === confirmNewPassword;
@@ -70,8 +99,7 @@ async function setUser(e) {
 
     // 정보 수정 api 요청
     try {
-        const data = { fullName, newPassword, address, phoneNumber, password
-};
+        const data = { fullName, newPassword, address, phoneNumber, password };
 
         // await Api.patch(`/api/users/${id}`, data);
         await Api.patch(`/api/users`, id, data);

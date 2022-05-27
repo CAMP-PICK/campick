@@ -68,26 +68,16 @@ userRouter.get('/backhome', (req, res, next) => {
   res.redirect(process.env.URL_SERVER)
 })
 
-// 이메일로 검색
+// 이메일로 사용자 정보 검색
 userRouter.get('/email/:email', async (req, res, next) => {
   try {
     const email = req.params.email;
     // console.log(email)
     const result = await userService.getEmail(email)
-    res.status(200).json(result.id);
+    res.status(200).json(result);
   } catch (error) {
     next(error)
   }
-})
-
-// 아이디로 검색
-userRouter.get('/id/:id', async (req, res, next) => {
-  const id = String(req.params.id);
-  // console.log(email)
-  const result = await userService.getId(id)
-  // console.log(JSON.stringify(result._id))
-  console.log(result.id)
-  res.json(result._id);
 })
 
 // 전체 유저 목록을 가져옴 (배열 형태임)
@@ -103,6 +93,7 @@ userRouter.get('/userlist', loginRequired, async function (req, res, next) {
     next(error);
   }
 });
+
 
 // 사용자 정보 수정
 // (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
@@ -163,12 +154,13 @@ userRouter.patch(
   }
 );
 
-userRouter.post('/userdelete', async function (req, res, next) {
+// 회원탈퇴
+userRouter.post('/userdelete',  async function (req, res, next) {
   try {
     // 전체 사용자 목록을 얻음
     const email = req.body.email;
-    const password = req.body.password;
-    const users = await userService.delUser({ email, password });
+    const currentPassword = req.body.password;
+    const users = await userService.delUser({ email, currentPassword });
 
     // 사용자 목록(배열)을 JSON 형태로 프론트에 보냄
     res.status(200).json(users);
