@@ -52,8 +52,8 @@ function renderItem ({
         </div>
         <div class="columns is-mobile is-vcentered">
           <div class="column is-7">
-            <span>₩ <span class="${genItemClassNames(cn.itemPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(price)}</span></span><br>
-            <span>total: ₩ <strong><span class="${genItemClassNames(cn.itemTotalPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(price * quantity)}</span></strong></span>
+            <span>₩<span class="${genItemClassNames(cn.itemPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(price)}</span></span><br>
+            <span>total: ₩<strong><span class="${genItemClassNames(cn.itemTotalPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(price * quantity)}</span></strong></span>
           </div>
           <div class="column is-5"><input class="input ${genItemClassNames(cn.itemQuantity, _id)}" ${genDatasetIdAttr(_id)} type="number" min="1" value="${quantity}" ></div>
         </div>
