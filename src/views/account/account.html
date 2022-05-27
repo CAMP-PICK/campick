@@ -17,7 +17,6 @@
     ></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="account.css" />
-    <script src="account.js" type="module" defer></script>
   </head>
 
   <body>
@@ -32,91 +31,37 @@
           <strong>홈</strong>
         </a>
         <a href="/category" class="button is-dark is-inverted">
-          <strong>상품</strong>
+          <strong>전체상품</strong>
+        </a>
+        <a href="/category" class="button is-dark is-inverted">
+          <strong>텐트</strong>
+        </a>
+        <a href="/category" class="button is-dark is-inverted">
+          <strong>램프</strong>
+        </a>
+        <a href="/category" class="button is-dark is-inverted">
+          <strong>기타</strong>
         </a>
       </div>
     
       <div class="navBarItems navbar-end">
-        <ul style="margin:0">
-          <a href="/register" class="button is-dark is-inverted">
-            <li><strong>회원가입</strong></li>
-          </a>
-          <a href="/login" class="button is-dark is-inverted">
-            <li><strong>로그인</strong></li>
-          </a>
-          <a href="/manager" class="button is-dark is-inverted">
-            <li><strong>계정관리</strong></li>
-          </a>
-          <a href="/cart" class="button is-dark is-inverted">
-            <span class="icon">
-              <i class="fas fa-cart-shopping"></i>
-            </span>
-            <li><strong>장바구니</strong></li>
-          </a>
+        <ul id="insertItem" style="margin:0">
         </ul>
       </div>
     </div>
   </nav>
 
+
     <div class="userSection">
-      <section class="section">
-        <h1 class="title">계정관리</h1>
-        <h2 class="subtitle">
-          주문조회, 회원정보 관리, 회원탈퇴를 할 수 있습니다. 상품등록은 관리자계정만 가능합니다.
-        </h2>
-      </section>
+      
+      </div>
 
-        <div class="tile is-parent">
-          <article class="tile is-child box">
-            <a href="">
-              <p class="title">
-                <span class="icon">
-                  <i class="fa-solid fa-credit-card"></i>
-                </span>
-                주문조회
-              </p>
-            </a>
-            <p class="subtitle">지난 주문 내역을 확인, 취소할 수 있습니다.</p>
-          </article>
-          <article class="tile is-child box">
-            <a href="/mypage">
-              <p class="title">
-                <span class="icon">
-                  <i class="fa-solid fa-gear"></i>
-                </span>
-                회원정보 관리
-              </p>
-            </a>
-            <p class="subtitle">회원 정보를 확인, 수정할 수 있습니다.</p>
-          </article>
-        </div>
+      <br><br>
 
+      <div class="managerSection">
+        
+      </div>
 
-        <div class="tile is-parent">
-        <article class="tile is-child box">
-          <a href="">
-            <p class="title">
-              <span class="icon">
-                <i class="fa-solid fa-user-slash"></i>
-              </span>
-              회원탈퇴
-            </p>
-          </a>
-          <p class="subtitle">모든 정보를 안전하게 삭제한 후 탈퇴할 수 있습니다.</p>
-        </article>
-        <article class="tile is-child box">
-          <a href="">
-            <p class="title">
-              <span class="icon">
-                <i class="fa-solid fa-cart-plus"></i>
-              </span>
-              상품등록
-            </p>
-          </a>
-          <p class="subtitle">상품 정보를 등록하여, 판매를 시작할 수 있습니다.</p>
-        </article>
-        </div>
-    </div>
-
+      <script src="account.js" type="module" defer></script>
   </body>
 </html>
