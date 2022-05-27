@@ -90,10 +90,12 @@ function renderItems() {
 };
 
 function getItemsTotalCost() {
-  return state.items.reduce((acc, cur) => {
-    const { price, quantity } = cur;
-    return acc + (price * quantity);
-  }, 0);
+  return state.items
+    .filter(({ selected }) => selected)
+    .reduce((acc, cur) => {
+      const { price, quantity } = cur;
+      return acc + (price * quantity);
+    }, 0);
 }
 
 function renderItemsTotalCost() {
@@ -114,7 +116,7 @@ function renderGrandTotalCost() {
 
 function renderBtnBuy() {
   const $0 = $cache.btnBuy;
-  $0.disabled = !state.items.length;
+  $0.disabled = !state.items.filter(({ selected }) => selected).length;
 }
 
 function initItems() {
@@ -220,13 +222,17 @@ function addEventListenerBtnBuy() {
   });
 };
 
-function init() {
-  initItems();
-  render();
+function bind() {
   addEventListenerChkSelectAll();
   addEventListenerDelSelected();
   addEventListenerItems();
   addEventListenerBtnBuy();
+}
+
+function init() {
+  initItems();
+  render();
+  bind();
 };
 
 init();
