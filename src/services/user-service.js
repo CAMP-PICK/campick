@@ -142,7 +142,7 @@ class UserService {
     // 객체 destructuring
     const { email, currentPassword } = userInfoRequired;
 
-    let user = await this.userModel.findByEmail(email);
+    const user = await this.userModel.findByEmail(email);
 
     if (!user) {
       throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');

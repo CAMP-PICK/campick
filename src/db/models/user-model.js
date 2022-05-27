@@ -32,8 +32,8 @@ export class UserModel {
     return updatedUser;
   }
 
-  async delete(userEmail) {
-    const user = await User.deleteOne({ email: userEmail })
+  async delete(email) {
+    const user = await User.deleteOne({ email: email })
     return user;
   }
 }
