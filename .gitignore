@@ -1,5 +1,4 @@
 # Dependencies
-package-lock.json
-.env
-node_modules/
-.DS_Store
+node_modules
+yarn.lock
+

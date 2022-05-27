@@ -1,63 +1,60 @@
-import * as Api from "/api.js";
-import {randomId, navigationBar} from "/useful-functions.js";
+// 아래는 현재 home.html 페이지에서 쓰이는 코드는 아닙니다.
+// 다만, 앞으로 ~.js 파일을 작성할 때 아래의 코드 구조를 참조할 수 있도록,
+// 코드 예시를 남겨 두었습니다.
 
-// 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
-if (localStorage.getItem("token") !== null) {
-  document.querySelector("#insertItem").insertAdjacentHTML(
-    "afterbegin",
-    `<a href="/" id="logoutBtn" class="button is-dark is-inverted">
-    <li><strong>로그아웃</strong></li>
-  </a>
-  <a href="/account" class="button is-dark is-inverted">
-    <li><strong>계정관리</strong></li>
-  </a>
-  <a href="/cart" class="button is-dark is-inverted">
-    <span class="icon">
-      <i class="fas fa-cart-shopping"></i>
-    </span>
-    <li><strong>장바구니</strong></li>
-  </a>`
-  );
-} else {
-  document.querySelector("#insertItem").insertAdjacentHTML(
-    "afterbegin",
-    `<a href="/register" class="button is-dark is-inverted">
-    <li><strong>회원가입</strong></li>
-  </a>
-  <a href="/login" class="logoutBtn button is-dark is-inverted">
-    <li><strong>로그인</strong></li>
-  </a>
-  <a href="/account" class="button is-dark is-inverted">
-    <li><strong>계정관리</strong></li>
-  </a>
-  <a href="/cart" class="button is-dark is-inverted">
-    <span class="icon">
-      <i class="fas fa-cart-shopping"></i>
-    </span>
-    <li><strong>장바구니</strong></li>
-  </a>`
-  );
-}
+import * as Api from '/api.js';
+import { randomId } from '/useful-functions.js';
 
-const logoutBtn = document.querySelector("#logoutBtn");
+// 요소(element), input 혹은 상수
+const landingDiv = document.querySelector('#landingDiv');
+const greetingDiv = document.querySelector('#greetingDiv');
 
+addAllElements();
 addAllEvents();
 
-function addAllEvents() {
-  logoutBtn.addEventListener("click", logOut);
+// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+async function addAllElements() {
+  insertTextToLanding();
+  insertTextToGreeting();
 }
 
-async function logOut(e) {
-  e.preventDefault();
-  try {
-      localStorage.clear()
+// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
+function addAllEvents() {
+  landingDiv.addEventListener('click', alertLandingText);
+  greetingDiv.addEventListener('click', alertGreetingText);
+}
 
-      alert('로그아웃이 완료 되었습니다.')
+function insertTextToLanding() {
+  landingDiv.insertAdjacentHTML(
+    'beforeend',
+    `
+      <h2>n팀 쇼핑몰의 랜딩 페이지입니다. 자바스크립트 파일에서 삽입되었습니다.</h2>
+    `
+  );
+}
 
-      // 기본 페이지로 이동
-      window.location.href = '/';
-  } catch (err) {
-      console.error(err.stack);
-      alert(`${err.message}`);
-  }
+function insertTextToGreeting() {
+  greetingDiv.insertAdjacentHTML(
+    'beforeend',
+    `
+      <h1>반갑습니다! 자바스크립트 파일에서 삽입되었습니다.</h1>
+    `
+  );
+}
+
+function alertLandingText() {
+  alert('n팀 쇼핑몰입니다. 안녕하세요.');
+}
+
+function alertGreetingText() {
+  alert('n팀 쇼핑몰에 오신 것을 환영합니다');
+}
+
+async function getDataFromApi() {
+  // 예시 URI입니다. 현재 주어진 프로젝트 코드에는 없는 URI입니다.
+  const data = await Api.get('/api/user/data');
+  const random = randomId();
+
+  console.log({ data });
+  console.log({ random });
 }
