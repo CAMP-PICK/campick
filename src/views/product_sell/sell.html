@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>upload</title>
-    <link rel="stylesheet" href="upload.css">
-    <script src="upload.js"></script>
+    <link rel="stylesheet" href="sell.css">
+    <script src="sell.js"></script>
     <!-- bulma css -->
     <link
      rel="stylesheet"
@@ -22,37 +22,38 @@
     ></script>
 </head>
 <body>
-      <!-- 헤더 -->
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a href="/home.html">
-        <span><i class="fa-solid fa-house title is-size-3"></i></span>
-      </a>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons" id="navbutton">
-          <a href="/register" class="registerBtn button is-dark">
-            <strong>회원가입</strong>
-          </a>
-          <a href="/login" class="loginBtn button is-dark">
-            <strong>로그인</strong>
-          </a>
-          <a href="/mypage" class="loginBtn button is-dark">
-            <strong>마이페이지</strong>
-          </a>
-          <a href="/cart" class="button is-dark">
-            <span class="icon">
-              <i class="fas fa-cart-shopping"></i>
-            </span>
-            <strong>장바구니</strong>
-          </a>
-        </div>
+  <!-- 헤더 -->
+  <nav id="insertNavBar">
+    <div class="navbar">
+      <div class="navbar-brand">
+        <a href="/" class="button is-dark is-inverted">
+          <span>
+            <i class="fas fa-solid fa-house" style="margin-right: 0.5rem;"></i>
+          </span>
+          <strong>홈</strong>
+        </a>
+        <a href="/category" class="button is-dark is-inverted">
+          <strong>전체상품</strong>
+        </a>
+        <a href="/category" class="button is-dark is-inverted">
+          <strong>텐트</strong>
+        </a>
+        <a href="/category" class="button is-dark is-inverted">
+          <strong>램프</strong>
+        </a>
+        <a href="/category" class="button is-dark is-inverted">
+          <strong>기타</strong>
+        </a>
+      </div>
+    
+      <div class="navBarItems navbar-end">
+        <ul id="insertItem" style="margin:0">
+          
+        </ul>
       </div>
     </div>
-    </div>
   </nav>
+  <hr>
       <!-- 제품 추가 폼(Form) -->
       <section class="section">
         <div class="container">
@@ -172,7 +173,7 @@
                       class="input"
                       id="priceInput"
                       type="number"
-                      placeholder="10000"
+                      placeholder="100000"
                       autocomplete="on"
                     />
                     <span class="icon is-small is-right"> 원 </span>
@@ -187,7 +188,7 @@
   
               <div class="mt-5">
                 <button class="button is-primary is-fullwidth" id="submitButton">
-                  제품 판매하기
+                  등록
                 </button>
               </div>
             </form>
