@@ -6,11 +6,6 @@ const ProductSchema = new Schema(
       type: String,
       required: true,
     },
-    productCategory: {
-      type: String,
-      required: false,
-      default: "지정안함",
-    },
     productPrice: {
       type: Number,
       required: true,

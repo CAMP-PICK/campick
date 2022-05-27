@@ -98,25 +98,6 @@ productRouter.delete('/del/:productName', async (req, res, next) => {
   }
 })
 
-//카테고리 전체 목록 api
-productRouter.get('/category', async (req, res, next) => {
-  try {
-    //등록되어있는 전체 상품 불러오기
-    const totalProduct = await productService.productList();
-
-    //등록된 상품들의 카테고리만 뽑아오기
-    let categories = [];
-    totalProduct.forEach(products => {
-      categories.push(products.productCategory);
-    })
-
-    //배열로 카테고리 목록 보내줌
-    res.status(201).json(categories);
-  } catch (err) {
-    next(err);
-  }
-})
-
 
 export { productRouter };
 
