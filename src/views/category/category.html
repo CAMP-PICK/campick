@@ -26,38 +26,43 @@
     crossorigin="anonymous"></script>
 </head>
 <body>
-      <!-- 헤더 -->
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a href="/home.html">
-        <span><i class="fa-solid fa-house title is-size-3"></i></span>
-      </a>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons" id="navbutton">
-          <a href="/register" class="registerBtn button is-dark">
-            <strong>회원가입</strong>
+<!-- 헤더 -->
+  <nav id="insertNavBar">
+    <div class="navbar">
+      <div class="navbar-brand">
+        <a href="/" class="button is-dark is-inverted">
+          <span>
+            <i class="fas fa-solid fa-house" style="margin-right: 0.5rem;"></i>
+          </span>
+          <strong>홈</strong>
+        </a>
+        <a href="/category" class="button is-dark is-inverted">
+          <strong>상품</strong>
+        </a>
+      </div>
+    
+      <div class="navBarItems navbar-end">
+        <ul style="margin:0">
+          <a href="/register" class="button is-dark is-inverted">
+            <li><strong>회원가입</strong></li>
           </a>
-          <a href="/login" class="loginBtn button is-dark">
-            <strong>로그인</strong>
+          <a href="/login" class="button is-dark is-inverted">
+            <li><strong>로그인</strong></li>
           </a>
-          <a href="/mypage" class="loginBtn button is-dark">
-            <strong>마이페이지</strong>
+          <a href="/account" class="button is-dark is-inverted">
+            <li><strong>계정관리</strong></li>
           </a>
-          <a href="/cart" class="button is-dark">
+          <a href="/cart" class="button is-dark is-inverted">
             <span class="icon">
               <i class="fas fa-cart-shopping"></i>
             </span>
-            <strong>장바구니</strong>
+            <li><strong>장바구니</strong></li>
           </a>
-        </div>
+        </ul>
       </div>
     </div>
-    </div>
   </nav>
-      <hr>
+    <hr>
       <!-- 제품 목록 -->
       <section class="section">
         <div
@@ -68,7 +73,7 @@
         <div class="message media product-item" id="apig7r">
             <div class="media-left">
               <figure class="image">
-                <img src="" alt="제품 이미지">
+                <img src="./tent1.jpg" alt="제품 이미지">
               </figure>
             </div>
             <div class="media-content">
@@ -85,7 +90,7 @@
           <div class="message media product-item" id="apig7r">
             <div class="media-left">
               <figure class="image">
-                <img src="" alt="제품 이미지">
+                <img src="./tent2.jpg" alt="제품 이미지">
               </figure>
             </div>
             <div class="media-content">
