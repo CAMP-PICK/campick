@@ -2,7 +2,7 @@ import * as Api from "/api.js";
 import {randomId, navigationBar} from "/useful-functions.js";
 
 // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
-if (localStorage.getItem("email") !== null) {
+if (localStorage.getItem("token") !== null) {
   document.querySelector("#insertItem").insertAdjacentHTML(
     "afterbegin",
     `<a href="/" id="logoutBtn" class="button is-dark is-inverted">
@@ -40,17 +40,24 @@ if (localStorage.getItem("email") !== null) {
 }
 
 const logoutBtn = document.querySelector("#logoutBtn");
-logoutBtn.addEventListener("click", (e) => {
+
+addAllEvents();
+
+function addAllEvents() {
+  logoutBtn.addEventListener("click", logOut);
+}
+
+async function logOut(e) {
   e.preventDefault();
   try {
-    localStorage.clear();
+      localStorage.clear()
 
-    alert("로그아웃이 완료 되었습니다.");
+      alert('로그아웃이 완료 되었습니다.')
 
-    // 기본 페이지로 이동
-    window.location.href = "/";
+      // 기본 페이지로 이동
+      window.location.href = '/';
   } catch (err) {
-    console.error(err.stack);
-    alert(`${err.message}`);
+      console.error(err.stack);
+      alert(`${err.message}`);
   }
-});
+}
