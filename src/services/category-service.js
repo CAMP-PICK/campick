@@ -28,16 +28,33 @@ class CategoryService {
   }
 
   //카테고리 수정
-  async editCategory(categoryInfo) {
-    const {categoryName} = categoryInfo;
-    //body에서 가져온 카테고리명으로 카테고리 중복 확인
-    const category = await this.categoryModel.findByName(categoryName);
+  async editCategory(editCategoryName, updateInfo) {
+    //body에서 가져온 카테고리명으로 해당 카테고리가 있는지 확인
+    const category = await this.categoryModel.findByName(editCategoryName);
+
     if (!category) {
       throw new Error("등록되지 않은 카테고리 입니다.")
     }
-    const upeatedCategory = await this.categoryModel.update(categoryInfo);
+    //변경 할 카테고리의 _id값 추출
+    const categoryId = category._id;
 
+    //존재하는 카테고리라면 수정 진행
+    const upeatedCategory = await this.categoryModel.update({
+      categoryId,
+      update: updateInfo,
+    });
+    
     return upeatedCategory
+  }
+
+  //카테고리 삭제
+  async deleteCategory(categoryName) {
+    const category = await this.categoryModel.findByName(categoryName);
+    if(!category) {
+      throw new Error("존재하지 않는 카테고리입니다.");
+    }
+    const deletedCategory = await this.categoryModel.delete(categoryName);
+    return deletedCategory
   }
 
 }
