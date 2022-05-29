@@ -56,7 +56,7 @@ function addAllEvents() {
         alert(`정상 등록되었습니다.`);
 
         //선택한 카테고리 페이지로 이동
-        window.location.href = `/category/:${productTitle}`;
+        window.location.href = `/product_detail/?name=${productTitle}`;
       } catch(err) {
         alert(`${err.message}`);
       }
