@@ -1,3 +1,5 @@
+import { GUEST_MENUS, USER_MENUS, MENU_LIST } from './constants.js';
+
 // 문자열+숫자로 이루어진 랜덤 5글자 반환
 export const randomId = () => {
   return Math.random().toString(36).substring(2, 7);
@@ -28,7 +30,66 @@ export const wait = (ms) => {
   return new Promise((r) => setTimeout(r, ms));
 };
 
-// navbar
-export const navigationBar = () => {
-  return ``
-}
+// menu navbar
+export const appendNavigationBar = () => {
+  document.querySelector('#insertMenu').insertAdjacentHTML(
+    'afterbegin',
+    `${MENU_LIST.map(
+      (list) => `<a href="${list.to}" class="button is-dark is-inverted">
+      ${
+        list.icon
+          ? `<span class="icon">
+      <i class="${list.icon}"></i>
+    </span>`
+          : ''
+      }
+    <strong>${list.name}</strong>
+  </a>`
+    ).join('')}`
+  );
+};
+
+// user navbar
+export const appendUserNavigationBar = (token) => {
+  if (token) {
+    document.querySelector('#insertItem').insertAdjacentHTML(
+      'afterbegin',
+      `${USER_MENUS.map(
+        (menu) =>
+          `<a href="${menu.to}" id="${
+            menu.id
+          }" class="button is-dark is-inverted">
+          ${
+            menu.icon
+              ? `<span class="icon">
+          <i class="${menu.icon}"></i>
+        </span>`
+              : ''
+          }
+            <li>
+              <strong>${menu.name}</strong>
+            </li>
+          </a>`
+      ).join('')}`
+    );
+  } else {
+    document.querySelector('#insertItem').insertAdjacentHTML(
+      'afterbegin',
+      `${GUEST_MENUS.map(
+        (menu) => `
+      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted">
+        ${
+          menu.icon
+            ? `<span class="icon">
+        <i class="${menu.icon}"></i>
+      </span>`
+            : ''
+        }
+        <li>
+          <strong>${menu.name}</strong>
+        </li>
+      </a>`
+      ).join('')}`
+    );
+  }
+};
