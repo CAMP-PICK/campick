@@ -14,8 +14,8 @@ productRouter.post('/create', async (req, res, next) => {
     const productCategory = req.body.productCategory;
     const productImage = req.body.productImage;
     const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
-    const productShortDes = req.body.productShortDes //상품의 요약 설명 description을 Des로 줄임
-    const productLongDes = req.body.productLongDes
+    const productShortDes = req.body.productShortDes; //상품의 요약 설명 description을 Des로 줄임
+    const productLongDes = req.body.productLongDes;
     //const productImage = //이미지를 req.body.productImage로 불러오면 문자열로 가져와지나?
 
     // 위 데이터를 상품 db에 추가하기
@@ -29,8 +29,7 @@ productRouter.post('/create', async (req, res, next) => {
       productLongDes,
     });
 
-    res.status(201).json(newProduct)
-
+    res.status(201).json(newProduct);
   } catch (error) {
     next(error);
   }
@@ -44,19 +43,19 @@ productRouter.get('/list', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-})
+});
 
 //상품상세정보 api
 productRouter.get('/list/:productName', async (req, res, next) => {
   try {
     const productName = req.params.productName;
-    const findProduct = await productService.productInfo(productName)
+    const findProduct = await productService.productInfo(productName);
 
-    res.status(201).json(findProduct)
+    res.status(201).json(findProduct);
   } catch (err) {
     next(err);
   }
-})
+});
 
 //상품 수정 api
 productRouter.put('/edit/:editProduct', async (req, res, next) => {
@@ -68,8 +67,8 @@ productRouter.put('/edit/:editProduct', async (req, res, next) => {
   const productPrice = req.body.productPrice;
   const productCategory = req.body.productCategory;
   const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
-  const productShortDes = req.body.productShortDes //상품의 요약 설명 description을 Des로 줄임
-  const productLongDes = req.body.productLongDes
+  const productShortDes = req.body.productShortDes; //상품의 요약 설명 description을 Des로 줄임
+  const productLongDes = req.body.productLongDes;
 
   //update할 정보를 모아서 전달해주기 위해 새로운 객체변수 할당
   const updateInfo = {
@@ -81,10 +80,13 @@ productRouter.put('/edit/:editProduct', async (req, res, next) => {
     ...(productLongDes && { productLongDes }),
   };
 
-  const productInfoUpdate = await productService.editProduct(editProduct, updateInfo);
+  const productInfoUpdate = await productService.editProduct(
+    editProduct,
+    updateInfo
+  );
 
-  res.status(200).json(productInfoUpdate)
-})
+  res.status(200).json(productInfoUpdate);
+});
 
 //상품 삭제 api
 productRouter.delete('/del/:productName', async (req, res, next) => {
@@ -92,12 +94,10 @@ productRouter.delete('/del/:productName', async (req, res, next) => {
     const productName = req.params.productName;
     const delProduct = await productService.deleteProduct(productName);
 
-    res.status(201).json(delProduct)
+    res.status(201).json(delProduct);
   } catch (err) {
     next(err);
   }
-})
-
+});
 
 export { productRouter };
-

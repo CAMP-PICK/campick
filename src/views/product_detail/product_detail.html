@@ -23,34 +23,13 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="detail.css" />
-    <script src="detail.js"></script>
+    <link rel="stylesheet" href="product_detail.css" />
   </head>
   <body>
     <!-- 헤더 -->
     <nav id="insertNavBar">
       <div class="navbar">
-        <div class="navbar-brand">
-          <a href="/" class="button is-dark is-inverted">
-            <span>
-              <i class="fas fa-solid fa-house" style="margin-right: 0.5rem"></i>
-            </span>
-            <strong>홈</strong>
-          </a>
-          <a href="/category" class="button is-dark is-inverted">
-            <strong>전체상품</strong>
-          </a>
-          <a href="/category" class="button is-dark is-inverted">
-            <strong>텐트</strong>
-          </a>
-          <a href="/category" class="button is-dark is-inverted">
-            <strong>램프</strong>
-          </a>
-          <a href="/category" class="button is-dark is-inverted">
-            <strong>기타</strong>
-          </a>
-        </div>
-
+        <div class="navbar-brand" id="insertMenu"></div>
         <div class="navBarItems navbar-end">
           <ul id="insertItem" style="margin: 0"></ul>
         </div>
@@ -59,8 +38,8 @@
 
     <!-- 제품 상세 설명 카드 -->
     <section class="section">
-      <div class="container">
-        <div class="tile is-ancestor product-detail-card">
+      <div class="container" id="productDetailContainer">
+        <!-- <div class="tile is-ancestor product-detail-card">
           <div class="tile is-6 is-parent">
             <div class="tile is-child box product-image">
               <figure class="image is-sqaure">
@@ -72,21 +51,17 @@
             <div class="tile is-child box product-detail">
               <div class="tabs">
                 <ul>
-                  <li id="manufacturerTag">텐트</li>
-                  <!-- 카테고리 이름 받아오기-->
+                  <li id="manufacturerTag">텐트22</li>
                 </ul>
               </div>
               <div class="content">
                 <p class="subtitle is-3 is-family-monospace" id="titleTag">
                   4-6인용 텐트
                 </p>
-                <!-- 제품 이름 받아오기-->
                 <h1 id="priceTag">399,000원</h1>
-                <!-- 가격 받아오기-->
                 <p class="detail-description" id="detailDescriptionTag">
                   기능이 많고 비바람에도 튼튼한 프리미엄 텐트
                 </p>
-                <!-- 상세 내용 받아오기-->
               </div>
             </div>
             <div class="tile is-child box buttons-container">
@@ -98,8 +73,9 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
+    <script src="product_detail.js" type="module" defer></script>
   </body>
 </html>

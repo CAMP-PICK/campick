@@ -23,5 +23,13 @@ export const MENU_LIST = [
   { name: '홈', to: '/', icon: 'fas fa-solid fa-house' },
   { name: '전체상품', to: '/category' },
   { name: '텐트', to: '/tent' },
+  { name: '램프', to: '/lamp' },
   { name: '기타', to: '/etc' },
+];
+
+export const PRODUCT_LIST = [
+  {
+    title: '',
+  },
+  {},
 ];
