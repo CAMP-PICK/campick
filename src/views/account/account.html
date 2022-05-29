@@ -9,54 +9,38 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-      <!-- 폰트 어썸: 아이콘 -->
+    <!-- 폰트 어썸: 아이콘 -->
     <script
       defer
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="account.css" />
   </head>
 
   <body>
-  <!-- 헤더 -->
-  <nav id="insertNavBar">
-    <div class="navbar">
-      <div class="navbar-brand">
-        <a href="/" class="button is-dark is-inverted">
-          <span>
-            <i class="fas fa-solid fa-house" style="margin-right: 0.5rem;"></i>
-          </span>
-          <strong>홈</strong>
-        </a>
-        <a href="/category" class="button is-dark is-inverted">
-          <strong>전체상품</strong>
-        </a>
-        <a href="/category" class="button is-dark is-inverted">
-          <strong>텐트</strong>
-        </a>
-        <a href="/category" class="button is-dark is-inverted">
-          <strong>램프</strong>
-        </a>
-        <a href="/category" class="button is-dark is-inverted">
-          <strong>기타</strong>
-        </a>
+    <!-- 헤더 -->
+    <nav id="insertNavBar">
+      <div class="navbar">
+        <div class="navbar-brand" id="insertMenu"></div>
+        <div class="navBarItems navbar-end">
+          <ul id="insertItem" style="margin: 0"></ul>
+        </div>
       </div>
-    
-      <div class="navBarItems navbar-end">
-        <ul id="insertItem" style="margin:0">
-        </ul>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
-    <div class="userSection">
-    </div>
-    <br><br>
-    <div class="managerSection">
-    </div>
+    <div class="userSection"></div>
+    <br /><br />
+    <div class="managerSection"></div>
 
-  <script src="account.js" type="module" defer></script>
+    <script src="account.js" type="module" defer></script>
   </body>
 </html>
