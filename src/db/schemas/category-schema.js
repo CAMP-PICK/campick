@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 
 const CategorySchema = new Schema (
   {
-  categoryName: {
+  productCategory: {
     type: String,
     required: false,
     default: "지정안함",
