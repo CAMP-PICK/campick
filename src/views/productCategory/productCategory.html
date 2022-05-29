@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>upload</title>
     <link rel="stylesheet" href="productCategory.css">
-    <script src="productCategory.js"></script>
+    <script src="productCategory.js" type="module"></script>
     <!-- bulma css -->
     <link
      rel="stylesheet"
@@ -62,7 +62,20 @@
           </div>
           <div class="register-product-form-container">
             <form class="box register-product-form-box" id="registerProductForm">
-  
+
+              <div class="field">
+                <label class="label" for="manufacturerInput">추가 할 카테고리</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    id="createCategoryName"
+                    type="text"
+                    placeholder="카테고리 이름을 작성해주세요."
+                    autocomplete="on"
+                  />
+                </div>
+              </div>
+
               <div class="field">
                 <label class="label" for="categorySelectBox">변경 할 카테고리</label>
                 <div class="control">
@@ -75,14 +88,7 @@
               </div>
 
               <div class="field">
-                <label class="label" for="manufacturerInput">TEST LIST</label>
-                <div class="control">
-                  <div id="testCategoryList"></div>
-                </div>
-              </div>
-  
-              <div class="field">
-                <label class="label" for="manufacturerInput">변경 할 이름</label>
+                <label class="label" for="manufacturerInput">수정 할 이름</label>
                 <div class="control">
                   <input
                     class="input"
@@ -92,6 +98,12 @@
                     autocomplete="on"
                   />
                 </div>
+              </div>
+
+              <div class="mt-5">
+                <button class="button is-primary is-fullwidth" id="submitCreateButton">
+                  추가하기
+                </button>
               </div>
   
               <div class="mt-5">
