@@ -28,7 +28,7 @@ window.onload = async function () {
   
       <div class="tile is-parent">
       <article class="tile is-child box">
-        <a href="">
+        <a href="../product_sell/product_sell.html">
           <p class="title">
             <span class="icon">
               <i class="fa-solid fa-cart-plus"></i>
