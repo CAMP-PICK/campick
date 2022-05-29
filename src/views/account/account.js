@@ -39,15 +39,15 @@ window.onload = async function () {
         <p class="subtitle">상품 정보를 등록하여, 판매를 시작할 수 있습니다.</p>
       </article>
       <article class="tile is-child box">
-        <a href="">
+        <a href="../productCategory/productCategory.html">
           <p class="title">
             <span class="icon">
               <i class="fa-solid fa-cart-plus"></i>
             </span>
-            목록적기
+            카테고리 관리
           </p>
         </a>
-        <p class="subtitle">상세 설명입니다.</p>
+        <p class="subtitle">카테고리를 추가/수정/삭제 할 수 있습니다.</p>
       </article>
       <article class="tile is-child box">
         <a href="">
