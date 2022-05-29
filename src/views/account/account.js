@@ -1,47 +1,18 @@
-import * as Api from '/api.js';
+import * as Api from '../api.js';
+import { appendUserNavigationBar } from '../useful-functions.js';
 
-window.onload = async function() {
-  
-
+window.onload = async function () {
   const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
-  
+  const token = localStorage.getItem('token');
+
   // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
-  if (localStorage.getItem("token") !== null) {
-    document.querySelector("#insertItem").insertAdjacentHTML(
-      "afterbegin",
-      `<a href="/" id="logoutBtn" class="button is-dark is-inverted">
-      <li><strong>로그아웃</strong></li>
-    </a>
-    <a href="/cart" class="button is-dark is-inverted">
-      <span class="icon">
-        <i class="fas fa-cart-shopping"></i>
-      </span>
-      <li><strong>장바구니</strong></li>
-    </a>`
-    );
-  } else {
-    document.querySelector("#insertItem").insertAdjacentHTML(
-      "afterbegin",
-      `<a href="/register" class="button is-dark is-inverted">
-      <li><strong>회원가입</strong></li>
-    </a>
-    <a href="/login" class="logoutBtn button is-dark is-inverted">
-      <li><strong>로그인</strong></li>
-    </a>
-    <a href="/cart" class="button is-dark is-inverted">
-      <span class="icon">
-        <i class="fas fa-cart-shopping"></i>
-      </span>
-      <li><strong>장바구니</strong></li>
-    </a>`
-    );
-  }
-  
+  appendUserNavigationBar(token);
+
   // 관리자 계정 분리
   // 로그인계정이 관리자
-  if (data.role == "manager-user") {
-    document.querySelector(".managerSection").insertAdjacentHTML(
-      "afterbegin",
+  if (data.role == 'manager-user') {
+    document.querySelector('.managerSection').insertAdjacentHTML(
+      'afterbegin',
       `<section class="section">
       <h1 class="title">관리자 페이지</h1>
       <h2 class="subtitle">
@@ -87,8 +58,8 @@ window.onload = async function() {
     );
   } else {
     // 일반사용자
-    document.querySelector(".userSection").insertAdjacentHTML(
-      "afterbegin",
+    document.querySelector('.userSection').insertAdjacentHTML(
+      'afterbegin',
       `<section class="section">
       <h1 class="title">계정관리</h1>
       <h2 class="subtitle">
@@ -133,21 +104,20 @@ window.onload = async function() {
       </div>`
     );
   }
-  
-  const logoutBtn = document.querySelector("#logoutBtn");
-  logoutBtn.addEventListener("click", (e) => {
+
+  const logoutBtn = document.querySelector('#logoutBtn');
+  logoutBtn.addEventListener('click', (e) => {
     e.preventDefault();
     try {
       localStorage.clear();
-  
-      alert("로그아웃이 완료 되었습니다.");
-  
+
+      alert('로그아웃이 완료 되었습니다.');
+
       // 기본 페이지로 이동
-      window.location.href = "/";
+      window.location.href = '/';
     } catch (err) {
       console.error(err.stack);
       alert(`${err.message}`);
     }
   });
-}
-
+};
