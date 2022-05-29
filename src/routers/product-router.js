@@ -47,7 +47,7 @@ productRouter.get('/list', async (req, res, next) => {
 })
 
 //상품상세정보 api
-productRouter.post('/list/:productName', async (req, res, next) => {
+productRouter.get('/list/:productName', async (req, res, next) => {
   try {
     const productName = req.params.productName;
     const findProduct = await productService.productInfo(productName)
