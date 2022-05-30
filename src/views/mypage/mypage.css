@@ -1,22 +1,22 @@
-.register-user-form-container {
+.edit-user-form-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 85vh;
 }
 
-.register-user-form-box {
+.edit-user-form-box {
   width: 30rem;
 }
 
-.register-user-form-box .title {
+.edit-user-form-box .title {
   text-align: center;
 }
 
-.register-user-form-box .button {
+.edit-user-form-box .button {
   font-weight: bold;
 }
 
-.register-user-form-box .input:focus {
+.edit-user-form-box .input:focus {
   border-color: #383E56;
 }
