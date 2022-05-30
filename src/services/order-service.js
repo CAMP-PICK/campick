@@ -36,7 +36,7 @@ class OrderService {
     }
 
     // 주문 수정
-    async setOrder(orderId, updateInfo) {
+    async updateOrder(orderId, updateInfo) {
         const order = await this.orderModel.findById(orderId);
 
         if (!order) {

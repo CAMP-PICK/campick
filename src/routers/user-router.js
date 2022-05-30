@@ -95,10 +95,7 @@ userRouter.get('/userlist', loginRequired, async function (req, res, next) {
 
 // 사용자 정보 수정
 // (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
-userRouter.patch(
-  '/users/:userId',
-  loginRequired,
-  async function (req, res, next) {
+userRouter.patch('/users/:userId', loginRequired, async function (req, res, next) {
     try {
       // content-type 을 application/json 로 프론트에서
       // 설정 안 하고 요청하면, body가 비어 있게 됨.
@@ -153,7 +150,7 @@ userRouter.patch(
 );
 
 // 회원탈퇴
-userRouter.post('/userdelete',  async function (req, res, next) {
+userRouter.post('/userdelete', loginRequired, async function (req, res, next) {
   try {
     // 전체 사용자 목록을 얻음
     const email = req.body.email;
