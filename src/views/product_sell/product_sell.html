@@ -61,7 +61,7 @@
             <h1 class="subtitle is-4">제품판매</h1>
           </div>
           <div class="register-product-form-container">
-            <form class="box register-product-form-box" id="registerProductForm">
+            <form class="box register-product-form-box" id="registerProductForm" encType="multipart/form-data">
               <p class="title is-5 has-text-primary">제품을 판매해 보세요</p>
               <div class="field">
                 <label class="label" for="titleInput">제품 이름</label>
@@ -129,15 +129,13 @@
               </div>
   
               <div class="field is-fullwidth">
-                <label class="label" for="imageInput">제품 사진</label>
+                <label class="label" for="files">제품 사진</label>
                 <div class="file has-name is-fullwidth">
                   <label class="file-label">
                     <input
                       class="file-input"
-                      id="imageInput"
+                      id="files"
                       type="file"
-                      name="image-file"
-                      accept=".png, .jpeg, .jpg"
                     />
                     <span class="file-cta">
                       <span class="file-icon">
@@ -187,7 +185,7 @@
               ></div>
   
               <div class="mt-5">
-                <button class="button is-primary is-fullwidth" id="submitButton">
+                <button class="button is-primary is-fullwidth" id="submitButton" type="submit">
                   등록
                 </button>
               </div>
