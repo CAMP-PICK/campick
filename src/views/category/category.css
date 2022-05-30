@@ -1,18 +1,22 @@
 /* 이미지 CSS */
 .product-item .image img {
-    height: 200px;
+  height: 200px;
 }
 
 /* 컨텐츠 CSS */
 .product-item p.title {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 .product-item p.description {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .product-item p.price {
-    font-size: 2rem;
-    margin-top: 3.5rem;
+  font-size: 2rem;
+  margin-top: 3.5rem;
+}
+
+.product-item {
+  cursor: pointer;
 }

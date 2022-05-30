@@ -1,48 +1,24 @@
-import * as Api from '/api.js';
+import * as Api from '../api.js';
+import {
+  appendNavigationBar,
+  appendUserNavigationBar,
+} from '../useful-functions.js';
 
-window.onload = async function() {
-  
+// Nav Bar 고정
+appendNavigationBar();
 
-  const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
-  
-  // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
-  if (localStorage.getItem("token") !== null) {
-    document.querySelector("#insertItem").insertAdjacentHTML(
-      "afterbegin",
-      `<a href="/" id="logoutBtn" class="button is-dark is-inverted">
-      <li><strong>로그아웃</strong></li>
-    </a>
-    <a href="/cart" class="button is-dark is-inverted">
-      <span class="icon">
-        <i class="fas fa-cart-shopping"></i>
-      </span>
-      <li><strong>장바구니</strong></li>
-    </a>`
-    );
-  } else {
-    document.querySelector("#insertItem").insertAdjacentHTML(
-      "afterbegin",
-      `<a href="/register" class="button is-dark is-inverted">
-      <li><strong>회원가입</strong></li>
-    </a>
-    <a href="/login" class="logoutBtn button is-dark is-inverted">
-      <li><strong>로그인</strong></li>
-    </a>
-    <a href="/cart" class="button is-dark is-inverted">
-      <span class="icon">
-        <i class="fas fa-cart-shopping"></i>
-      </span>
-      <li><strong>장바구니</strong></li>
-    </a>`
-    );
-  }
-  
-  // 관리자 계정 분리
-  // 로그인계정이 관리자
-  if (data.role == "manager-user") {
-    document.querySelector(".managerSection").insertAdjacentHTML(
-      "afterbegin",
-      `<section class="section">
+const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
+const token = localStorage.getItem('token');
+
+// 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
+appendUserNavigationBar(token);
+
+// 관리자 계정 분리
+// 로그인계정이 관리자
+if (data.role == 'manager-user') {
+  document.querySelector('.managerSection').insertAdjacentHTML(
+    'afterbegin',
+    `<section class="section">
       <h1 class="title">관리자 페이지</h1>
       <h2 class="subtitle">
         상품 추가, 삭제 등 상품 관리를 할 수 있는 공간입니다.
@@ -51,7 +27,7 @@ window.onload = async function() {
   
       <div class="tile is-parent">
       <article class="tile is-child box">
-        <a href="">
+        <a href="../product_sell/product_sell.html">
           <p class="title">
             <span class="icon">
               <i class="fa-solid fa-cart-plus"></i>
@@ -62,15 +38,15 @@ window.onload = async function() {
         <p class="subtitle">상품 정보를 등록하여, 판매를 시작할 수 있습니다.</p>
       </article>
       <article class="tile is-child box">
-        <a href="">
+        <a href="../productCategory/productCategory.html">
           <p class="title">
             <span class="icon">
               <i class="fa-solid fa-cart-plus"></i>
             </span>
-            목록적기
+            카테고리 관리
           </p>
         </a>
-        <p class="subtitle">상세 설명입니다.</p>
+        <p class="subtitle">카테고리를 추가/수정/삭제 할 수 있습니다.</p>
       </article>
       <article class="tile is-child box">
         <a href="">
@@ -84,12 +60,12 @@ window.onload = async function() {
         <p class="subtitle">상세 설명입니다.</p>
       </article>
       </div>`
-    );
-  } else {
-    // 일반사용자
-    document.querySelector(".userSection").insertAdjacentHTML(
-      "afterbegin",
-      `<section class="section">
+  );
+} else {
+  // 일반사용자
+  document.querySelector('.userSection').insertAdjacentHTML(
+    'afterbegin',
+    `<section class="section">
       <h1 class="title">계정관리</h1>
       <h2 class="subtitle">
         주문조회, 회원정보 관리, 회원탈퇴를 할 수 있습니다.
@@ -131,23 +107,5 @@ window.onload = async function() {
           <p class="subtitle">모든 정보를 안전하게 삭제한 후 탈퇴할 수 있습니다.</p>
         </article>
       </div>`
-    );
-  }
-  
-  const logoutBtn = document.querySelector("#logoutBtn");
-  logoutBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    try {
-      localStorage.clear();
-  
-      alert("로그아웃이 완료 되었습니다.");
-  
-      // 기본 페이지로 이동
-      window.location.href = "/";
-    } catch (err) {
-      console.error(err.stack);
-      alert(`${err.message}`);
-    }
-  });
+  );
 }
-
