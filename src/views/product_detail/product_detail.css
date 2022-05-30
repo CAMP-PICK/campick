@@ -24,3 +24,13 @@
     padding-bottom: 0;
     padding-right: 0;
 }
+
+#submitDelButton {
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+}
+
+#submitEditButton {
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+}
