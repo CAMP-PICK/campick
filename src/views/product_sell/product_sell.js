@@ -8,7 +8,7 @@ const shortDescription = document.querySelector("#shortDescriptionInput"); // �
 const detailDescription = document.querySelector("#detailDescriptionInput"); // 상세 설명
 const imagedata = document.querySelector("#imageInput"); // 제품 사진 임시
 const inventory = document.querySelector("#inventoryInput"); // 제품 재고
-const productPrice = document.querySelector("#priceInput"); //제품 가격
+const productPriceValue = document.querySelector("#priceInput"); //제품 가격
 
 const submit = document.querySelector("#submitButton"); //버튼
 
@@ -41,22 +41,22 @@ function addAllEvents() {
       e.preventDefault();
       
       //추가할 물품 데이터
-      const productTitle = titleInput.value; //제품명
-      const categorySelect = categorySelectBox.value; //카테고리
-      const manufacturer = manufacturerInput.value; //제조사
-      const shortDescription = shortDescriptionInput.value; // 요약 설명
-      const detailDescription = detailDescriptionInput.value; // 상세 설명
-      const imagedata = imageInput.value; // 제품 사진 임시
+      const productName = productTitle.value; //제품명
+      const productCategory = categorySelect.value; //카테고리
+      const productManuf = manufacturer.value; //제조사
+      const productShortDes = shortDescription.value; // 요약 설명
+      const productLongDes = detailDescription.value; // 상세 설명
+      const productImage = imagedata.value; // 제품 사진 임시
       // const inventory = inventory.value; // 제품 재고 router가 없어서 임시로 막아둠
-      const productPrice = priceInput.value; //제품 가격
+      const productPrice = productPriceValue.value; //제품 가격
 
       try{
-        const data = {productTitle, productPrice, categorySelect, imagedata, manufacturer, shortDescription, detailDescription};
+        const data = {productName, productPrice, productCategory, productImage, productManuf, productShortDes, productLongDes};
         await Api.post(`/api/product/create`, data);
         alert(`정상 등록되었습니다.`);
 
         //선택한 카테고리 페이지로 이동
-        window.location.href = `/category/:${productTitle}`;
+        window.location.href = `/product_detail/?name=${productName}`;
       } catch(err) {
         alert(`${err.message}`);
       }
