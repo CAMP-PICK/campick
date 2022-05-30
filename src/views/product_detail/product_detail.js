@@ -36,7 +36,7 @@ const fetchProductDetail = async () => {
             <div class="tile is-child box product-detail">
               <div class="tabs">
                 <ul>
-                  <li id="manufacturerTag">${productDetail.productName}</li>
+                  <li id="manufacturerTag">${productDetail.productCategory}</li>
                   <br>
                   <i class="fa-solid fa-trash" id="submitEditButton"style="margin-left:1em"></i>
                   <i class="fa-solid fa-pencil" id="submitDelButton" style="margin-left:1em"></i>
@@ -44,7 +44,7 @@ const fetchProductDetail = async () => {
               </div>
               <div class="content">
                 <p class="subtitle is-3 is-family-monospace" id="titleTag">
-                  ${productDetail.productCategory}
+                  ${productDetail.productName}
                 </p>
                 <h1 id="priceTag">${addCommas(productDetail.productPrice)}원</h1>
                 <p class="detail-description" id="detailDescriptionTag">
