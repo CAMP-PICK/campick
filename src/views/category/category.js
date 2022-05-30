@@ -2,6 +2,7 @@ import * as Api from '/api.js';
 import {
   appendNavigationBar,
   appendUserNavigationBar,
+  addCommas,
 } from '../useful-functions.js';
 
 const token = localStorage.getItem('token');
@@ -38,7 +39,7 @@ const fetchProductList = async () => {
                     <p class="description">
                       ${product.productShortDes}
                     </p>
-                    <p class="price">${product.productPrice}원</p>
+                    <p class="price">${addCommas(product.productPrice)}원</p>
                   </div>
                 </div>  
               </div>
