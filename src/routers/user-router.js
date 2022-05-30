@@ -3,7 +3,6 @@ import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import { loginRequired } from '../middlewares';
 import { userService } from '../services';
-
 const userRouter = Router();
 
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
@@ -64,7 +63,6 @@ userRouter.post('/login', async function (req, res, next) {
 
 // 홈화면으로 돌아가기
 userRouter.get('/backhome', (req, res, next) => {
-  console.log("good")
   res.redirect(process.env.URL_SERVER)
 })
 
