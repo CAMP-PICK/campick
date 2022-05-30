@@ -106,27 +106,3 @@ delButton.addEventListener("click", deleteSubmit);
 editButton.addEventListener("click", deleteSubmit);
 
 await fetchProductDetail();
-const logoutBtn = document.querySelector('#logoutBtn');
-
-addAllEvents();
-
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {
-  if (logoutBtn) logoutBtn.addEventListener('click', logOut);
-}
-
-async function logOut(e) {
-  e.preventDefault();
-  try {
-    localStorage.clear();
-
-    alert('로그아웃이 완료 되었습니다.');
-
-    // 기본 페이지로 이동
-    window.location.href = '/';
-  } catch (err) {
-    console.error(err.stack);
-    alert(`${err.message}`);
-    ``;
-  }
-}
