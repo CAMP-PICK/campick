@@ -26,10 +26,3 @@ export const MENU_LIST = [
   { name: '램프', to: '/lamp' },
   { name: '기타', to: '/etc' },
 ];
-
-export const PRODUCT_LIST = [
-  {
-    title: '',
-  },
-  {},
-];
