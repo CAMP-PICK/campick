@@ -7,19 +7,18 @@ import {
 // Nav Bar 고정
 appendNavigationBar();
 
-window.onload = async function () {
-  const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
-  const token = localStorage.getItem('token');
+const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
+const token = localStorage.getItem('token');
 
-  // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
-  appendUserNavigationBar(token);
+// 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
+appendUserNavigationBar(token);
 
-  // 관리자 계정 분리
-  // 로그인계정이 관리자
-  if (data.role == 'manager-user') {
-    document.querySelector('.managerSection').insertAdjacentHTML(
-      'afterbegin',
-      `<section class="section">
+// 관리자 계정 분리
+// 로그인계정이 관리자
+if (data.role == 'manager-user') {
+  document.querySelector('.managerSection').insertAdjacentHTML(
+    'afterbegin',
+    `<section class="section">
       <h1 class="title">관리자 페이지</h1>
       <h2 class="subtitle">
         상품 추가, 삭제 등 상품 관리를 할 수 있는 공간입니다.
@@ -61,12 +60,12 @@ window.onload = async function () {
         <p class="subtitle">상세 설명입니다.</p>
       </article>
       </div>`
-    );
-  } else {
-    // 일반사용자
-    document.querySelector('.userSection').insertAdjacentHTML(
-      'afterbegin',
-      `<section class="section">
+  );
+} else {
+  // 일반사용자
+  document.querySelector('.userSection').insertAdjacentHTML(
+    'afterbegin',
+    `<section class="section">
       <h1 class="title">계정관리</h1>
       <h2 class="subtitle">
         주문조회, 회원정보 관리, 회원탈퇴를 할 수 있습니다.
@@ -108,30 +107,5 @@ window.onload = async function () {
           <p class="subtitle">모든 정보를 안전하게 삭제한 후 탈퇴할 수 있습니다.</p>
         </article>
       </div>`
-    );
-  }
-  const logoutBtn = document.querySelector('#logoutBtn');
-  
-  addAllEvents();
-  
-  function addAllEvents() {
-    if (logoutBtn) logoutBtn.addEventListener('click', logOut);
-  }
-  
-  async function logOut(e) {
-    e.preventDefault();
-    try {
-      localStorage.clear();
-  
-      alert('로그아웃이 완료 되었습니다.');
-  
-      // 기본 페이지로 이동
-      window.location.href = '/';
-    } catch (err) {
-      console.error(err.stack);
-      alert(`${err.message}`);
-      ``;
-    }
-  }
-};
-
+  );
+}
