@@ -52,11 +52,11 @@
         </div>
 
         <div class="field">
-          <label class="label" for="passwordInput">기존 비밀번호</label>
+          <label class="label" for="currentPasswordInput">기존 비밀번호</label>
           <div class="control">
             <input
               class="input"
-              id="passwordInput"
+              id="currentPasswordInput"
               type="password"
               placeholder="********"
               autocomplete="off"
@@ -65,11 +65,11 @@
         </div>
 
         <div class="field">
-          <label class="label" for="passwordInput">새 비밀번호</label>
+          <label class="label" for="newPasswordInput">새 비밀번호</label>
           <div class="control">
             <input
               class="input"
-              id="passwordInput"
+              id="newPasswordInput"
               type="password"
               placeholder="********"
               autocomplete="off"
@@ -79,13 +79,13 @@
         </div>
 
         <div class="field mb-5">
-          <label class="label" for="passwordConfirmInput"
+          <label class="label" for="newPasswordConfirmInput"
             >새 비밀번호 확인</label
           >
           <div class="control">
             <input
               class="input"
-              id="passwordConfirmInput"
+              id="newPasswordConfirmInput"
               type="password"
               placeholder="********"
               autocomplete="off"
@@ -94,37 +94,45 @@
         </div>
 
         <div class="field">
-          <label class="label" for="phonenumberInput">전화번호</label>
+          <label class="label" for="phoneNumberInput">전화번호</label>
           <div class="control">
             <input
               class="input"
-              id="telInput"
+              id="phoneNumberInput"
               type="tel"
+              placeholder="01012345678"
               autocomplete="on"
-              placeholder="010-1234-5678"
             />
+            <p class="help"> - 없이 입력해주세요.</p>
           </div>
         </div>
 
         <div class="field">
           <label class="label" for="addressInput">주소</label>
           <div class="control">
-            <input
-              class="input"
-              id="userPost"
-              type="text"
-              autocomplete="on"
-              placeholder="우편번호" 
-              readonly onclick="findAddr()"
-            />
-            <input
-              class="input"
-              id="userAddress"
-              type="text"
-              autocomplete="on"
-              placeholder="주소" 
-              readonly
-            />
+            <div id="postColumn" class="columns is-gapless">
+              <div class="column is-one-quarter">
+                <input
+                class="input"
+                id="addressInput"
+                type="text"
+                autocomplete="on"
+                placeholder="우편번호" 
+                readonly onclick="findAddr()"
+                size=""
+              />
+              </div>
+              <div class="column">
+                <input
+                class="input"
+                id="userAddress"
+                type="text"
+                autocomplete="on"
+                placeholder="도로명주소" 
+                readonly
+              />
+              </div>
+            </div>
             <input
               class="input"
               id="userAddressDetail"
@@ -147,7 +155,7 @@
           oncomplete: function(data){
             const roadAddr = data.roadAddress;
             const jibunAddr = data.jibunAddress;
-            document.getElementById('userPost').value = data.zonecode;
+            document.getElementById('addressInput').value = data.zonecode;
             if(roadAddr !== ''){
               document.getElementById('userAddress').value = roadAddr;
             } else if(jibunAddr !== ''){
