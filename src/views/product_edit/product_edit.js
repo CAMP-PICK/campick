@@ -3,14 +3,6 @@ import * as Api from '../api.js';
 // querySelector로 변수 지정
 const form = document.querySelector("#registerProductForm"); //폼 데이터
 const selectCategory = document.querySelector("#categorySelectBox"); //카테고리 영역
-const productTitle = document.querySelector("#titleInput"); //제품명
-const categorySelect = document.querySelector("#categorySelectBox"); //카테고리
-const manufacturer = document.querySelector("#manufacturerInput"); //제조사
-const shortDescription = document.querySelector("#shortDescriptionInput"); // 요약 설명
-const detailDescription = document.querySelector("#detailDescriptionInput"); // 상세 설명
-const files = document.getElementById("files"); //제품 이미지 파일
-const inventory = document.querySelector("#inventoryInput"); // 제품 재고
-const productPrice = document.querySelector("#priceInput"); //제품 가격
 
 //수정 할 상품 url에서 받아오기
 const urlStr = window.location.href;
@@ -38,18 +30,14 @@ async function currentCategoryList(){
     const option = document.createElement("option");
     const categoryOption = document.createTextNode(productCategory);
     option.appendChild(categoryOption)
-    console.log(productCategory);
-    console.log(option);
 
     selectCategory.appendChild(option);
-    console.log(selectCategory);
   }
 
   return;
 }
   
 async function currentProductList(){
-
   //수정 할 제품list api 요청
   const productData = await Api.get(`/api/product/list/${editProductName}`)
   const {productName, productCategory, productImage, productManuf, productShortDes, productLongDes, productPrice} = productData;
@@ -122,24 +110,23 @@ async function currentProductList(){
 
   <div class="field is-fullwidth">
     <label class="label" for="files">제품 사진</label>
-    <div class="file has-name is-fullwidth">
-      <label class="file-label">
-        <input
-          class="file-input"
-          id="files"
-          type="file"
-        />
-        <span class="file-cta">
-          <span class="file-icon">
-            <i class="fas fa-upload"></i>
-          </span>
-          <span class="file-label"> 사진 업로드 </span>
+      <div class="file has-name is-fullwidth">
+        <label class="file-label">
+          <input
+            class="file-input"
+            id="files"
+            type="file"
+          />
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
         </span>
-        <span class="file-name" id="fileNameSpan">
-          사진파일 (png, jpg, jpeg)
-        </span>
-      </label>
-    </div>
+        <span class="file-label"> 사진 업로드 </span>
+      </span>
+      <span class="file-name" id="fileNameSpan">
+        사진파일 (png, jpg, jpeg)
+      </span>
+    </label>
   </div>
 
   <div class="field">
@@ -187,6 +174,16 @@ async function currentProductList(){
 
 async function handleSubmit(e) {
   e.preventDefault();
+
+  // querySelector로 변수 지정(함수 밖에서 정의하니 데이터가 안읽혀서 가져옴)
+  const productTitle = document.querySelector("#titleInput"); //제품명
+  const categorySelect = document.querySelector("#categorySelectBox"); //카테고리
+  const manufacturer = document.querySelector("#manufacturerInput"); //제조사
+  const shortDescription = document.querySelector("#shortDescriptionInput"); // 요약 설명
+  const detailDescription = document.querySelector("#detailDescriptionInput"); // 상세 설명
+  const files = document.getElementById("files"); //제품 이미지 파일
+  const inventory = document.querySelector("#inventoryInput"); // 제품 재고
+  const productPrice = document.querySelector("#priceInput"); //제품 가격
   const formData = new FormData();
 
   try{
@@ -202,7 +199,7 @@ async function handleSubmit(e) {
     for(let i =0; i < files.files.length; i++) {
       formData.append("files", files.files[i]);
     }
-
+    console.log(productTitle.value)
     await fetch(`http://localhost:3000/api/product/edit/${editProductName}`, {
       method: 'POST',
       body: formData,
