@@ -86,7 +86,7 @@ productRouter.get('/list/:productName', async (req, res, next) => {
 });
 
 //상품 수정 api
-productRouter.put('/edit/:editProduct', async (req, res, next) => {
+productRouter.post('/edit/:editProduct', upload.array("files"), async (req, res, next) => {
   // req (request)의 body 에서 수정할 상품 데이터 가져오기
   const editProduct = req.params.editProduct;
 
