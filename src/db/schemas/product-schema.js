@@ -30,6 +30,10 @@ const ProductSchema = new Schema(
       type: String,
       required: true,
     },
+    productStock: {
+      type: Number,
+      required: true,
+    },
   },
   {
     collection: 'products',
