@@ -40,6 +40,30 @@
     <div class="userSection"></div>
     <br /><br />
     <div class="managerSection"></div>
+    
+    <div id="image-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">회원 탈퇴</p>
+          </header>
+          <section class="modal-card-body">
+            <div class="content">
+              삭제된 계정의 정보는 복구 될 수 없습니다. 다시 한번 확인해주시고, 탈퇴 진행을 원하시면 비밀번호를 입력하신 뒤 회원 탈퇴 버튼을 눌러주세요.
+            </div>
+            <!-- Content ... -->
+            <label class="label" for="deletePassword">비밀번호 확인</label>
+            <input class="input is-primary" id="deletePassword" type="password">
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-danger" id="deleteUserBtn">회원탈퇴</button>
+            <button class="button" id="image-modal-close">취소</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+
 
     <script src="account.js" type="module" defer></script>
   </body>
