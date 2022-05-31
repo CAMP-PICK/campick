@@ -1,0 +1,22 @@
+.edit-user-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+}
+
+.edit-user-form-box {
+  width: 30rem;
+}
+
+.edit-user-form-box .title {
+  text-align: center;
+}
+
+.edit-user-form-box .button {
+  font-weight: bold;
+}
+
+.edit-user-form-box .input:focus {
+  border-color: #383E56;
+}
