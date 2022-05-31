@@ -20,3 +20,7 @@
 .edit-user-form-box .input:focus {
   border-color: #383E56;
 }
+
+#postColumn {
+  margin-bottom: 8px;
+}
