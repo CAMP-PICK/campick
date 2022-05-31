@@ -1,4 +1,4 @@
-import * as Api from '../api.js';
+import * as Api from "../api.js";
 
 // querySelector로 변수 지정
 const form = document.querySelector("#registerProductForm"); //폼 데이터
@@ -8,9 +8,9 @@ const selectCategory = document.querySelector("#categorySelectBox"); //카테고
 const urlStr = window.location.href;
 const url = new URL(urlStr);
 const urlParams = url.searchParams;
-const editProductName = urlParams.get('name');
+const editProductName = urlParams.get("name");
 
-currentCategoryList()
+// currentCategoryList();
 currentProductList();
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
@@ -18,29 +18,19 @@ function addAllEvents() {
   form.addEventListener("submit", handleSubmit);
 }
 
-//현재 생성되어있는 카테고리를 보여주는 함수
-async function currentCategoryList(){
-  //카테고리list api 요청
-  const data = await Api.get(`/api/productCategory/list`);
-  for(let i=0; i<data.length; i++) {
-    //카테고리 하나씩 꺼내기
-    const productCategory = data[i];
-
-    //생성되어있는 카테고리를 선택할 수 있도록 option추가
-    const option = document.createElement("option");
-    const categoryOption = document.createTextNode(productCategory);
-    option.appendChild(categoryOption)
-
-    selectCategory.appendChild(option);
-  }
-
-  return;
-}
-  
-async function currentProductList(){
+async function currentProductList() {
   //수정 할 제품list api 요청
-  const productData = await Api.get(`/api/product/list/${editProductName}`)
-  const {productName, productCategory, productImage, productManuf, productShortDes, productLongDes, productPrice} = productData;
+  const data = await Api.get(`/api/productCategory/list`);
+  const productData = await Api.get(`/api/product/list/${editProductName}`);
+  const {
+    productName,
+    productCategory,
+    productImage,
+    productManuf,
+    productShortDes,
+    productLongDes,
+    productPrice,
+  } = productData;
 
   //수정 페이지에 기존 상품 데이터 입력
   form.innerHTML = `
@@ -63,7 +53,7 @@ async function currentProductList(){
     <div class="control">
       <div class="select is-fullwidth">
         <select id="categorySelectBox">
-          <option value="">카테고리를 선택해 주세요.</option>
+          <option id="test">카테고리를 선택해 주세요.</option>
         </select>
       </div>
     </div>
@@ -169,6 +159,24 @@ async function currentProductList(){
     </button>
   </div>
     `;
+  const categorySelect = document.querySelector("#categorySelectBox");
+  for (let i = 0; i < data.length; i++) {
+    //카테고리 하나씩 꺼내기
+    const productCategories = data[i];
+
+    //생성되어있는 카테고리를 선택할 수 있도록 option추가
+    if (productCategories === productCategory) {
+      categorySelect.insertAdjacentHTML(
+        "beforeend",
+        `<option selected="selected">${productCategories}</option>`
+      );
+    } else {
+      categorySelect.insertAdjacentHTML(
+        "beforeend",
+        `<option>${productCategories}</option>`
+      );
+    }
+  }
   return;
 }
 
@@ -186,7 +194,7 @@ async function handleSubmit(e) {
   const productPrice = document.querySelector("#priceInput"); //제품 가격
   const formData = new FormData();
 
-  try{
+  try {
     //수정할 물품 데이터
     formData.append("productName", productTitle.value);
     formData.append("productCategory", categorySelect.value);
@@ -208,7 +216,7 @@ async function handleSubmit(e) {
     }
 
     await fetch(`http://localhost:3000/api/product/edit/${editProductName}`, {
-      method: 'POST',
+      method: "POST",
       body: formData,
     })
       .then((res) => console.log(res))
@@ -218,7 +226,7 @@ async function handleSubmit(e) {
 
     //수정한 상품 페이지로 이동
     window.location.href = `/product_detail/?name=${productTitle.value}`;
-  } catch(err) {
+  } catch (err) {
     alert(`${err.message}`);
   }
 }
