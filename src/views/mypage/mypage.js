@@ -16,43 +16,47 @@ const confirmNewPasswordInput = document.querySelector(
 const telInput = document.querySelector('#telInput');
 const addressInput = document.querySelector('#addressInput');
 
-const userInfoEmail = document.querySelector('#userInfoEmail');
-const userInfoName = document.querySelector('#userInfoName');
-const userInfoPhone = document.querySelector('#userInfoPhone');
-const userInfoAddress = document.querySelector('#userInfoAddress');
+addAllEvents();
 
-// addAllEvents();
-
-// function addAllEvents() {
-//   testBtn1.addEventListener('click', logOut);
-//   submitButton.addEventListener('click', setUser);
-//   deleteUserBtn.addEventListener('click', deleteUser);
-// }
-
-// 테스트 api(현재 사용 안함)
-async function userInfo() {
-  const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
+function addAllEvents() {
+    testBtn1.addEventListener('click', logOut)
+    submitButton.addEventListener('click', setUser)
+    deleteUserBtn.addEventListener('click', deleteUser)
 }
 
 async function deleteUser(e) {
-  e.preventDefault();
-  const password = deletePassword.value;
-  console.log(password);
-  const email = localStorage.getItem('email');
-  console.log(userinfo);
-  try {
-    const data = { email, password };
-    await Api.post(`/api/userdelete`, data);
-    localStorage.clear();
+    e.preventDefault();
+    const email = localStorage.getItem('email');
+    const password = deletePassword.value;
+    
+    try {
+        const data = { email , password}
+        await Api.post('/api/userdelete', data);
+        localStorage.clear()
 
-    alert('회원 탈퇴가 완료 되었습니다.');
+        alert('회원 탈퇴가 완료 되었습니다.')
 
-    // 기본 페이지로 이동
-    window.location.href = '/';
-  } catch (err) {
-    console.error(err.stack);
-    alert(`${err.message}`);
-  }
+        // 기본 페이지로 이동
+        window.location.href = '/';
+    } catch (err) {
+        console.error(err.stack);
+        alert(`${err.message}`);
+    }
+}
+
+async function logOut(e) {
+    e.preventDefault();
+    try {
+        localStorage.clear()
+
+        alert('로그아웃이 완료 되었습니다.')
+
+        // 기본 페이지로 이동
+        window.location.href = '/';
+    } catch (err) {
+        console.error(err.stack);
+        alert(`${err.message}`);
+    }
 }
 
 async function setUser(e) {

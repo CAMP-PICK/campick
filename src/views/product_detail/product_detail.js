@@ -20,7 +20,7 @@ const productName = urlParams.get('name');
 const fetchProductDetail = async () => {
   try {
     const productDetail = await Api.get(`/api/product/list/${productName}`);
-
+    
     document.querySelector('#productDetailContainer').insertAdjacentHTML(
       'afterbegin',
       `
@@ -28,7 +28,7 @@ const fetchProductDetail = async () => {
         <div class="tile is-6 is-parent">
           <div class="tile is-child box product-image">
             <figure class="image is-sqaure">
-              <img id="productImageTag" src="../category/tent1.jpg" />
+              <img id="productImageTag" src="../../../uploads/${productDetail.productImage}" />
             </figure>
           </div>
         </div>
