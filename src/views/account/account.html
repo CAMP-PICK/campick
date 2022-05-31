@@ -40,30 +40,38 @@
     <div class="userSection"></div>
     <br /><br />
     <div class="managerSection"></div>
-    
-    <div id="image-modal" class="modal">
+
+    <!-- 회원 탈퇴 Modal -->
+    <div id="image-modal" class="delete-form-container modal">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">회원 탈퇴</p>
-          </header>
-          <section class="modal-card-body">
-            <div class="content">
-              삭제된 계정의 정보는 복구 될 수 없습니다. 다시 한번 확인해주시고, 탈퇴 진행을 원하시면 비밀번호를 입력하신 뒤 회원 탈퇴 버튼을 눌러주세요.
-            </div>
-            <!-- Content ... -->
+        <form class="box delete-form-box" id="deleteForm">
+          <br>
+          <p class="title is-5 has-text-dark">회원 탈퇴</p>
+          <hr>
+          <div class="content">
+            <strong>
+              삭제된 계정의 정보는 복구될 수 없습니다.<br /><br />
+              다시 한번 확인해 주시고, 회원 탈퇴 진행을 원하시면<br />
+              비밀번호를 입력한 후 계정 삭제 버튼을 눌러주세요.
+            </strong>
+          </div>
+          <div class="field mb-5">
             <label class="label" for="deletePassword">비밀번호 확인</label>
-            <input class="input is-primary" id="deletePassword" type="password">
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-danger" id="deleteUserBtn">회원탈퇴</button>
+            <div class="control">
+              <input
+                class="input"
+                id="deletePassword"
+                type="password"
+                placeholder="********"
+                autocomplete="off"
+              />
+            </div><br>
+            <button class="button is-danger" id="deleteUserBtn">계정 삭제</button>
             <button class="button" id="image-modal-close">취소</button>
-          </footer>
-        </div>
+          </form>
       </div>
     </div>
-
 
     <script src="account.js" type="module" defer></script>
   </body>
