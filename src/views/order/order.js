@@ -116,6 +116,20 @@ function initState() {
 function addEventListenerBtnBuy() {
   const $0 = $cache.btnBuy;
   $0.addEventListener('click', () => {
+    if (!$cache.zipCode.value
+      || !$cache.addr1.value
+      || !$cache.addr2.value
+      || !state.grandTotal
+      || !state.items
+      || !$cache.recipient.value
+      || !$cache.email.value
+      || !$cache.phone1.value
+      || !$cache.phone2.value
+      || !$cache.phone3.value) {
+      alert('빈 값이 있습니다.');
+      return;
+    }
+
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('POST', '/api/order/register', true);
     httpRequest.setRequestHeader('Content-Type', 'application/json');
@@ -127,9 +141,6 @@ function addEventListenerBtnBuy() {
       localStorage.removeItem(orderName);
       window.location.replace('/');
     });
-    console.log($cache.phone1);
-    console.log($cache.phone2);
-    console.log($cache.phone3);
     httpRequest.send(JSON.stringify({
       address: `(${$cache.zipCode.value}) ${$cache.addr1.value} ${$cache.addr2.value}`,
       totalPrice: state.grandTotal,
