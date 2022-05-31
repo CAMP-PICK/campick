@@ -41,6 +41,7 @@ productRouter.post('/create', upload.array("files"), async (req, res, next) => {
     const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
     const productShortDes = req.body.productShortDes; //상품의 요약 설명 description을 Des로 줄임
     const productLongDes = req.body.productLongDes;
+    const productStock = req.body.productStock; //상품 재고
     //이미지 파일 데이터 들어오는건 req.files 콘솔 찍어보면 됨
     const productImage = req.files[0].filename;
 
@@ -53,6 +54,7 @@ productRouter.post('/create', upload.array("files"), async (req, res, next) => {
       productManuf,
       productShortDes,
       productLongDes,
+      productStock,
     });
 
     res.status(201).json(newProduct);
@@ -95,6 +97,8 @@ productRouter.put('/edit/:editProduct', async (req, res, next) => {
   const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
   const productShortDes = req.body.productShortDes; //상품의 요약 설명 description을 Des로 줄임
   const productLongDes = req.body.productLongDes;
+  const productStock = req.body.productStock;
+  const productImage = req.files[0].filename;
 
   //update할 정보를 모아서 전달해주기 위해 새로운 객체변수 할당
   const updateInfo = {
@@ -104,6 +108,8 @@ productRouter.put('/edit/:editProduct', async (req, res, next) => {
     ...(productManuf && { productManuf }),
     ...(productShortDes && { productShortDes }),
     ...(productLongDes && { productLongDes }),
+    ...(productStock && {productStock}),
+    ...(productImage && {productImage}),
   };
 
   const productInfoUpdate = await productService.editProduct(
