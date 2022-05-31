@@ -70,6 +70,18 @@ const fetchProductDetail = async () => {
 const delButton = document.querySelector("#submitDelButton");
 const editButton = document.querySelector("#submitEditButton");
 
+// 관리자 계정일때만 버튼 표시
+const data = await Api.get(`/api/email/${localStorage.getItem('email')}`); // 관리자 email로 로그인 확인
+const style = document.createElement('style');
+if(data.role !== 'manager-user') {
+  style.innerHTML = `
+      #managerButton {
+        display: none;
+      }
+    `;
+document.head.appendChild(style);
+}
+
 // 제품 상세 페이지 삭제
 async function deleteSubmit(e) {
   e.preventDefault();

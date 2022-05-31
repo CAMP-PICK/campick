@@ -18,6 +18,10 @@
 }
 
 /* 버튼 관련 CSS */
+#managerButton {
+    float: none;
+    margin-left: 90%;
+}
 
 .buttons-container {
     flex-grow: 0;
