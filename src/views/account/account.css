@@ -1,0 +1,21 @@
+
+
+.delete-form-box {
+  width: 30rem;
+}
+
+.delete-form-box {
+  text-align: center;
+}
+
+.delete-form-box .button {
+  font-weight: bold;
+}
+
+.control input {
+  width: 10rem;
+}
+
+.modal-content {
+  width: 30rem;
+}
