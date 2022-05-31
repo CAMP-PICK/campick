@@ -1,88 +1,66 @@
 import * as Api from '/api.js';
-import { validateEmail } from '/useful-functions.js';
 
-const testBtn1 = document.querySelector('#testBtn1');
+// 요소모음
 const submitButton = document.querySelector('#submitButton');
-const deleteUserBtn = document.querySelector('#deleteUserBtn');
-
-const deletePassword = document.querySelector('#deletePassword');
-
-const nameInput = document.querySelector('#nameInput');
-const passwordInput = document.querySelector('#passwordInput');
+const fullNameInput = document.querySelector('#fullNameInput');
+const emailInput = document.querySelector('#emailInput');
+const currentPasswordInput = document.querySelector('#currentPasswordInput');
 const newPasswordInput = document.querySelector('#newPasswordInput');
-const confirmNewPasswordInput = document.querySelector(
-  '#confirmNewPasswordInput'
+const newPasswordConfirmInput = document.querySelector(
+  '#newPasswordConfirmInput'
 );
-const telInput = document.querySelector('#telInput');
-const addressInput = document.querySelector('#addressInput');
+const phoneNumberInput = document.querySelector('#phoneNumberInput');
 
-addAllEvents();
+// const addressInput = document.querySelector('#addressInput');
+// const userAddress = document.querySelector('#userAddress');
+// const userAddressDetail = document.querySelector('#userAddressDetail');
 
-function addAllEvents() {
-    testBtn1.addEventListener('click', logOut)
-    submitButton.addEventListener('click', setUser)
-    deleteUserBtn.addEventListener('click', deleteUser)
-}
+// 현재 유저 객체
+let user = {};
 
-async function deleteUser(e) {
-    e.preventDefault();
-    const email = localStorage.getItem('email');
-    const password = deletePassword.value;
-    
-    try {
-        const data = { email , password}
-        await Api.post('/api/userdelete', data);
-        localStorage.clear()
+const init = () => {
+  fetchUserInfo();
+  addEvent();
+};
 
-        alert('회원 탈퇴가 완료 되었습니다.')
+const addEvent = () => {
+  // 정보 수정 버튼을 누르면 updateUserInfo 함수 실행
+  submitButton.addEventListener('click', updateUserInfo);
+};
 
-        // 기본 페이지로 이동
-        window.location.href = '/';
-    } catch (err) {
-        console.error(err.stack);
-        alert(`${err.message}`);
-    }
-}
+const setUserInfo = (user) => {
+  fullNameInput.value = user.fullName;
+  emailInput.value = user.email;
+  phoneNumberInput.value = user.phoneNumber;
+};
 
-async function logOut(e) {
-    e.preventDefault();
-    try {
-        localStorage.clear()
+const fetchUserInfo = async () => {
+  const email = localStorage.getItem('email');
+  try {
+    user = await Api.get(`/api/email/${email}`);
+    setUserInfo(user);
+  } catch (err) {
+    alert(`${err.message}`);
+  }
+};
 
-        alert('로그아웃이 완료 되었습니다.')
-
-        // 기본 페이지로 이동
-        window.location.href = '/';
-    } catch (err) {
-        console.error(err.stack);
-        alert(`${err.message}`);
-    }
-}
-
-async function setUser(e) {
+// 정보수정 진행
+const updateUserInfo = (e) => {
   e.preventDefault();
-
-  const fullName = nameInput.value;
-  const password = passwordInput.value;
+  // input에 있는 각각의 값을 받아온다.
+  const fullName = fullNameInput.value;
+  const currentPassword = currentPasswordInput.value;
   const newPassword = newPasswordInput.value;
-  const confirmNewPassword = confirmNewPasswordInput.value;
-  const phoneNumber = telInput.value;
-  const address = addressInput.value;
-  const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
-  const id = data._id;
+  const newPasswordConfirm = newPasswordConfirmInput.value;
+  const phoneNumber = phoneNumberInput.value;
 
-  // 잘 입력했는지 확인
+  // 인풋 유효성 검사
   const isFullNameValid = fullName.length >= 2;
-  const isEmailValid = validateEmail(email);
   const isPasswordValid = newPassword.length === 0 || newPassword.length >= 4;
-  const isPasswordConfirm = newPassword === confirmNewPassword;
+  const isPasswordConfirm = newPassword === newPasswordConfirm;
 
   if (!isFullNameValid || !isPasswordValid) {
     return alert('이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.');
-  }
-
-  if (!isEmailValid) {
-    return alert('이메일 형식이 맞지 않습니다.');
   }
 
   if (!isPasswordValid) {
@@ -93,20 +71,28 @@ async function setUser(e) {
     return alert('변경하시는 비밀번호와 비밀번호 확인이 일치 하지 않습니다.');
   }
 
-  // 정보 수정 api 요청
+  // 변경되는 유저 정보 취합
+  const userInfo = {
+    fullName,
+    password: currentPassword,
+    newPassword,
+    address: '',
+    phoneNumber,
+  };
+
+  // 유저 정보를 수정하는 api 요청
+  patchUserInfo(userInfo);
+};
+
+// 유저 정보 수정 api
+const patchUserInfo = async (userInfo) => {
   try {
-    const data = { fullName, newPassword, address, phoneNumber, password };
-
-    await Api.patch('/api/users', id, data);
-
-    alert(`회원님의 정보가 수정 되었습니다.`);
-
-    // 정보 수정 성공
-
-    // 계정관리 페이지로 이동
+    await Api.patch(`/api/users`, user._id, userInfo);
+    alert('정상적으로 수정되었습니다.');
     window.location.href = '/account';
   } catch (err) {
-    console.error(err.stack);
     alert(`${err.message}`);
   }
-}
+};
+
+init();
