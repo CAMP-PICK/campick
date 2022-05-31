@@ -15,6 +15,10 @@ app.use(express.json());
 // Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
 app.use(express.urlencoded({ extended: false }));
 
+//업로드 된 상품 이미지를 uploads폴더에 저장하고 웹 페이지에서 이미지에 접근할 수 있도록 설정
+app.use(express.static(__dirname + '/views'));
+app.use('/uploads', express.static('uploads'));
+
 // html, css, js 라우팅
 app.use(viewsRouter);
 
@@ -24,7 +28,6 @@ app.use(viewsRouter);
 app.use('/api', userRouter);
 app.use('/api/product', productRouter);
 app.use('/api/productCategory', categoryRouter);
-app.use('/api/upload', imageRouter); //multer test 중
 app.use('/api/order', orderRouter);
 
 
