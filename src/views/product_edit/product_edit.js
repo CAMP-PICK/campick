@@ -196,10 +196,17 @@ async function handleSubmit(e) {
     formData.append("productPrice", productPrice.value);
     // const inventory = inventory.value; // 제품 재고 router가 없어서 임시로 막아둠
     //파일이 배열로 들어와서 꺼내서 formData에 넣어주는 코드
-    for(let i =0; i < files.files.length; i++) {
-      formData.append("files", files.files[i]);
+
+    if(files.files[0] === undefined || files.files.length === 0 ) {
+      const productData = await Api.get(`/api/product/list/${editProductName}`)
+      const {productImage} = productData
+      return productImage;
+    } else {
+      for(let i =0; i < files.files.length; i++) {
+        formData.append("files", files.files[i]);
+      }
     }
-    console.log(productTitle.value)
+
     await fetch(`http://localhost:3000/api/product/edit/${editProductName}`, {
       method: 'POST',
       body: formData,
