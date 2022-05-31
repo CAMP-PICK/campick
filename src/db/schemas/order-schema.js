@@ -10,7 +10,6 @@ const OrderSchema = new Schema(
             type: Number,
             required: true,
         },
-        
         recipient : {
             type: String,
             required: true,
