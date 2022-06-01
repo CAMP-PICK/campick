@@ -135,8 +135,8 @@ async function purchaseSubmit(e) {
   //장바구니로 보내기 위해 선택한 제품 정보
   const purchaseProduct = await Api.get(`/api/product/list/${productName}`);
   //장바구니로 보내기 위해 선택한 사용자 정보
-  const purchaseUser = await Api.fetch(
-    `/api/user/email/${localStorage.get('email')}`
+  const purchaseUser = await Api.get(
+    `/api/user/email/${localStorage.getItem('email')}`
   );
   console.log(purchaseProduct);
   console.log(purchaseUser);
