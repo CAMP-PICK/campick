@@ -1,31 +1,56 @@
 import { Router } from 'express';
 import { productService } from '../services';
+import { format } from 'util';
 import Multer from 'multer';
+import MulterGoogleCloudStorage from 'multer-google-storage';
 const { Storage } = require('@google-cloud/storage');
+const productRouter = Router();
 // env
 import 'dotenv/config';
 
-const storage = new Storage({
-  projectId: process.env.GCLOUD_PROJECT,
-  credentials: {
-    client_email: process.env.GCLOUD_CLIENT_EMAIL,
-    private_key: process.env.GCLOUD_PRIVATE_KEY,
-  },
-});
+const storage = new Storage();
 
 const multer = Multer({
   storage: Multer.memoryStorage(),
   limit: {
     fileSize: 5 * 1024 * 1024, //5MB로 파일 사이즈 제한
   },
+  // filename: (req, file, cb) => {
+  //   cb(null, Date.now() + '_' + file.originalname);
+  // },
 });
 
-const buket = storage.bucket(process.env.GCS_BUCKET);
+const bucket = storage.bucket(process.env.GCS_BUCKET);
 
-const productRouter = Router();
+productRouter.post('/upload', multer.single('file'), (req, res, next) => {
+  console.log(req.file);
+  const fileName = Date.now();
+  if (!req.file) {
+    res.status(400).send('파일을 업로드 해주세요.');
+    return;
+  }
+
+  const blob = bucket.file(fileName);
+  const blobStream = blob.createWriteStream({
+    resumable: false,
+  });
+
+  blobStream.on('error', (err) => {
+    next(err);
+  });
+
+  blobStream.on('finish', () => {
+    const publicUrl = format(
+      `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+    );
+    res.status(201).send(publicUrl);
+  });
+
+  blobStream.end(req.file.buffer);
+});
 
 // 상품등록 api
-productRouter.post('/create', upload.array('files'), async (req, res, next) => {
+productRouter.post('/create', async (req, res, next) => {
   try {
     // req (request)의 body 에서 데이터 가져오기
     const productName = req.body.productName;
@@ -79,49 +104,45 @@ productRouter.get('/list/:productName', async (req, res, next) => {
 });
 
 //상품 수정 api
-productRouter.post(
-  '/edit/:editProduct',
-  upload.array('files'),
-  async (req, res, next) => {
-    // req (request)의 body 에서 수정할 상품 데이터 가져오기
-    const editProduct = req.params.editProduct;
-    // 이미지 첨부가 안될 경우를 대비하여 상품의 기존 데이터 가져오기
-    const findProduct = await productService.productInfo(editProduct);
+productRouter.post('/edit/:editProduct', async (req, res, next) => {
+  // req (request)의 body 에서 수정할 상품 데이터 가져오기
+  const editProduct = req.params.editProduct;
+  // 이미지 첨부가 안될 경우를 대비하여 상품의 기존 데이터 가져오기
+  const findProduct = await productService.productInfo(editProduct);
 
-    // req (request)의 body 에서 데이터 가져오기
-    const productName = req.body.productName;
-    const productPrice = req.body.productPrice;
-    const productCategory = req.body.productCategory;
-    const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
-    const productShortDes = req.body.productShortDes; //상품의 요약 설명 description을 Des로 줄임
-    const productLongDes = req.body.productLongDes;
-    const productStock = req.body.productStock;
-    let productImage;
+  // req (request)의 body 에서 데이터 가져오기
+  const productName = req.body.productName;
+  const productPrice = req.body.productPrice;
+  const productCategory = req.body.productCategory;
+  const productManuf = req.body.productManuf; //상품의 제조사 product manufacturing company 줄임말
+  const productShortDes = req.body.productShortDes; //상품의 요약 설명 description을 Des로 줄임
+  const productLongDes = req.body.productLongDes;
+  const productStock = req.body.productStock;
+  let productImage;
 
-    if (req.files === undefined) {
-      productImage = findProduct.productImage;
-    }
-
-    //update할 정보를 모아서 전달해주기 위해 새로운 객체변수 할당
-    const updateInfo = {
-      ...(productName && { productName }),
-      ...(productPrice && { productPrice }),
-      ...(productCategory && { productCategory }),
-      ...(productManuf && { productManuf }),
-      ...(productShortDes && { productShortDes }),
-      ...(productLongDes && { productLongDes }),
-      ...(productStock && { productStock }),
-      ...(productImage && { productImage }),
-    };
-
-    const productInfoUpdate = await productService.editProduct(
-      editProduct,
-      updateInfo
-    );
-
-    res.status(200).json(productInfoUpdate);
+  if (req.files === undefined) {
+    productImage = findProduct.productImage;
   }
-);
+
+  //update할 정보를 모아서 전달해주기 위해 새로운 객체변수 할당
+  const updateInfo = {
+    ...(productName && { productName }),
+    ...(productPrice && { productPrice }),
+    ...(productCategory && { productCategory }),
+    ...(productManuf && { productManuf }),
+    ...(productShortDes && { productShortDes }),
+    ...(productLongDes && { productLongDes }),
+    ...(productStock && { productStock }),
+    ...(productImage && { productImage }),
+  };
+
+  const productInfoUpdate = await productService.editProduct(
+    editProduct,
+    updateInfo
+  );
+
+  res.status(200).json(productInfoUpdate);
+});
 
 //상품 삭제 api
 productRouter.delete('/del/:productName', async (req, res, next) => {
