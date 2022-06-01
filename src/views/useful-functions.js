@@ -118,3 +118,16 @@ export const appendUserNavigationBar = (token) => {
     }
   }
 };
+
+export const topButton = () => {
+  const body = document.querySelector('body');
+  body.insertAdjacentHTML('afterbegin', '<button id="topBtn">TOP</button>');
+  const topBtn = document.querySelector('#topBtn');
+  topBtn.addEventListener('click', () => {
+    scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  });
+};
