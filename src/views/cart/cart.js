@@ -215,6 +215,12 @@ function addEventListenerItems() {
 function addEventListenerBtnBuy() {
   const $0 = $cache.btnBuy;
   $0.addEventListener('click', e => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.replace('/login');
+      return;
+    }
+
     const itemsTotal = getItemsTotalCost();
     const deliveryCost = state.deliveryCost;
     const grandTotal = itemsTotal + deliveryCost;
