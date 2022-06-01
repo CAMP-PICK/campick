@@ -48,10 +48,10 @@ input[type=number] {
   text-align: center;
 }
 
-.pay-info .column button{
+.pay-info .column button, .btn-search-zip-code{
   width: 100%;
 }
 
-.card-footer {
-  padding: 0;
+.select, #phone-1 {
+  width: 100%;
 }
