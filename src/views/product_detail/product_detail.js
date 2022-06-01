@@ -20,7 +20,7 @@ const productName = urlParams.get('name');
 const fetchProductDetail = async () => {
   try {
     const productDetail = await Api.get(`/api/product/list/${productName}`);
-
+    
     document.querySelector('#productDetailContainer').insertAdjacentHTML(
       'afterbegin',
       `
@@ -28,9 +28,7 @@ const fetchProductDetail = async () => {
         <div class="tile is-6 is-parent">
           <div class="tile is-child box product-image">
             <figure class="image is-sqaure">
-              <img id="productImageTag" src="../../../uploads/${
-                productDetail.productImage
-              }" />
+              <img id="productImageTag" src="../../../uploads/${productDetail.productImage}" />
             </figure>
           </div>
         </div>
@@ -45,9 +43,7 @@ const fetchProductDetail = async () => {
                 <p class="subtitle is-3 is-family-monospace" id="titleTag">
                   ${productDetail.productName}
                 </p>
-                <h1 id="priceTag">${addCommas(
-                  productDetail.productPrice
-                )}원</h1>
+                <h1 id="priceTag">${addCommas(productDetail.productPrice)}원</h1>
                 <p class="detail-description" id="detailDescriptionTag">
                   ${productDetail.productLongDes}
                 </p>
@@ -71,54 +67,54 @@ const fetchProductDetail = async () => {
 };
 
 //버튼 querySelector로 변수 지정
-const delButton = document.querySelector('#submitDelButton');
-const editButton = document.querySelector('#submitEditButton');
+const delButton = document.querySelector("#submitDelButton");
+const editButton = document.querySelector("#submitEditButton");
 
 // 관리자 계정일때만 버튼 표시
 const data = await Api.get(`/api/email/${localStorage.getItem('email')}`); // 관리자 email로 로그인 확인
 const style = document.createElement('style');
-if (data.role !== 'manager-user') {
+if(data.role !== 'manager-user') {
   style.innerHTML = `
       #managerButton {
         display: none;
       }
     `;
-  document.head.appendChild(style);
+document.head.appendChild(style);
 }
 
 // 제품 상세 페이지 삭제
 async function deleteSubmit(e) {
   e.preventDefault();
 
-  try {
+  try{
     await Api.delete(`/api/product/del/${productName}`);
 
     alert('등록된 제품이 삭제 되었습니다.');
     //창 새로고침
     window.location.href = `/category`;
-  } catch (err) {
+  } catch(err) {
     alert(`${err.message}`);
   }
 }
 
 //제품 상세 페이지 수정
-async function editSubmit(e) {
+async function editSubmit(e){
   e.preventDefault();
 
-  //수정하기 위해 선택한 제품 이름
-  const editProduct = productName;
+//수정하기 위해 선택한 제품 이름
+const editProduct = productName;
 
-  try {
+  try{
     alert('수정 화면으로 이동합니다');
     //제품 수정 페이지로 이동
     window.location.href = `/product_edit/?name=${editProduct}`;
-  } catch (err) {
+  } catch(err) {
     alert(`${err.message}`);
   }
 }
 
 //호출
-delButton.addEventListener('click', deleteSubmit);
-editButton.addEventListener('click', editSubmit);
+delButton.addEventListener("click", deleteSubmit);
+editButton.addEventListener("click", editSubmit);
 
 await fetchProductDetail();

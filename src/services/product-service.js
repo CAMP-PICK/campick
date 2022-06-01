@@ -1,6 +1,7 @@
 import { productModel } from '../db/models/product-model';
 
 class ProductService {
+
   constructor(productModel) {
     this.productModel = productModel;
   }
@@ -12,9 +13,10 @@ class ProductService {
     //상품 중복 확인
     const product = await this.productModel.findByName(productName);
     if (product) {
-      throw new Error('이미 등록된 상품명입니다.');
+      throw new Error("이미 등록된 상품명입니다.");
     }
     const createNewProduct = await this.productModel.create(productInfo);
+
 
     return createNewProduct;
   }
@@ -23,7 +25,7 @@ class ProductService {
   async productList() {
     const totalProduct = await this.productModel.findAll();
     if (!totalProduct) {
-      throw new Error('등록된 상품이 없습니다.');
+      throw new Error("등록된 상품이 없습니다.");
     }
 
     return totalProduct;
@@ -53,7 +55,7 @@ class ProductService {
     product = await this.productModel.update({
       productId,
       update: updateInfo,
-    });
+    })
 
     //수정된 상품 정보 반환
     return product;
@@ -63,12 +65,13 @@ class ProductService {
   async deleteProduct(productName) {
     const product = await this.productModel.findByName(productName);
     if (!product) {
-      throw new Error('존재하지 않는 상품입니다.');
+      throw new Error("존재하지 않는 상품입니다.")
     }
     const deleteProduct = await this.productModel.delete(product._id);
 
     return deleteProduct;
   }
+
 }
 
 const productService = new ProductService(productModel);

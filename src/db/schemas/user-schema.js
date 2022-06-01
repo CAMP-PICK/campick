@@ -19,18 +19,8 @@ const UserSchema = new Schema(
       required: false,
     },
     address: {
-      address1: {
-        type: String,
-        required: false,
-      },
-      address2: {
-        type: String,
-        required: false,
-      },
-      address3: {
-        type: String,
-        required: false,
-      },
+      type: String,
+      required: false,
     },
     role: {
       type: String,
