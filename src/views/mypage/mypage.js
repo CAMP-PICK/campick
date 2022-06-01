@@ -11,9 +11,9 @@ const newPasswordConfirmInput = document.querySelector(
 );
 const phoneNumberInput = document.querySelector('#phoneNumberInput');
 
-const userAddressInput = document.querySelector('#userAddress');
-const userAddressDetailInput = document.querySelector('#userAddressDetail');
-const addressInput = document.querySelector('#addressInput');
+// const addressInput = document.querySelector('#addressInput');
+// const userAddress = document.querySelector('#userAddress');
+// const userAddressDetail = document.querySelector('#userAddressDetail');
 
 // 현재 유저 객체
 let user = {};
@@ -37,7 +37,7 @@ const setUserInfo = (user) => {
 const fetchUserInfo = async () => {
   const email = localStorage.getItem('email');
   try {
-    user = await Api.get(`/api/user/email/${email}`);
+    user = await Api.get(`/api/email/${email}`);
     setUserInfo(user);
   } catch (err) {
     alert(`${err.message}`);
@@ -52,9 +52,6 @@ const updateUserInfo = (e) => {
   const currentPassword = currentPasswordInput.value;
   const newPassword = newPasswordInput.value;
   const newPasswordConfirm = newPasswordConfirmInput.value;
-  const userAddress = userAddressInput.value;
-  const userAddressDetail = userAddressDetailInput.value;
-  const addressCode = addressInput.value;
   const phoneNumber = phoneNumberInput.value;
 
   // 인풋 유효성 검사
@@ -79,11 +76,7 @@ const updateUserInfo = (e) => {
     fullName,
     password: currentPassword,
     newPassword,
-    address: {
-      address1: userAddress,
-      address2: userAddressDetail,
-      address3: addressCode,
-    },
+    address: '',
     phoneNumber,
   };
 
@@ -94,7 +87,7 @@ const updateUserInfo = (e) => {
 // 유저 정보 수정 api
 const patchUserInfo = async (userInfo) => {
   try {
-    await Api.patch(`/api/user/update`, user._id, userInfo);
+    await Api.patch(`/api/users`, user._id, userInfo);
     alert('정상적으로 수정되었습니다.');
     window.location.href = '/account';
   } catch (err) {

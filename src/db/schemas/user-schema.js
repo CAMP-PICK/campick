@@ -28,7 +28,7 @@ const UserSchema = new Schema(
         required: false,
       },
       address3: {
-        type: Number,
+        type: String,
         required: false,
       },
     },

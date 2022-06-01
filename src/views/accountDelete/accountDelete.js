@@ -29,7 +29,7 @@ async function deleteUser(e) {
 
   try {
     const data = { email, password };
-    await Api.post('/api/user/delete', data);
+    await Api.post('/api/userdelete', data);
     localStorage.clear();
 
     alert('회원 탈퇴가 완료 되었습니다.');
