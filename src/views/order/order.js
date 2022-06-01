@@ -55,12 +55,14 @@ function renderItem ({
             <h3 class="title is-5"><a href="#"><span class="${genItemClassNames(cn.itemName, _id)}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
           </div>
         </div>
-        <div class="columns is-mobile is-vcentered">
-          <div class="column is-7">
-            <span>₩<span class="${genItemClassNames(cn.itemPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(productPrice)}</span></span><br>
+        <div class="columns is-mobile is-vcentered is-multiline">
+          <div class="column is-12">
             <span>total: ₩<strong><span class="${genItemClassNames(cn.itemTotalPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(productPrice * quantity)}</span></strong></span>
           </div>
-          <div class="column is-5"><input disabled class="input ${genItemClassNames(cn.itemQuantity, _id)}" ${genDatasetIdAttr(_id)} type="number" min="1" max="${productStock}" value="${quantity}" ></div>
+          <div class="column is-12">
+            <span>₩<span class="${genItemClassNames(cn.itemPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(productPrice)}</span></span>
+          </div>
+          <div class="column is-12"><input disabled class="input ${genItemClassNames(cn.itemQuantity, _id)}" ${genDatasetIdAttr(_id)} type="number" min="1" max="${productStock}" value="${quantity}" ></div>
         </div>
       </div>
     </div>
@@ -97,8 +99,42 @@ function render() {
   renderGrandTotalCost();
 }
 
+function getUserInfo(email) {
+  const httpRequest = new XMLHttpRequest();
+  httpRequest.open('GET', `/api/email/${email}`, true);
+  httpRequest.addEventListener('error', () => {
+    console.log('유저 정보 가져오기 실패.');
+  });
+  httpRequest.addEventListener('load', (e) => {
+    const {
+      fullName,
+      phoneNumber,
+    } = JSON.parse(httpRequest.response);
+    $cache.recipient.value = fullName;
+    $cache.email.value = email;
+    if (phoneNumber) {
+      let phoneArr = new Array(3);
+      if (phoneNumber.length > 10) {
+        phoneArr[0] = phoneNumber.substr(0, 3);
+        phoneArr[1] = phoneNumber.substr(3, 4);
+        phoneArr[2] = phoneNumber.substr(7, 4);
+      } else {
+        phoneArr[0] = phoneNumber.substr(0, 3);
+        phoneArr[1] = phoneNumber.substr(3, 3);
+        phoneArr[2] = phoneNumber.substr(6, 4);
+      }
+      $cache.phone1.value = phoneArr[0];
+      $cache.phone2.value = phoneArr[1];
+      $cache.phone3.value = phoneArr[2];
+    }
+  });
+  httpRequest.send();
+}
+
 function initState() {
   const orderJSONStr = localStorage.getItem(orderName);
+  const email = localStorage.getItem('email');
+  getUserInfo(email);
 
   const {
     deliveryCost,

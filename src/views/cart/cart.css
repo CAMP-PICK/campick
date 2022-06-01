@@ -51,3 +51,7 @@ input[type=number] {
 .pay-info .column button{
   width: 100%;
 }
+
+.card-footer {
+  padding: 0;
+}

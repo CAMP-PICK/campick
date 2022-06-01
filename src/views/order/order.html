@@ -9,6 +9,14 @@
   <!-- Bulma -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   
+  <!-- bootstrap css -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+  />
+
   <!-- Fontawesome -->
   <script src="https://kit.fontawesome.com/bc4bd911be.js" crossorigin="anonymous"></script>
 
@@ -26,7 +34,7 @@
 
 </head>
 <body>
-  <header class="container">
+  <header>
     <nav id="insertNavBar">
       <div class="navbar">
         <div class="navbar-brand" id="insertMenu"></div>
@@ -37,26 +45,10 @@
     </nav>
   </header>
   <main class="container">
-    <section class="box breadcrumb">
-      <div class="columns">
-        <h2 class="column">
-          <span class="icon-text">
-            <span class="icon">
-              <i class="fas fa-home"></i>
-            </span>
-            <span>Home</span>
-            <span class="icon">
-              <i class="fa-solid fa-angle-right"></i>
-            </span>
-            <span>order</span>
-          </span>
-        </h2>
-      </div>
-    </section>
     <section class="box">
       <form id="order-form" class="columns form order-form is-multiline">
         <div class="field column is-4">
-          <label for="recipient" class="label">받는 이</label>
+          <label for="recipient" class="label">받는 사람</label>
           <div class="control has-icons-left">
             <input type="text" class="input" placeholder="이름을 입력해 주세요" id="recipient" name="recipient">
             <span class="icon is-small is-left">
@@ -76,7 +68,7 @@
         <div class="field column is-4">
           <label for="phone-1" class="label">전화번호</label>
           <div class="columns is-mobile">
-            <div class="column is-4 control has-icons-left">
+            <div class="column is-4 control">
               <div class="select">
                 <select id="phone-1" name="phone-1">
                   <option value="010">010</option>
@@ -109,9 +101,6 @@
                   <option value="061">061</option>
                   <option value="063">063</option>
                 </select>
-                <span class="icon is-small is-left">
-                  <i class="fas fa-phone"></i>
-                </span>
               </div>
             </div>
             <div class="column is-4"><input class="input" type="number" placeholder="전화번호를 입력해 주세요" id="phone-2" name="phone-2"></div>
@@ -149,7 +138,7 @@
         <div class="column is-3">배송비: ₩<span class="delivery-cost"><!-- 배송비 위치--></span></div>
         <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost"><!-- 총 합계 금액 위치 --></span></strong></div>
         <div class="column is-3">
-          <button class="button is-primary btn-buy">결제하기</button>
+          <button class="button is-info btn-buy">결제하기</button>
         </div>
       </div>
     </footer>

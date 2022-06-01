@@ -51,3 +51,7 @@ input[type=number] {
 .pay-info .column button, .btn-search-zip-code{
   width: 100%;
 }
+
+.select, #phone-1 {
+  width: 100%;
+}
