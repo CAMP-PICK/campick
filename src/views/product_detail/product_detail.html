@@ -39,8 +39,12 @@
     <!-- 제품 상세 설명 카드 -->
     <section class="section">
       <div id="managerButton">
-        <button class="button is-info" id="submitEditButton"><i class="fa-solid fa-pencil"></i></button>
-        <button class="button is-info" id="submitDelButton"><i class="fa-solid fa-trash"></i></button>
+        <button class="button is-info" id="submitEditButton">
+          <i class="fa-solid fa-pencil"></i>
+        </button>
+        <button class="button is-info" id="submitDelButton">
+          <i class="fa-solid fa-trash"></i>
+        </button>
       </div>
       <div class="container" id="productDetailContainer">
         <!-- <div class="tile is-ancestor product-detail-card">
@@ -78,6 +82,14 @@
             </div>
           </div>
         </div> -->
+        <div class="tile is-child box buttons-container">
+          <button class="button is-warning" id="addToCartButton">
+            장바구니 추가하기
+          </button>
+          <button class="button is-info ml-2" id="purchaseButton">
+            바로 구매하기
+          </button>
+        </div>
       </div>
     </section>
     <script src="product_detail.js" type="module" defer></script>
