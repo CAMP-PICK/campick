@@ -1,7 +1,7 @@
 import * as Api from '../api.js';
 import {
   appendNavigationBar,
-  appendUserNavigationBar,
+  appendAccountUserNavigationBar,
 } from '../useful-functions.js';
 
 // Nav Bar 고정
@@ -11,7 +11,7 @@ const data = await Api.get(`/api/user/email/${localStorage.getItem('email')}`);
 const token = localStorage.getItem('token');
 
 // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
-appendUserNavigationBar(token);
+appendAccountUserNavigationBar(token);
 
 // 관리자 계정 분리
 // 로그인계정이 관리자

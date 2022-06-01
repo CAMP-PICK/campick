@@ -1,4 +1,9 @@
-import { GUEST_MENUS, USER_MENUS, MENU_LIST } from './constants.js';
+import {
+  GUEST_MENUS,
+  USER_MENUS,
+  MENU_LIST,
+  USER_MENUS_ACCOUNT,
+} from './constants.js';
 
 // 문자열+숫자로 이루어진 랜덤 5글자 반환
 export const randomId = () => {
@@ -55,6 +60,76 @@ export const appendUserNavigationBar = (token) => {
     document.querySelector('#insertItem').insertAdjacentHTML(
       'afterbegin',
       `${USER_MENUS.map(
+        (menu) =>
+          `<a href="${menu.to}" id="${
+            menu.id
+          }" class="button is-dark is-inverted">
+          ${
+            menu.icon
+              ? `<span class="icon">
+          <i class="${menu.icon}"></i>
+        </span>`
+              : ''
+          }
+            <li>
+              <strong>${menu.name}</strong>
+            </li>
+          </a>`
+      ).join('')}`
+    );
+  } else {
+    document.querySelector('#insertItem').insertAdjacentHTML(
+      'afterbegin',
+      `${GUEST_MENUS.map(
+        (menu) => `
+      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted">
+        ${
+          menu.icon
+            ? `<span class="icon">
+        <i class="${menu.icon}"></i>
+      </span>`
+            : ''
+        }
+        <li>
+          <strong>${menu.name}</strong>
+        </li>
+      </a>`
+      ).join('')}`
+    );
+  }
+
+  // 로그아웃 버튼 클릭시 로그아웃처리
+  const logoutBtn = document.querySelector('#logoutBtn');
+
+  addAllEvents();
+
+  function addAllEvents() {
+    if (logoutBtn) logoutBtn.addEventListener('click', logOut);
+  }
+
+  async function logOut(e) {
+    e.preventDefault();
+    try {
+      localStorage.clear();
+
+      alert('로그아웃이 완료 되었습니다.');
+
+      // 기본 페이지로 이동
+      window.location.href = '/';
+    } catch (err) {
+      console.error(err.stack);
+      alert(`${err.message}`);
+      ``;
+    }
+  }
+};
+
+// user navbar
+export const appendAccountUserNavigationBar = (token) => {
+  if (token) {
+    document.querySelector('#insertItem').insertAdjacentHTML(
+      'afterbegin',
+      `${USER_MENUS_ACCOUNT.map(
         (menu) =>
           `<a href="${menu.to}" id="${
             menu.id
