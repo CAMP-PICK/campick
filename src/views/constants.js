@@ -26,3 +26,13 @@ export const MENU_LIST = [
   { name: '램프', to: '/lamp' },
   { name: '기타', to: '/etc' },
 ];
+
+export const USER_MENUS_ACCOUNT = [
+  { name: '로그아웃', to: '/', id: 'logoutBtn' },
+  {
+    name: '장바구니',
+    to: '/cart',
+    id: 'cartBtn',
+    icon: 'fas fa-cart-shopping',
+  },
+];
