@@ -21,17 +21,16 @@ const $cache = {
   zipCode: document.getElementById(ids['zipCode']),
   addr1: document.getElementById(ids['addr1']),
   addr2: document.getElementById(ids['addr2']),
-}
+};
 
 function getItemsTotalCost() {
-  return state.items
-    .reduce((acc, cur) => {
-      const { productPrice, quantity } = cur;
-      return acc + (productPrice * quantity);
-    }, 0);
+  return state.items.reduce((acc, cur) => {
+    const { productPrice, quantity } = cur;
+    return acc + productPrice * quantity;
+  }, 0);
 }
 
-function renderItem ({
+function renderItem({
   _id,
   productImage,
   productName,
@@ -40,29 +39,55 @@ function renderItem ({
   productStock,
 }) {
   return `
-  <div class="column is-3 ${genItemClassNames(cn.item, _id)}" ${genDatasetIdAttr(_id)}>
+  <div class="column is-3 ${genItemClassNames(
+    cn.item,
+    _id
+  )}" ${genDatasetIdAttr(_id)}>
     <div class="card">
       <div class="card-image">
         <a href="#">
           <figure class="image is-3by2">
-            <img class="${genItemClassNames(cn.itemImg, _id)}" ${genDatasetIdAttr(_id)} src="${productImage}" alt="${productName}">
+            <img class="${genItemClassNames(
+              cn.itemImg,
+              _id
+            )}" ${genDatasetIdAttr(
+    _id
+  )} src="${productImage}" alt="${productName}">
           </figure>
         </a>
       </div>
       <div class="card-content">
         <div class="columns is-mobile is-vcentered is-1">
           <div class="column">
-            <h3 class="title is-5"><a href="#"><span class="${genItemClassNames(cn.itemName, _id)}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
+            <h3 class="title is-5"><a href="#"><span class="${genItemClassNames(
+              cn.itemName,
+              _id
+            )}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
           </div>
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
-            <span>total: ₩<strong><span class="${genItemClassNames(cn.itemTotalPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(productPrice * quantity)}</span></strong></span>
+            <span>total: ₩<strong><span class="${genItemClassNames(
+              cn.itemTotalPrice,
+              _id
+            )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
+    productPrice * quantity
+  )}</span></strong></span>
           </div>
           <div class="column is-12">
-            <span>₩<span class="${genItemClassNames(cn.itemPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(productPrice)}</span></span>
+            <span>₩<span class="${genItemClassNames(
+              cn.itemPrice,
+              _id
+            )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
+    productPrice
+  )}</span></span>
           </div>
-          <div class="column is-12"><input disabled class="input ${genItemClassNames(cn.itemQuantity, _id)}" ${genDatasetIdAttr(_id)} type="number" min="1" max="${productStock}" value="${quantity}" ></div>
+          <div class="column is-12"><input disabled class="input ${genItemClassNames(
+            cn.itemQuantity,
+            _id
+          )}" ${genDatasetIdAttr(
+    _id
+  )} type="number" min="1" max="${productStock}" value="${quantity}" ></div>
         </div>
       </div>
     </div>
@@ -101,15 +126,12 @@ function render() {
 
 function getUserInfo(email) {
   const httpRequest = new XMLHttpRequest();
-  httpRequest.open('GET', `/api/email/${email}`, true);
+  httpRequest.open('GET', `/api/user/email/${email}`, true);
   httpRequest.addEventListener('error', () => {
     console.log('유저 정보 가져오기 실패.');
   });
   httpRequest.addEventListener('load', (e) => {
-    const {
-      fullName,
-      phoneNumber,
-    } = JSON.parse(httpRequest.response);
+    const { fullName, phoneNumber } = JSON.parse(httpRequest.response);
     $cache.recipient.value = fullName;
     $cache.email.value = email;
     if (phoneNumber) {
@@ -136,12 +158,8 @@ function initState() {
   const email = localStorage.getItem('email');
   getUserInfo(email);
 
-  const {
-    deliveryCost,
-    grandTotal,
-    itemsTotal,
-    items,
-  } = JSON.parse(orderJSONStr);
+  const { deliveryCost, grandTotal, itemsTotal, items } =
+    JSON.parse(orderJSONStr);
 
   state.deliveryCost = deliveryCost;
   state.grandTotal = grandTotal;
@@ -152,16 +170,18 @@ function initState() {
 function addEventListenerBtnBuy() {
   const $0 = $cache.btnBuy;
   $0.addEventListener('click', () => {
-    if (!$cache.zipCode.value
-      || !$cache.addr1.value
-      || !$cache.addr2.value
-      || !state.grandTotal
-      || !state.items
-      || !$cache.recipient.value
-      || !$cache.email.value
-      || !$cache.phone1.value
-      || !$cache.phone2.value
-      || !$cache.phone3.value) {
+    if (
+      !$cache.zipCode.value ||
+      !$cache.addr1.value ||
+      !$cache.addr2.value ||
+      !state.grandTotal ||
+      !state.items ||
+      !$cache.recipient.value ||
+      !$cache.email.value ||
+      !$cache.phone1.value ||
+      !$cache.phone2.value ||
+      !$cache.phone3.value
+    ) {
       alert('빈 값이 있습니다.');
       return;
     }
@@ -173,30 +193,36 @@ function addEventListenerBtnBuy() {
       alert('결제 실패. 잠시후 다시 시도해 주세요.');
     });
     httpRequest.addEventListener('load', (e) => {
-      alert(`결제를 완료했습니다.\n주문id: ${JSON.parse(httpRequest.response)['_id']}`);
+      alert(
+        `결제를 완료했습니다.\n주문id: ${
+          JSON.parse(httpRequest.response)['_id']
+        }`
+      );
       localStorage.removeItem(orderName);
       window.location.replace('/');
     });
-    httpRequest.send(JSON.stringify({
-      address: `(${$cache.zipCode.value}) ${$cache.addr1.value} ${$cache.addr2.value}`,
-      totalPrice: state.grandTotal,
-      orderList: state.items,
-      recipient: $cache.recipient.value,
-      email: $cache.email.value,
-      phoneNumber: `${$cache.phone1.value}-${$cache.phone2.value}-${$cache.phone3.value}`,
-    }));
+    httpRequest.send(
+      JSON.stringify({
+        address: `(${$cache.zipCode.value}) ${$cache.addr1.value} ${$cache.addr2.value}`,
+        totalPrice: state.grandTotal,
+        orderList: state.items,
+        recipient: $cache.recipient.value,
+        email: $cache.email.value,
+        phoneNumber: `${$cache.phone1.value}-${$cache.phone2.value}-${$cache.phone3.value}`,
+      })
+    );
   });
-};
+}
 
 function addEventListenerBtnZip() {
   const $0 = $cache.btnZip;
   $0.addEventListener('click', (e) => {
     e.preventDefault();
     new daum.Postcode({
-      oncomplete: function(data) {
+      oncomplete: function (data) {
         $cache.zipCode.value = data['zonecode'];
         $cache.addr1.value = data['roadAddress'];
-      }
+      },
     }).open();
   });
 }
