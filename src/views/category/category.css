@@ -20,3 +20,20 @@
 .product-item {
   cursor: pointer;
 }
+
+#topBtn {
+  position: fixed;
+  color: white;
+  background-color: rgb(71, 70, 70);
+  right: 2rem;
+  bottom: 2rem;
+  width: 3.5rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  border: none;
+}
+
+#topBtn:hover {
+  cursor: pointer;
+  background-color: rgb(148, 46, 46);
+}
