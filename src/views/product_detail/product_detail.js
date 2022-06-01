@@ -117,8 +117,8 @@ async function cartSubmit(e) {
 
   //장바구니로 보내기 위해 선택한 제품 정보
   const cartProduct = await Api.get(`/api/product/list/${productName}`);
-  console.log(cartProduct);
   try {
+    console.log(cartProduct);
     localStorage.setItem('cartProduct', JSON.stringify(cartProduct));
     alert('장바구니로 이동합니다');
     //장바구니 페이지로 이동
@@ -135,8 +135,8 @@ async function purchaseSubmit(e) {
   //장바구니로 보내기 위해 선택한 제품 정보
   const purchaseProduct = await Api.get(`/api/product/list/${productName}`);
   //장바구니로 보내기 위해 선택한 사용자 정보
-  const purchaseUser = await Api.get(
-    `/api/user/email/${localStorage.getItem('email')}`
+  const purchaseUser = await Api.fetch(
+    `/api/user/email/${localStorage.get('email')}`
   );
   console.log(purchaseProduct);
   console.log(purchaseUser);
