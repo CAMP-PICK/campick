@@ -46,7 +46,11 @@ async function handleSubmit(e) {
     localStorage.setItem('email', email);
     localStorage.setItem('token', token);
 
-    alert(`정상적으로 로그인되었습니다.`);
+    if (email === 'manager@test.com') {
+      alert(`관리자 계정으로 로그인 했습니다.`);
+    } else {
+      alert(`정상적으로 로그인되었습니다.`);
+    }
 
     // 로그인 성공
 
