@@ -10,7 +10,6 @@ const newPasswordConfirmInput = document.querySelector(
   '#newPasswordConfirmInput'
 );
 const phoneNumberInput = document.querySelector('#phoneNumberInput');
-
 const userAddressInput = document.querySelector('#userAddress');
 const userAddressDetailInput = document.querySelector('#userAddressDetail');
 const addressInput = document.querySelector('#addressInput');
@@ -31,7 +30,10 @@ const addEvent = () => {
 const setUserInfo = (user) => {
   fullNameInput.value = user.fullName;
   emailInput.value = user.email;
-  phoneNumberInput.value = user.phoneNumber;
+  // phoneNumberInput.value = user.phoneNumber;
+  // userAddressInput.value = user.userAddress;
+  // userAddressDetailInput.value = user.userAddressDetail;
+  // addressInput.value = user.addressCode;
 };
 
 const fetchUserInfo = async () => {
@@ -52,15 +54,16 @@ const updateUserInfo = (e) => {
   const currentPassword = currentPasswordInput.value;
   const newPassword = newPasswordInput.value;
   const newPasswordConfirm = newPasswordConfirmInput.value;
+  const phoneNumber = phoneNumberInput.value;
   const userAddress = userAddressInput.value;
   const userAddressDetail = userAddressDetailInput.value;
   const addressCode = addressInput.value;
-  const phoneNumber = phoneNumberInput.value;
 
   // 인풋 유효성 검사
   const isFullNameValid = fullName.length >= 2;
   const isPasswordValid = newPassword.length === 0 || newPassword.length >= 4;
   const isPasswordConfirm = newPassword === newPasswordConfirm;
+  const isPhoneNumber = phoneNumber.length === 0 || phoneNumber.length === 11;
 
   if (!isFullNameValid || !isPasswordValid) {
     return alert('이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.');
@@ -72,6 +75,10 @@ const updateUserInfo = (e) => {
 
   if (!isPasswordConfirm) {
     return alert('변경하시는 비밀번호와 비밀번호 확인이 일치 하지 않습니다.');
+  }
+
+  if (!isPhoneNumber) {
+    return alert('전화번호 형식에 맞게 적어 주세요.');
   }
 
   // 변경되는 유저 정보 취합
