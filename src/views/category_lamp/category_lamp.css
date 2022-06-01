@@ -1,0 +1,39 @@
+/* 이미지 CSS */
+.product-item .image img {
+  height: 200px;
+}
+
+/* 컨텐츠 CSS */
+.product-item p.title {
+  margin: 1rem 0;
+}
+
+.product-item p.description {
+  font-size: 1.2rem;
+}
+
+.product-item p.price {
+  font-size: 2rem;
+  margin-top: 3.5rem;
+}
+
+.product-item {
+  cursor: pointer;
+}
+
+#topBtn {
+  position: fixed;
+  color: white;
+  background-color: rgb(71, 70, 70);
+  right: 2rem;
+  bottom: 2rem;
+  width: 3.5rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  border: none;
+}
+
+#topBtn:hover {
+  cursor: pointer;
+  background-color: rgb(148, 46, 46);
+}
