@@ -48,7 +48,7 @@ async function handleSubmit(e) {
     formData.append("productShortDes", shortDescription.value);
     formData.append("productLongDes", detailDescription.value);
     formData.append("productPrice", productPrice.value);
-    // const inventory = inventory.value; // 제품 재고 router가 없어서 임시로 막아둠
+    formData.append("productStock", inventory.value);
     //파일이 배열로 들어와서 꺼내서 formData에 넣어주는 코드
     for(let i =0; i < files.files.length; i++) {
       formData.append("files", files.files[i]);

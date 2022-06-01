@@ -24,7 +24,7 @@ const fetchProductList = async () => {
         .map(
           (product) =>
             `
-            <div class="message media product-item" data-product-name="${product.productName}">
+            <div class="message media product-item" data-category-name="${product.productCategory}" data-product-name="${product.productName}">
               <div class="media-left">
                 <figure class="image">
                   <img src="../../../uploads/${product.productImage}" alt="제품 이미지" />
@@ -33,7 +33,7 @@ const fetchProductList = async () => {
               <div class="media-content">
                   <div class="content">
                     <p class="title">
-                      ${product.productCategory}
+                      ${product.productName}
                       <span class="tag is-success is-rounded">추천</span>
                     </p>
                     <p class="description">

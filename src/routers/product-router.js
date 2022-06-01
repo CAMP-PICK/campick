@@ -86,9 +86,11 @@ productRouter.get('/list/:productName', async (req, res, next) => {
 });
 
 //상품 수정 api
-productRouter.put('/edit/:editProduct', async (req, res, next) => {
+productRouter.post('/edit/:editProduct', upload.array("files"), async (req, res, next) => {
   // req (request)의 body 에서 수정할 상품 데이터 가져오기
   const editProduct = req.params.editProduct;
+  // 이미지 첨부가 안될 경우를 대비하여 상품의 기존 데이터 가져오기
+  const findProduct = await productService.productInfo(editProduct);
 
   // req (request)의 body 에서 데이터 가져오기
   const productName = req.body.productName;
@@ -98,7 +100,11 @@ productRouter.put('/edit/:editProduct', async (req, res, next) => {
   const productShortDes = req.body.productShortDes; //상품의 요약 설명 description을 Des로 줄임
   const productLongDes = req.body.productLongDes;
   const productStock = req.body.productStock;
-  const productImage = req.files[0].filename;
+  let productImage;
+  
+  if(req.files === undefined) {
+    productImage = findProduct.productImage;
+  }
 
   //update할 정보를 모아서 전달해주기 위해 새로운 객체변수 할당
   const updateInfo = {

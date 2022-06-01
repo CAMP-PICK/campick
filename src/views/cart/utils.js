@@ -3,7 +3,7 @@ function numberWithCommas(x) {
 }
 
 function genItemClassNames(className, id) {
-  return `${className} ${className}-${id}`
+  return `${className} ${className}-${id}`;
 };
 
 function genDatasetIdAttr(id) {
