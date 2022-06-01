@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>upload</title>
+    <link rel="stylesheet" href="product_category.css" />
+    <script src="product_category.js" type="module"></script>
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <nav id="insertNavBar">
+      <div class="navbar">
+        <div class="navbar-brand">
+          <a href="/" class="button is-dark is-inverted">
+            <span>
+              <i class="fas fa-solid fa-house" style="margin-right: 0.5rem"></i>
+            </span>
+            <strong>홈</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>전체상품</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>텐트</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>램프</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>기타</strong>
+          </a>
+        </div>
+
+        <div class="navBarItems navbar-end">
+          <ul id="insertItem" style="margin: 0"></ul>
+        </div>
+      </div>
+    </nav>
+    <hr />
+    <!-- 제품 추가 폼(Form) -->
+    <section class="section">
+      <div class="container">
+        <div class="block account-header">
+          <h1 class="subtitle is-4">Category management</h1>
+        </div>
+        <div class="register-product-form-container">
+          <form class="box register-product-form-box" id="registerProductForm">
+            <div class="field">
+              <label class="label" for="manufacturerInput"
+                >추가 할 카테고리</label
+              >
+              <div class="control">
+                <input
+                  class="input"
+                  id="createCategoryName"
+                  type="text"
+                  placeholder="카테고리 이름을 작성해주세요."
+                  autocomplete="on"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="categorySelectBox"
+                >변경 할 카테고리</label
+              >
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="selectCategory">
+                    <option value="">카테고리를 선택해 주세요.</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="manufacturerInput">수정 할 이름</label>
+              <div class="control">
+                <input
+                  class="input"
+                  id="editCategoryName"
+                  type="text"
+                  placeholder="수정할 이름을 작성해주세요."
+                  autocomplete="on"
+                />
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <button
+                class="button is-primary is-fullwidth"
+                id="submitCreateButton"
+              >
+                추가하기
+              </button>
+            </div>
+
+            <div class="mt-5">
+              <button
+                class="button is-primary is-fullwidth"
+                id="submitEditButton"
+              >
+                수정하기
+              </button>
+            </div>
+
+            <div class="mt-5">
+              <button
+                class="button is-primary is-fullwidth"
+                id="submitDelButton"
+              >
+                삭제하기
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
