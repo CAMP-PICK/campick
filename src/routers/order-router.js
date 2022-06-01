@@ -8,28 +8,28 @@ const orderRouter = Router();
 
 // 주문 등록 api(url : /api/orderRegister)
 orderRouter.post('/register', async (req, res, next) => {
-    try {
-        const address = req.body.address;
-        const totalPrice = req.body.totalPrice;
-        const orderList = req.body.orderList;
-        const recipient = req.body.recipient;
-        const email = req.body.email;
-        const phoneNumber = req.body.phoneNumber;
+  try {
+    const address = req.body.address;
+    const totalPrice = req.body.totalPrice;
+    const orderList = req.body.orderList;
+    const recipient = req.body.recipient;
+    const email = req.body.email;
+    const phoneNumber = req.body.phoneNumber;
 
-        const newOrder = await orderService.addOrder({
-            address,
-            totalPrice,
-            orderList,
-            recipient,
-            email,
-            phoneNumber
-        })
+    const newOrder = await orderService.addOrder({
+      address,
+      totalPrice,
+      orderList,
+      recipient,
+      email,
+      phoneNumber,
+    });
 
-      res.status(201).json(newOrder);
-    } catch (error) {
-        next(error);
-    }
-})
+    res.status(201).json(newOrder);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // 주문 전체 조회 api(url : /api/orderList/:email)
 orderRouter.get('/list/:email', async (req, res, next) => {
@@ -39,65 +39,66 @@ orderRouter.get('/list/:email', async (req, res, next) => {
 
     res.status(200).json(order);
   } catch (error) {
-      next(error);
+    next(error);
   }
-})
+});
 
 // 주문 상세 조회 api(url : /api/orderDetail/:id)
 orderRouter.get('/detail/:orderId', async (req, res, next) => {
-    const orderId = req.params.orderId;
+  const orderId = req.params.orderId;
 
-    try {
-        const order = await orderService.getOrder(orderId);
+  try {
+    const order = await orderService.getOrder(orderId);
 
-        res.status(200).json(order);
-    } catch (error) {
-        next(error);
-    }
-})
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // 주문 수정 api(url : /api/setOrder/:id)
 orderRouter.patch('/update/:orderId', async (req, res, next) => {
-    const orderId = req.params.orderId;
+  const orderId = req.params.orderId;
 
-    try {
+  try {
+    const address = req.body.address;
+    const totalPrice = req.body.totalPrice;
+    const orderList = req.body.orderList;
+    const recipient = req.body.recipient;
+    const email = req.body.email;
+    const phoneNumber = req.body.phoneNumber;
+    const state = req.body.state;
 
-        const address = req.body.address;
-        const totalPrice = req.body.totalPrice;
-        const orderList = req.body.orderList;
-        const recipient = req.body.recipient;
-        const email = req.body.email;
-        const phoneNumber = req.body.phoneNumber; 
-        const state = req.body.state;
-
-
-        const updateInfo = { 
-            ...(address && {address}),
-            ...(totalPrice && {totalPrice}),
-            ...(orderList && {orderList}),
-            ...(recipient && {recipient}),
-            ...(email && {email}),
-            ...(phoneNumber && {phoneNumber}),
-            ...(state && {state})
-        };
-        const updatedOrderInfo = await orderService.updateOrder(orderId, updateInfo)
-        res.status(200).json(updatedOrderInfo)
-    } catch (error) {
-        next(error);
-    }
-})
+    const updateInfo = {
+      ...(address && { address }),
+      ...(totalPrice && { totalPrice }),
+      ...(orderList && { orderList }),
+      ...(recipient && { recipient }),
+      ...(email && { email }),
+      ...(phoneNumber && { phoneNumber }),
+      ...(state && { state }),
+    };
+    const updatedOrderInfo = await orderService.updateOrder(
+      orderId,
+      updateInfo
+    );
+    res.status(200).json(updatedOrderInfo);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // 주문 취소 api(url : /api/deleteOrder/:id)
 orderRouter.post('/delete', async (req, res, next) => {
-    const orderId = req.body.orderId;
-    try {
-        const order = await orderService.deleteOrder(orderId);
-    
-        // 사용자 목록(배열)을 JSON 형태로 프론트에 보냄
-        res.status(200).json(order);
-    } catch (error) {
+  const orderId = req.body.orderId;
+  try {
+    const order = await orderService.deleteOrder(orderId);
+
+    // 사용자 목록(배열)을 JSON 형태로 프론트에 보냄
+    res.status(200).json(order);
+  } catch (error) {
     next(error);
-    }
-})
+  }
+});
 
 export { orderRouter };

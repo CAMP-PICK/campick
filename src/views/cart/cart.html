@@ -1,88 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>장바구니</title>
-  
-  <!-- Bulma -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  
-  <!-- Fontawesome -->
-  <script src="https://kit.fontawesome.com/bc4bd911be.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장바구니</title>
 
-  <!-- cart.css -->
-  <link rel="stylesheet" href="cart.css">
+    <!-- Bulma -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
 
-  <!-- javascript 상수값들 -->
-  <script src="consts.js"></script>
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/bc4bd911be.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- javascript utility 함수들 -->
-  <script src="utils.js"></script>
-  
-  <!-- 가짜 쇼핑 카트 아이템. 프로덕션에선 삭제할 것. -->
-  <script src="fakeItems.js"></script>
+    <!-- cart.css -->
+    <link rel="stylesheet" href="cart.css" />
 
-</head>
-<body>
-  <header class="container">
-    <nav id="insertNavBar">
-      <div class="navbar">
-        <div class="navbar-brand" id="insertMenu"></div>
-        <div class="navBarItems navbar-end">
-          <ul id="insertItem" style="margin: 0"></ul>
+    <!-- javascript 상수값들 -->
+    <script src="consts.js"></script>
+
+    <!-- javascript utility 함수들 -->
+    <script src="utils.js"></script>
+
+    <!-- 가짜 쇼핑 카트 아이템. 프로덕션에선 삭제할 것. -->
+    <script src="fakeItems.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <nav id="insertNavBar">
+        <div class="navbar">
+          <div class="navbar-brand" id="insertMenu"></div>
+          <div class="navBarItems navbar-end">
+            <ul id="insertItem" style="margin: 0"></ul>
+          </div>
         </div>
-      </div>
-    </nav>
-  </header>
-  <main class="container">
-    <section class="box breadcrumb">
-      <div class="columns">
-        <h2 class="column">
-          <span class="icon-text">
-            <span class="icon">
-              <i class="fas fa-home"></i>
+      </nav>
+    </header>
+    <main class="container">
+      <section class="box breadcrumb">
+        <div class="columns">
+          <h2 class="column">
+            <span class="icon-text">
+              <span class="icon">
+                <i class="fas fa-home"></i>
+              </span>
+              <span>Home</span>
+              <span class="icon">
+                <i class="fa-solid fa-angle-right"></i>
+              </span>
+              <span>cart</span>
             </span>
-            <span>Home</span>
-            <span class="icon">
-              <i class="fa-solid fa-angle-right"></i>
-            </span>
-            <span>cart</span>
-          </span>
-        </h2>
-      </div>
-    </section>
-    <section class="box item-list">
-      <div class="columns is-vcentered is-mobile">
-        <div class="column is-narrow ">
-          <label class="checkbox">
-            <input class="chk-select-all" type="checkbox">
-            전체 선택
-          </label>
+          </h2>
         </div>
-        <div class="column is-narrow">
-          <button class="button btn-delete-selected is-danger">선택 삭제</button>
+      </section>
+      <section class="box item-list">
+        <div class="columns is-vcentered is-mobile">
+          <div class="column is-narrow">
+            <label class="checkbox">
+              <input class="chk-select-all" type="checkbox" />
+              전체 선택
+            </label>
+          </div>
+          <div class="column is-narrow">
+            <button class="button btn-delete-selected is-danger">
+              선택 삭제
+            </button>
+          </div>
         </div>
-      </div>
-      <hr>
-      <div class="columns items is-multiline">
-        <!-- items 위치 -->
+        <hr />
+        <div class="columns items is-multiline">
+          <!-- items 위치 -->
           <!-- item 위치 -->
-      </div>
-    </section>
-    <footer class="box pay-info">
-      <div class="columns is-vcentered">
-        <div class="column is-3">상품 합계: ₩<span class="items-total-cost"><!-- 상품 합계 금액 위치--></span></div>
-        <div class="column is-3">배송비: ₩<span class="delivery-cost"><!-- 배송비 위치--></span></div>
-        <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost"><!-- 총 합계 금액 위치 --></span></strong></div>
-        <div class="column is-3">
-          <button class="button is-primary btn-buy">구매하기</button>
         </div>
-      </div>
-    </footer>
-  </main>
-  <script src="nav-bar.js" type="module" defer></script>
-  <script src="cart.js"></script>
-</body>
+      </section>
+      <footer class="box pay-info">
+        <div class="columns is-vcentered">
+          <div class="column is-3">
+            상품 합계: ₩<span class="items-total-cost"
+              ><!-- 상품 합계 금액 위치--></span
+            >
+          </div>
+          <div class="column is-3">
+            배송비: ₩<span class="delivery-cost"><!-- 배송비 위치--></span>
+          </div>
+          <div class="column is-3">
+            총 합계: ₩<strong
+              ><span class="grand-total-cost"
+                ><!-- 총 합계 금액 위치 --></span
+              ></strong
+            >
+          </div>
+          <div class="column is-3">
+            <button class="button is-primary btn-buy">구매하기</button>
+          </div>
+        </div>
+      </footer>
+    </main>
+    <script src="nav-bar.js" type="module" defer></script>
+    <script src="cart.js"></script>
+  </body>
 </html>

@@ -1,25 +1,23 @@
 import { Schema } from 'mongoose';
 
-const productSchema = new Schema(
-    {
-        productName: {
-            type: String,
-            required: true,
-        } 
-    }
-);
+const productSchema = new Schema({
+  productName: {
+    type: String,
+    required: true,
+  },
+});
 const PurchaseHistory = new Schema(
-    {
-        userId: {
-            type: String,
-            required: true,
-        },
-        product: [productSchema],
+  {
+    userId: {
+      type: String,
+      required: true,
     },
-    {
-        collection: 'purchase-histories',
-        timestamps: true,
-    }
+    product: [productSchema],
+  },
+  {
+    collection: 'purchase-histories',
+    timestamps: true,
+  }
 );
 
 export { PurchaseHistory };

@@ -1,21 +1,21 @@
-import * as Api from "../api.js";
+import * as Api from '../api.js';
 
 // querySelector로 변수 지정
-const form = document.querySelector("#registerProductForm"); //폼 데이터
-const selectCategory = document.querySelector("#categorySelectBox"); //카테고리 영역
+const form = document.querySelector('#registerProductForm'); //폼 데이터
+const selectCategory = document.querySelector('#categorySelectBox'); //카테고리 영역
 
 //수정 할 상품 url에서 받아오기
 const urlStr = window.location.href;
 const url = new URL(urlStr);
 const urlParams = url.searchParams;
-const editProductName = urlParams.get("name");
+const editProductName = urlParams.get('name');
 
 // currentCategoryList();
 currentProductList();
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  form.addEventListener("submit", handleSubmit);
+  form.addEventListener('submit', handleSubmit);
 }
 
 async function currentProductList() {
@@ -159,7 +159,7 @@ async function currentProductList() {
     </button>
   </div>
     `;
-  const categorySelect = document.querySelector("#categorySelectBox");
+  const categorySelect = document.querySelector('#categorySelectBox');
   for (let i = 0; i < data.length; i++) {
     //카테고리 하나씩 꺼내기
     const productCategories = data[i];
@@ -167,12 +167,12 @@ async function currentProductList() {
     //생성되어있는 카테고리를 선택할 수 있도록 option추가
     if (productCategories === productCategory) {
       categorySelect.insertAdjacentHTML(
-        "beforeend",
+        'beforeend',
         `<option selected="selected">${productCategories}</option>`
       );
     } else {
       categorySelect.insertAdjacentHTML(
-        "beforeend",
+        'beforeend',
         `<option>${productCategories}</option>`
       );
     }
@@ -184,36 +184,36 @@ async function handleSubmit(e) {
   e.preventDefault();
 
   // querySelector로 변수 지정(함수 밖에서 정의하니 데이터가 안읽혀서 가져옴)
-  const productTitle = document.querySelector("#titleInput"); //제품명
-  const categorySelect = document.querySelector("#categorySelectBox"); //카테고리
-  const manufacturer = document.querySelector("#manufacturerInput"); //제조사
-  const shortDescription = document.querySelector("#shortDescriptionInput"); // 요약 설명
-  const detailDescription = document.querySelector("#detailDescriptionInput"); // 상세 설명
-  const files = document.getElementById("files"); //제품 이미지 파일
-  const inventory = document.querySelector("#inventoryInput"); // 제품 재고
-  const productPrice = document.querySelector("#priceInput"); //제품 가격
+  const productTitle = document.querySelector('#titleInput'); //제품명
+  const categorySelect = document.querySelector('#categorySelectBox'); //카테고리
+  const manufacturer = document.querySelector('#manufacturerInput'); //제조사
+  const shortDescription = document.querySelector('#shortDescriptionInput'); // 요약 설명
+  const detailDescription = document.querySelector('#detailDescriptionInput'); // 상세 설명
+  const files = document.getElementById('files'); //제품 이미지 파일
+  const inventory = document.querySelector('#inventoryInput'); // 제품 재고
+  const productPrice = document.querySelector('#priceInput'); //제품 가격
   const formData = new FormData();
 
   try {
     //수정할 물품 데이터
-    formData.append("productName", productTitle.value);
-    formData.append("productCategory", categorySelect.value);
-    formData.append("productManuf", manufacturer.value);
-    formData.append("productShortDes", shortDescription.value);
-    formData.append("productLongDes", detailDescription.value);
-    formData.append("productPrice", productPrice.value);
+    formData.append('productName', productTitle.value);
+    formData.append('productCategory', categorySelect.value);
+    formData.append('productManuf', manufacturer.value);
+    formData.append('productShortDes', shortDescription.value);
+    formData.append('productLongDes', detailDescription.value);
+    formData.append('productPrice', productPrice.value);
     // const inventory = inventory.value; // 제품 재고 router가 없어서 임시로 막아둠
     //파일이 배열로 들어와서 꺼내서 formData에 넣어주는 코드
-    for(let i =0; i < files.files.length; i++) {
-      formData.append("files", files.files[i]);
+    for (let i = 0; i < files.files.length; i++) {
+      formData.append('files', files.files[i]);
     }
 
     await fetch(`http://localhost:3000/api/product/edit/${editProductName}`, {
-      method: "POST",
+      method: 'POST',
       body: formData,
     })
       .then((res) => console.log(res))
-      .catch((err) => ("Error occured", err));
+      .catch((err) => ('Error occured', err));
 
     alert(`정상 수정되었습니다.`);
 

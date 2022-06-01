@@ -1,4 +1,4 @@
-(function() {
+(function () {
   const $burger = document.querySelector('.navbar-burger');
   if (!$burger) return;
   $burger.addEventListener('click', (e) => {

@@ -33,7 +33,7 @@ export class UserModel {
   }
 
   async delete(email) {
-    const user = await User.deleteOne({ email: email })
+    const user = await User.deleteOne({ email: email });
     return user;
   }
 }
