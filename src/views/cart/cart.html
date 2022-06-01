@@ -29,12 +29,78 @@
   <header class="container">
     <nav id="insertNavBar">
       <div class="navbar">
-        <div class="navbar-brand" id="insertMenu"></div>
+        <div class="navbar-brand">
+          <a href="/" class="button is-dark is-inverted">
+            <span>
+              <i class="fas fa-solid fa-house" style="margin-right: 0.5rem;"></i>
+            </span>
+            <strong>홈</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>전체상품</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>텐트</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>램프</strong>
+          </a>
+          <a href="/category" class="button is-dark is-inverted">
+            <strong>기타</strong>
+          </a>
+        </div>
+      
         <div class="navBarItems navbar-end">
-          <ul id="insertItem" style="margin: 0"></ul>
+          <ul style="margin:0">
+            <a href="/register" class="button is-dark is-inverted">
+              <li><strong>회원가입</strong></li>
+            </a>
+            <a href="/login" class="button is-dark is-inverted">
+              <li><strong>로그인</strong></li>
+            </a>
+            <a href="/manager" class="button is-dark is-inverted">
+              <li><strong>계정관리</strong></li>
+            </a>
+            <a href="/cart" class="button is-dark is-inverted">
+              <span class="icon">
+                <i class="fas fa-cart-shopping"></i>
+              </span>
+              <li><strong>장바구니</strong></li>
+            </a>
+          </ul>
         </div>
       </div>
     </nav>
+  <!--
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <h1>
+          <a class="navbar-item" href="/">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            <span class="a11y-text-hidden">BULMA</span>
+          </a>
+        </h1>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="/register">회원가입</a>
+          <a class="navbar-item" href="/login">로그인</a>
+          <a class="navbar-item" href="/mypage">my page</a>
+          <a class="navbar-item" href="#">
+            <span class="icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </span>
+            <span>장바구니</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  -->
   </header>
   <main class="container">
     <section class="box breadcrumb">
@@ -82,7 +148,19 @@
       </div>
     </footer>
   </main>
-  <script src="nav-bar.js" type="module" defer></script>
+
+  <!-- Bulma 햄버거 메뉴 -->
+  <script>
+    (function() {
+      const $burger = document.querySelector('.navbar-burger');
+      if (!$burger) return;
+      $burger.addEventListener('click', (e) => {
+        let $dropMenu = document.querySelector('.navbar-menu');
+        $burger.classList.toggle('is-active');
+        $dropMenu.classList.toggle('is-active');
+      });
+    })();
+  </script>
   <script src="cart.js"></script>
 </body>
 </html>

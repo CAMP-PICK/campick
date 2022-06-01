@@ -25,12 +25,11 @@ function renderSelectAll() {
 
 function renderItem ({
   _id,
-  productImage,
-  productName,
+  imageKey,
+  title,
   selected,
-  productPrice,
+  price,
   quantity,
-  productStock,
 }) {
   return `
   <div class="column is-3 ${genItemClassNames(cn.item, _id)}" ${genDatasetIdAttr(_id)}>
@@ -38,14 +37,14 @@ function renderItem ({
       <div class="card-image">
         <a href="#">
           <figure class="image is-3by2">
-            <img class="${genItemClassNames(cn.itemImg, _id)}" ${genDatasetIdAttr(_id)} src="${productImage}" alt="${productName}">
+            <img class="${genItemClassNames(cn.itemImg, _id)}" ${genDatasetIdAttr(_id)} src="${imageKey}" alt="${title}">
           </figure>
         </a>
       </div>
       <div class="card-content">
         <div class="columns is-mobile is-vcentered is-1">
           <div class="column">
-            <h3 class="title is-5"><a href="#"><span class="${genItemClassNames(cn.itemName, _id)}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
+            <h3 class="title is-5"><a href="#"><span class="${genItemClassNames(cn.itemName, _id)}" ${genDatasetIdAttr(_id)}>${title}<span></a></h3>
           </div>
           <div class="column is-narrow">
             <input class="${genItemClassNames(cn.itemSelect, _id)}" ${genDatasetIdAttr(_id)} type="checkbox" ${selected ? 'checked' : ''}>
@@ -53,10 +52,10 @@ function renderItem ({
         </div>
         <div class="columns is-mobile is-vcentered">
           <div class="column is-7">
-            <span>₩<span class="${genItemClassNames(cn.itemPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(productPrice)}</span></span><br>
-            <span>total: ₩<strong><span class="${genItemClassNames(cn.itemTotalPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(productPrice * quantity)}</span></strong></span>
+            <span>₩<span class="${genItemClassNames(cn.itemPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(price)}</span></span><br>
+            <span>total: ₩<strong><span class="${genItemClassNames(cn.itemTotalPrice, _id)}" ${genDatasetIdAttr(_id)}>${numberWithCommas(price * quantity)}</span></strong></span>
           </div>
-          <div class="column is-5"><input class="input ${genItemClassNames(cn.itemQuantity, _id)}" ${genDatasetIdAttr(_id)} type="number" min="1" max="${productStock}" value="${quantity}" ></div>
+          <div class="column is-5"><input class="input ${genItemClassNames(cn.itemQuantity, _id)}" ${genDatasetIdAttr(_id)} type="number" min="1" value="${quantity}" ></div>
         </div>
       </div>
       <footer class="card-footer">
@@ -94,8 +93,8 @@ function getItemsTotalCost() {
   return state.items
     .filter(({ selected }) => selected)
     .reduce((acc, cur) => {
-      const { productPrice, quantity } = cur;
-      return acc + (productPrice * quantity);
+      const { price, quantity } = cur;
+      return acc + (price * quantity);
     }, 0);
 }
 
@@ -122,7 +121,7 @@ function renderBtnBuy() {
 
 function initItems() {
   const itemsJSONStr = localStorage.getItem(cartName);
-  state.items = JSON.parse(itemsJSONStr).map(item => ({ ...item, selected: true }));
+  state.items = JSON.parse(itemsJSONStr);
 };
 
 function render() {
@@ -171,10 +170,7 @@ function addEventListenerItems() {
     if ($target.classList.contains(cn.itemQuantity)) {
       const id = $target.dataset.id;
       const index = state.items.findIndex(({ _id }) => id === _id );
-      let newValue = parseInt($target.value);
-      if (newValue < 1) newVlaue = 1;
-      if (newValue > state.items[index]['productStock']) newValue = state.items[index]['productStock'];
-      state.items[index]['quantity'] = newValue;
+      state.items[index]['quantity'] = parseInt($target.value);
       render();
     }
   });
@@ -187,8 +183,7 @@ function addEventListenerItems() {
     if ($target.classList.contains(cn.plusItem)) {
       const id = $target.dataset.id;
       const index = state.items.findIndex(({ _id }) => id === _id );
-      let newValue = state.items[index]['quantity'] + 1;
-      state.items[index]['quantity'] = newValue > state.items[index]['productStock'] ? state.items[index]['productStock'] : newValue;
+      state.items[index]['quantity'] = state.items[index]['quantity'] + 1; 
       render();
     }
 
@@ -223,9 +218,7 @@ function addEventListenerBtnBuy() {
       grandTotal,
     }));
 
-    localStorage.removeItem(cartName);
-
-    window.location.replace('/order');
+    localStorage.removeItem('shopping-cart');
   });
 };
 

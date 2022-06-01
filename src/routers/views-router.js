@@ -9,6 +9,7 @@ const viewsRouter = express.Router();
 viewsRouter.use('/', serveStatic('home'));
 viewsRouter.use('/register', serveStatic('register'));
 viewsRouter.use('/login', serveStatic('login'));
+viewsRouter.use('/cart', serveStatic('cart'));
 
 viewsRouter.use('/mypage', serveStatic('mypage'));
 viewsRouter.use('/cart', serveStatic('cart'));
@@ -19,11 +20,6 @@ viewsRouter.use('/accountDelete', serveStatic('accountDelete'));
 viewsRouter.use('/product_sell', serveStatic('product_sell'));
 viewsRouter.use('/product_edit', serveStatic('product_edit'));
 viewsRouter.use('/productCategory', serveStatic('productCategory'));
-<<<<<<< HEAD
-=======
-viewsRouter.use('/image_test', serveStatic('image_test')); //multer test
-viewsRouter.use('/order', serveStatic('order'));
->>>>>>> feature-order-2
 
 // views 폴더의 최상단 파일인 rabbit.png, api.js 등을 쓸 수 있게 함
 viewsRouter.use('/', serveStatic(''));
