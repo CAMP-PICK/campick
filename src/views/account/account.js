@@ -7,7 +7,7 @@ import {
 // Nav Bar 고정
 appendNavigationBar();
 
-const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
+const data = await Api.get(`/api/user/email/${localStorage.getItem('email')}`);
 const token = localStorage.getItem('token');
 
 // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
@@ -142,7 +142,7 @@ async function deleteUser(e) {
 
   try {
     const data = { email, password };
-    await Api.post('/api/userdelete', data);
+    await Api.post('/api/user/delete', data);
     localStorage.clear();
 
     alert('회원 탈퇴가 완료 되었습니다.');

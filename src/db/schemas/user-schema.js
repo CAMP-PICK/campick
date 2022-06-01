@@ -19,9 +19,20 @@ const UserSchema = new Schema(
       required: false,
     },
     address: {
-      type: String,
-      required: false,
+      address1: {
+        type: String,
+        required: false,
+      },
+      address2: {
+        type: String,
+        required: false,
+      },
+      address3: {
+        type: Number,
+        required: false,
+      },
     },
+
     role: {
       type: String,
       required: false,
