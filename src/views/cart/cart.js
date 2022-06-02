@@ -284,7 +284,14 @@ function addEventListenerItems() {
 
 function addEventListenerBtnBuy() {
   const $0 = $cache.btnBuy;
-  $0.addEventListener('click', (e) => {
+  $0.addEventListener('click', e => {
+    //비로그인시, 로그인 화면으로 전환
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.replace('/login');
+      return;
+    }
+
     const itemsTotal = getItemsTotalCost();
     const deliveryCost = state.deliveryCost;
     const grandTotal = itemsTotal + deliveryCost;
