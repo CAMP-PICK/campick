@@ -45,3 +45,9 @@ body::-webkit-scrollbar-track {
 .login-form-container .input:focus {
   border-color: #383E56;
 }
+
+#kakao-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
