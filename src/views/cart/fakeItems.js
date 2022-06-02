@@ -8,6 +8,7 @@
     "productManuf": "team1",
     "productShortDes": "낡은 텐트입니다.",
     "productLongDes": "낡고 찢어진 텐트입니다. 빈티지한 매력이 있습니다.",
+    "productStock": 99,
     "createdAt": "2022-05-30T16:19:34.338Z",
     "updatedAt": "2022-06-01T13:11:58.843Z",
     "__v": 0,
@@ -22,6 +23,7 @@
     "productManuf": "team1",
     "productShortDes": "거실과 침실 공간이 분리된 투룸 텐트",
     "productLongDes": "매우 비싼 4인용 텐트입니다. 돈 많으면 사세요.",
+    "productStock": 10,
     "createdAt": "2022-05-30T16:21:07.088Z",
     "updatedAt": "2022-05-30T16:21:07.088Z",
     "__v": 0,
@@ -36,6 +38,7 @@
     "productManuf": "team1",
     "productShortDes": "소원을 들어드려요, 무려 100가지!",
     "productLongDes": "500년 뒤 소원을 100가지나 들어드리는 요술 램프 지니!",
+    "productStock": 10,
     "createdAt": "2022-05-30T16:27:58.020Z",
     "updatedAt": "2022-05-30T16:27:58.020Z",
     "__v": 0,
@@ -83,7 +86,7 @@
     "createdAt": "2022-06-01T16:59:15.764Z",
     "updatedAt": "2022-06-01T16:59:15.764Z",
     "__v": 0,
-    "quantity": 9
+    "quantity": 1
   }
 ];
 
