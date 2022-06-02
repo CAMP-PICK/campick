@@ -193,13 +193,8 @@ function addEventListenerBtnBuy() {
       alert('결제 실패. 잠시후 다시 시도해 주세요.');
     });
     httpRequest.addEventListener('load', (e) => {
-      alert(
-        `결제를 완료했습니다.\n주문id: ${
-          JSON.parse(httpRequest.response)['_id']
-        }`
-      );
       localStorage.removeItem(orderName);
-      window.location.replace('/');
+      window.location.replace(`/order-finish/?orderid=${JSON.parse(httpRequest.response)['_id']}`);
     });
     httpRequest.send(
       JSON.stringify({
