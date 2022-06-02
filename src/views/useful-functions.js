@@ -40,7 +40,9 @@ export const appendNavigationBar = () => {
   document.querySelector('#insertMenu').insertAdjacentHTML(
     'afterbegin',
     `${MENU_LIST.map(
-      (list) => `<a href="${list.to}" class="button is-dark is-inverted" style="margin-right: 3px">
+      (list) => `<a href="${
+        list.to
+      }" class="button is-dark is-inverted" style="margin-right: 3px">
       ${
         list.icon
           ? `<span class="icon">
@@ -82,7 +84,9 @@ export const appendUserNavigationBar = (token) => {
       'afterbegin',
       `${GUEST_MENUS.map(
         (menu) => `
-      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted" style="margin-right: 3px">
+      <a href="${menu.to}" id="${
+          menu.id
+        }" class="button is-dark is-inverted" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -152,7 +156,9 @@ export const appendAccountUserNavigationBar = (token) => {
       'afterbegin',
       `${GUEST_MENUS.map(
         (menu) => `
-      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted" style="margin-right: 3px">
+      <a href="${menu.to}" id="${
+          menu.id
+        }" class="button is-dark is-inverted" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -196,7 +202,10 @@ export const appendAccountUserNavigationBar = (token) => {
 
 export const topButton = () => {
   const body = document.querySelector('body');
-  body.insertAdjacentHTML('afterbegin', '<button id="topBtn" class="button is-dark">TOP</button>');
+  body.insertAdjacentHTML(
+    'afterbegin',
+    '<button id="topBtn" class="button is-dark">TOP</button>'
+  );
   const topBtn = document.querySelector('#topBtn');
   topBtn.addEventListener('click', () => {
     scrollTo({
@@ -204,5 +213,161 @@ export const topButton = () => {
       left: 0,
       behavior: 'smooth',
     });
+  });
+};
+
+//상품 페이지 정렬 기능 구현
+const section = document.querySelector('.section');
+
+//각 카테고리 페이지에 버튼 고정
+export const sortBtn = () => {
+  section.insertAdjacentHTML(
+    `afterbegin`,
+    `<div class="product-sort">
+  <button class="button is-small sort-btn name-sort">이름순 정렬</button>
+  <button class="button is-small sort-btn price-sort">가격순 정렬</button>
+  <button class="button is-small sort-btn newest-sort">
+    최신순 정렬
+  </button>
+</div>`
+  );
+};
+
+//정렬 기능 구현
+export const productSort = () => {
+  const priceSort = document.querySelector('.price-sort');
+  const nameSort = document.querySelector('.name-sort');
+  const newestSort = document.querySelector('.newest-sort');
+  const content = document.querySelector('#producItemContainer');
+
+  //가격순 정렬-오름차순
+  priceSort.addEventListener('click', async () => {
+    const res = await fetch(`http://localhost:3000/api/product/list`);
+    const data = await res.json();
+    data.sort((a, b) => {
+      return a.productPrice - b.productPrice;
+    });
+
+    //content.remove();
+    content.innerHTML = '';
+
+    content.insertAdjacentHTML(
+      'beforeend',
+      `${data
+        .map(
+          (product) =>
+            `
+            <div class="message media product-item" data-category-name="${
+              product.productCategory
+            }" data-product-name="${product.productName}">
+              <div class="media-left">
+                <figure class="image">
+                  <img src="${product.productImage}" alt="제품 이미지" />
+                </figure>
+              </div>
+              <div class="media-content">
+                  <div class="content">
+                    <p class="title">
+                      ${product.productName}
+                    </p>
+                    <p class="description">
+                      ${product.productShortDes}
+                    </p>
+                    <p class="price">${addCommas(product.productPrice)}원</p>
+                  </div>
+                </div>  
+              </div>
+            `
+        )
+        .join('')}`
+    );
+  });
+
+  //이름순 정렬
+  nameSort.addEventListener('click', async () => {
+    const res = await fetch(`http://localhost:3000/api/product/list`);
+    const data = await res.json();
+    data.sort((a, b) => {
+      if (a.productName > b.productName) return 1;
+      if (a.productName === b.productName) return 0;
+      if (a.productName < b.productName) return -1;
+    });
+
+    content.innerHTML = '';
+
+    content.insertAdjacentHTML(
+      'beforeend',
+      `${data
+        .map(
+          (product) =>
+            `
+            <div class="message media product-item" data-category-name="${
+              product.productCategory
+            }" data-product-name="${product.productName}">
+              <div class="media-left">
+                <figure class="image">
+                  <img src="${product.productImage}" alt="제품 이미지" />
+                </figure>
+              </div>
+              <div class="media-content">
+                  <div class="content">
+                    <p class="title">
+                      ${product.productName}
+                    </p>
+                    <p class="description">
+                      ${product.productShortDes}
+                    </p>
+                    <p class="price">${addCommas(product.productPrice)}원</p>
+                  </div>
+                </div>  
+              </div>
+            `
+        )
+        .join('')}`
+    );
+  });
+
+  //최신순 정렬
+  newestSort.addEventListener('click', async () => {
+    const res = await fetch(`http://localhost:3000/api/product/list`);
+    const data = await res.json();
+    data.sort((a, b) => {
+      if (a.createdAt > b.createdAt) return 1;
+      if (a.createdAt === b.createdAt) return 0;
+      if (a.createdAt < b.createdAt) return -1;
+    });
+
+    content.innerHTML = '';
+
+    content.insertAdjacentHTML(
+      'beforeend',
+      `${data
+        .map(
+          (product) =>
+            `
+              <div class="message media product-item" data-category-name="${
+                product.productCategory
+              }" data-product-name="${product.productName}">
+                <div class="media-left">
+                  <figure class="image">
+                    <img src="${product.productImage}" alt="제품 이미지" />
+                  </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                      <p class="title">
+                        ${product.productName}
+                      </p>
+                      <p class="description">
+                        ${product.productShortDes}
+                      </p>
+                      <p class="price">${addCommas(product.productPrice)}원</p>
+                    </div>
+                  </div>  
+                </div>
+              `
+        )
+        .join('')}`
+    );
   });
 };
