@@ -22,7 +22,17 @@ export const USER_MENUS = [
 export const MENU_LIST = [
   { name: '홈', to: '/', icon: 'fas fa-solid fa-house' },
   { name: '전체상품', to: '/category' },
-  { name: '텐트', to: '/tent' },
-  { name: '램프', to: '/lamp' },
-  { name: '기타', to: '/etc' },
+  { name: '텐트', to: '/category_tent' },
+  { name: '램프', to: '/category_lamp' },
+  { name: '기타', to: '/category_etc' },
+];
+
+export const USER_MENUS_ACCOUNT = [
+  { name: '로그아웃', to: '/', id: 'logoutBtn' },
+  {
+    name: '장바구니',
+    to: '/cart',
+    id: 'cartBtn',
+    icon: 'fas fa-cart-shopping',
+  },
 ];
