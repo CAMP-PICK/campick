@@ -1,14 +1,32 @@
 /* 상품 등록 컨테이너 관련 CSS */
-.subtitle.is-4 {
-    font-size: 1.5rem;
-    text-align: center;
+.category-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
 }
 
-.register-product-form-container {
-    display: flex;
-    justify-content: center;
+.category-user-form-box {
+  width: 30rem;
 }
 
-.register-product-form-box {
-    width: 40rem;
+.category-user-form-box .title {
+  text-align: center;
+}
+
+.category-user-form-box .button {
+  font-weight: bold;
+}
+
+.category-user-form-box .input:focus {
+  border-color: #383e56;
+}
+
+.mt-5 {
+  display: flex;
+  justify-content:flex-end;
+}
+
+.button {
+  margin : 0 3px;
 }

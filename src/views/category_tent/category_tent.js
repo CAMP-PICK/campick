@@ -49,7 +49,6 @@ const fetchProductList = async () => {
                   <div class="content">
                     <p class="title">
                       ${tent.productName}
-                      <span class="tag is-success is-rounded">추천</span>
                     </p>
                     <p class="description">
                       ${tent.productShortDes}

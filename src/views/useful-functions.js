@@ -63,7 +63,7 @@ export const appendUserNavigationBar = (token) => {
         (menu) =>
           `<a href="${menu.to}" id="${
             menu.id
-          }" class="button is-dark is-inverted">
+          }" class="button is-dark is-inverted" style="margin-right: 3px">
           ${
             menu.icon
               ? `<span class="icon">
@@ -82,7 +82,7 @@ export const appendUserNavigationBar = (token) => {
       'afterbegin',
       `${GUEST_MENUS.map(
         (menu) => `
-      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted">
+      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -133,7 +133,7 @@ export const appendAccountUserNavigationBar = (token) => {
         (menu) =>
           `<a href="${menu.to}" id="${
             menu.id
-          }" class="button is-dark is-inverted">
+          }" class="button is-dark is-inverted" style="margin-right: 3px">
           ${
             menu.icon
               ? `<span class="icon">
@@ -152,7 +152,7 @@ export const appendAccountUserNavigationBar = (token) => {
       'afterbegin',
       `${GUEST_MENUS.map(
         (menu) => `
-      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted">
+      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -196,7 +196,7 @@ export const appendAccountUserNavigationBar = (token) => {
 
 export const topButton = () => {
   const body = document.querySelector('body');
-  body.insertAdjacentHTML('afterbegin', '<button id="topBtn">TOP</button>');
+  body.insertAdjacentHTML('afterbegin', '<button id="topBtn" class="button is-dark">TOP</button>');
   const topBtn = document.querySelector('#topBtn');
   topBtn.addEventListener('click', () => {
     scrollTo({
