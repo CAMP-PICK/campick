@@ -35,12 +35,13 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type='number'] {
   text-align: center;
   -moz-appearance: textfield;
 }
 
-.item-name, .card-footer > button.card-footer-item {
+.item-name,
+.card-footer > button.card-footer-item {
   color: #181818;
 }
 
@@ -48,21 +49,10 @@ input[type=number] {
   text-align: center;
 }
 
-.pay-info .column button{
+.pay-info .column button {
   width: 100%;
 }
 
 .card-footer {
   padding: 0;
-}
-
-.btn-delete-selected, .btn-buy,
-.btn-delete-selected:focus, .btn-buy:focus  {
-  background-color: rgb(71, 70, 70);
-  color: #fff;
-}
-
-.btn-delete-selected:hover, .btn-buy:hover {
-  background-color: rgb(148, 46, 46);
-  color: #fff;
 }
