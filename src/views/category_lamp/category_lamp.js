@@ -42,9 +42,7 @@ const fetchProductList = async () => {
             }" data-product-name="${lamp.productName}">
               <div class="media-left">
                 <figure class="image">
-                  <img src="../../../uploads/${
-                    lamp.productImage
-                  }" alt="제품 이미지" />
+                  <img src="${lamp.productImage}" alt="제품 이미지" />
                 </figure>
               </div>
               <div class="media-content">
