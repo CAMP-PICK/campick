@@ -42,13 +42,8 @@ function renderItem({
     <div class="card">
       <div class="card-image">
         <a href="#">
-          <figure class="image is-3by2">
-            <img class="${genItemClassNames(
-              cn.itemImg,
-              _id
-            )}" ${genDatasetIdAttr(
-    _id
-  )} src="${productImage}" alt="${productName}">
+          <figure class="image is-1by1">
+            <img class="${genItemClassNames(cn.itemImg, _id)}" ${genDatasetIdAttr(_id)} src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
           </figure>
         </a>
       </div>
@@ -91,7 +86,7 @@ function renderItem({
             _id
           )}" ${genDatasetIdAttr(
     _id
-  )} type="number" min="1" max="${productStock}" value="${quantity}" ></div>
+  )} type="number" min="1" max="${productStock ? productStock : 999}" value="${quantity}" ></div>
         </div>
       </div>
       <footer class="card-footer">
@@ -305,7 +300,7 @@ function addEventListenerBtnBuy() {
       })
     );
 
-    localStorage.removeItem(cartName);
+    // localStorage.removeItem(cartName);
 
     window.location.replace('/order');
   });
@@ -325,7 +320,3 @@ function init() {
 }
 
 init();
-
-//제품 상세 페이지에서 받아온 상품 data
-JSON.parse(localStorage.getItem('cartProduct'));
-console.log(JSON.parse(localStorage.getItem('cartProduct')));

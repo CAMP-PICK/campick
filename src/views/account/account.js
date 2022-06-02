@@ -74,7 +74,7 @@ if (data.role == 'manager-user') {
   
       <div class="tile is-parent">
         <article class="tile is-child box">
-          <a href="">
+          <a href="/order-list">
             <p class="title">
               <span class="icon">
                 <i class="fa-solid fa-credit-card"></i>

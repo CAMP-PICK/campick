@@ -46,13 +46,13 @@ function renderItem({
     <div class="card">
       <div class="card-image">
         <a href="#">
-          <figure class="image is-3by2">
+          <figure class="image is-1by1">
             <img class="${genItemClassNames(
               cn.itemImg,
               _id
             )}" ${genDatasetIdAttr(
     _id
-  )} src="${productImage}" alt="${productName}">
+  )} src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
           </figure>
         </a>
       </div>
@@ -87,7 +87,7 @@ function renderItem({
             _id
           )}" ${genDatasetIdAttr(
     _id
-  )} type="number" min="1" max="${productStock}" value="${quantity}" ></div>
+  )} type="number" min="1" max="${productStock ? productStock : 999}" value="${quantity}" ></div>
         </div>
       </div>
     </div>
@@ -234,10 +234,3 @@ function init() {
 }
 
 init();
-
-//제품 상세 페이지에서 받아온 상품, 유저 정보 data
-JSON.parse(localStorage.getItem('purchaseProduct'));
-console.log(JSON.parse(localStorage.getItem('purchaseProduct')));
-JSON.parse(localStorage.getItem('purchaseUser'));
-console.log(JSON.parse(localStorage.getItem('purchaseUser')));
-// 배송비 정보가 없어서 console에서 error 발생

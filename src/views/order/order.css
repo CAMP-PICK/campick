@@ -55,3 +55,14 @@ input[type=number] {
 .select, #phone-1 {
   width: 100%;
 }
+
+.btn-search-zip-code, .btn-buy,
+.btn-search-zip-code:focus, .btn-buy:focus  {
+  background-color: rgb(71, 70, 70);
+  color: #fff;
+}
+
+.btn-search-zip-code:hover, .btn-buy:hover {
+  background-color: rgb(148, 46, 46);
+  color: #fff;
+}
