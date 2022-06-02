@@ -4,6 +4,7 @@ import {
   appendUserNavigationBar,
   addCommas,
   topButton,
+  productSort,
 } from '../useful-functions.js';
 
 const token = localStorage.getItem('token');
@@ -14,6 +15,9 @@ topButton();
 // Nav Bar 고정
 appendNavigationBar();
 
+//정렬 버튼 고정
+productSort();
+
 // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
 appendUserNavigationBar(token);
 
@@ -21,7 +25,7 @@ appendUserNavigationBar(token);
 const fetchProductList = async () => {
   try {
     const productList = await Api.get('/api/product/list');
-    console.log(productList);
+
     document.querySelector('#producItemContainer').insertAdjacentHTML(
       'afterbegin',
       `${productList

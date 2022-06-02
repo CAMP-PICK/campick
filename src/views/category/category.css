@@ -21,6 +21,17 @@
   cursor: pointer;
 }
 
+.product-sort {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.sort-btn {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 #topBtn {
   position: fixed;
   color: white;

@@ -40,7 +40,9 @@ export const appendNavigationBar = () => {
   document.querySelector('#insertMenu').insertAdjacentHTML(
     'afterbegin',
     `${MENU_LIST.map(
-      (list) => `<a href="${list.to}" class="button is-dark is-inverted" style="margin-right: 3px">
+      (list) => `<a href="${
+        list.to
+      }" class="button is-dark is-inverted" style="margin-right: 3px">
       ${
         list.icon
           ? `<span class="icon">
@@ -82,7 +84,9 @@ export const appendUserNavigationBar = (token) => {
       'afterbegin',
       `${GUEST_MENUS.map(
         (menu) => `
-      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted" style="margin-right: 3px">
+      <a href="${menu.to}" id="${
+          menu.id
+        }" class="button is-dark is-inverted" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -152,7 +156,9 @@ export const appendAccountUserNavigationBar = (token) => {
       'afterbegin',
       `${GUEST_MENUS.map(
         (menu) => `
-      <a href="${menu.to}" id="${menu.id}" class="button is-dark is-inverted" style="margin-right: 3px">
+      <a href="${menu.to}" id="${
+          menu.id
+        }" class="button is-dark is-inverted" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -196,7 +202,10 @@ export const appendAccountUserNavigationBar = (token) => {
 
 export const topButton = () => {
   const body = document.querySelector('body');
-  body.insertAdjacentHTML('afterbegin', '<button id="topBtn" class="button is-dark">TOP</button>');
+  body.insertAdjacentHTML(
+    'afterbegin',
+    '<button id="topBtn" class="button is-dark">TOP</button>'
+  );
   const topBtn = document.querySelector('#topBtn');
   topBtn.addEventListener('click', () => {
     scrollTo({
@@ -204,5 +213,66 @@ export const topButton = () => {
       left: 0,
       behavior: 'smooth',
     });
+  });
+};
+
+export const productSort = () => {
+  const section = document.querySelector('.section');
+  section.insertAdjacentHTML(
+    `afterbegin`,
+    `<div class="product-sort">
+  <button class="button is-small sort-btn name-sort">이름순 정렬</button>
+  <button class="button is-small sort-btn price-sort">가격순 정렬</button>
+  <button class="button is-small sort-btn newest-sort">
+    최신순 정렬
+  </button>
+</div>`
+  );
+
+  const priceSort = document.querySelector('.price-sort');
+  const content = document.querySelector('#producItemContainer');
+
+  priceSort.addEventListener('click', async () => {
+    const res = await fetch(`http://localhost:3000/api/product/list`);
+    const data = await res.json();
+    //let productList = [];
+    data.sort((a, b) => {
+      if (a.productPrice > b.productPrice) return 1;
+      if (a.productPrice === b.productPrice) return 0;
+      if (a.productPrice < b.productPrice) return -1;
+    });
+
+    content.remove();
+
+    section.insertAdjacentHTML(
+      'beforeend',
+      `${data
+        .map(
+          (product) =>
+            `
+            <div class="message media product-item" data-category-name="${
+              product.productCategory
+            }" data-product-name="${product.productName}">
+              <div class="media-left">
+                <figure class="image">
+                  <img src="${product.productImage}" alt="제품 이미지" />
+                </figure>
+              </div>
+              <div class="media-content">
+                  <div class="content">
+                    <p class="title">
+                      ${product.productName}
+                    </p>
+                    <p class="description">
+                      ${product.productShortDes}
+                    </p>
+                    <p class="price">${addCommas(product.productPrice)}원</p>
+                  </div>
+                </div>  
+              </div>
+            `
+        )
+        .join('')}`
+    );
   });
 };
