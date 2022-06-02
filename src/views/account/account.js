@@ -121,7 +121,6 @@ const deleteUserBtn = document.querySelector('#deleteUserBtn');
 addAllEvents();
 
 function addAllEvents() {
-  if (logoutBtn) logoutBtn.addEventListener('click', logOut);
   imageModalCloseBtn.addEventListener('click', closeModal);
   showBtn.addEventListener('click', openModal);
   deleteUserBtn.addEventListener('click', deleteUser);
@@ -154,4 +153,3 @@ async function deleteUser(e) {
     alert(`${err.message}`);
   }
 }
-
