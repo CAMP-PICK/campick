@@ -1,3 +1,35 @@
 h2 {
   text-align: center;
 }
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+}
+
+.box {
+  width: 30rem;
+}
+
+.box .title {
+  text-align: center;
+}
+
+.box .subtitle {
+  text-align: center;
+}
+
+.containerBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  margin: 0 3px;
+}

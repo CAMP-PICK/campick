@@ -132,7 +132,7 @@ function detailFormatter(idx, {
         <div class="column is-3">배송비: ₩<span class="delivery-cost">${numberWithCommas(3000)}</span></div>
         <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(totalPrice)}</span></strong></div>
         <div class="column is-3">
-          <button class="button btn-order-cancel" onClick="cancelOrder('${_id}')">주문 취소</button>
+          <button class="button is-dark btn-order-cancel" onClick="cancelOrder('${_id}')"><b>주문 취소</b></button>
         </div>
       </div>
     </div>
