@@ -30,43 +30,18 @@
     <!-- 헤더 -->
     <nav id="insertNavBar">
       <div class="navbar">
-        <div class="navbar-brand">
-          <a href="/" class="button is-dark is-inverted">
-            <span>
-              <i class="fas fa-solid fa-house" style="margin-right: 0.5rem"></i>
-            </span>
-            <strong>홈</strong>
-          </a>
-          <a href="/category" class="button is-dark is-inverted">
-            <strong>전체상품</strong>
-          </a>
-          <a href="/category" class="button is-dark is-inverted">
-            <strong>텐트</strong>
-          </a>
-          <a href="/category" class="button is-dark is-inverted">
-            <strong>램프</strong>
-          </a>
-          <a href="/category" class="button is-dark is-inverted">
-            <strong>기타</strong>
-          </a>
-        </div>
-
+        <div class="navbar-brand" id="insertMenu"></div>
         <div class="navBarItems navbar-end">
           <ul id="insertItem" style="margin: 0"></ul>
         </div>
       </div>
     </nav>
-    <hr />
     <!-- 제품 추가 폼(Form) -->
-    <section class="section">
-      <div class="container">
-        <div class="block account-header">
-          <h1 class="subtitle is-4">Category management</h1>
-        </div>
-        <div class="register-product-form-container">
-          <form class="box register-product-form-box" id="registerProductForm">
+        <div class="category-form-container">
+          <form class="box category-user-form-box" id="categoryEditForm">
+            <p class="title is-5 has-text-dark">카테고리 관리</p>
             <div class="field">
-              <label class="label" for="manufacturerInput"
+              <label class="label" for="createCategoryName"
                 >추가 할 카테고리</label
               >
               <div class="control">
@@ -81,7 +56,7 @@
             </div>
 
             <div class="field">
-              <label class="label" for="categorySelectBox"
+              <label class="label" for="selectCategory"
                 >변경 할 카테고리</label
               >
               <div class="control">
@@ -94,7 +69,7 @@
             </div>
 
             <div class="field">
-              <label class="label" for="manufacturerInput">수정 할 이름</label>
+              <label class="label" for="editCategoryName">수정 할 이름</label>
               <div class="control">
                 <input
                   class="input"
@@ -108,25 +83,19 @@
 
             <div class="mt-5">
               <button
-                class="button is-primary is-fullwidth"
+                class="button is-dark"
                 id="submitCreateButton"
               >
                 추가하기
               </button>
-            </div>
-
-            <div class="mt-5">
               <button
-                class="button is-primary is-fullwidth"
+                class="button is-dark"
                 id="submitEditButton"
               >
                 수정하기
               </button>
-            </div>
-
-            <div class="mt-5">
               <button
-                class="button is-primary is-fullwidth"
+                class="button is-dark"
                 id="submitDelButton"
               >
                 삭제하기
@@ -134,7 +103,5 @@
             </div>
           </form>
         </div>
-      </div>
-    </section>
   </body>
 </html>

@@ -52,7 +52,6 @@ const fetchProductList = async () => {
                   <div class="content">
                     <p class="title">
                       ${etc.productName}
-                      <span class="tag is-success is-rounded">추천</span>
                     </p>
                     <p class="description">
                       ${etc.productShortDes}
