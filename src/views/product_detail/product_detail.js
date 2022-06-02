@@ -28,7 +28,9 @@ const fetchProductDetail = async () => {
         <div class="tile is-6 is-parent">
           <div class="tile is-child box product-image">
             <figure class="image is-sqaure">
-              <img id="productImageTag" src="${productDetail.productImage}" />
+              <img id="productImageTag" src="../../../uploads/${
+                productDetail.productImage
+              }" />
             </figure>
           </div>
         </div>
