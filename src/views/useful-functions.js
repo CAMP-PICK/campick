@@ -1,5 +1,3 @@
-import 'dotenv/config';
-const PORT = process.env.SERVER_PORT || 5000;
 import {
   GUEST_MENUS,
   USER_MENUS,
@@ -244,7 +242,7 @@ export const productSort = () => {
 
   //가격순 정렬-오름차순
   priceSort.addEventListener('click', async () => {
-    const res = await fetch(`http://localhost:${PORT}/api/product/list`);
+    const res = await fetch(`http://localhost:5000/api/product/list`);
     const data = await res.json();
     data.sort((a, b) => {
       return a.productPrice - b.productPrice;
@@ -287,7 +285,7 @@ export const productSort = () => {
 
   //이름순 정렬
   nameSort.addEventListener('click', async () => {
-    const res = await fetch(`http://localhost:${PORT}/api/product/list`);
+    const res = await fetch(`http://localhost:5000/api/product/list`);
     const data = await res.json();
     data.sort((a, b) => {
       if (a.productName > b.productName) return 1;
@@ -331,7 +329,7 @@ export const productSort = () => {
 
   //최신순 정렬
   newestSort.addEventListener('click', async () => {
-    const res = await fetch(`http://localhost:${PORT}/api/product/list`);
+    const res = await fetch(`http://localhost:5000/api/product/list`);
     const data = await res.json();
     data.sort((a, b) => {
       if (a.createdAt > b.createdAt) return 1;
