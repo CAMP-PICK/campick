@@ -22,7 +22,7 @@ const init = async () => {
 };
 
 const render = () => {
-  if (user.role == 'manager-user') {
+  if (email == 'manager@test.com') {
     accountSection.innerHTML = `<section class="section">
       <h1 class="title">관리자 페이지</h1>
       <h2 class="subtitle">

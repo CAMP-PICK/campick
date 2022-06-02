@@ -204,7 +204,7 @@ export const topButton = () => {
   const body = document.querySelector('body');
   body.insertAdjacentHTML(
     'afterbegin',
-    '<button id="topBtn" class="button is-dark">TOP</button>'
+    '<button id="topBtn" class="button is-dark is-small is-rounded"><i class="fa-solid fa-arrow-up"></i></button>'
   );
   const topBtn = document.querySelector('#topBtn');
   topBtn.addEventListener('click', () => {

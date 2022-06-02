@@ -33,3 +33,8 @@ body::-webkit-scrollbar-track {
 .modal-content {
   width: 30rem;
 }
+
+.tile a {
+  text-decoration: none;
+  color: black;
+}

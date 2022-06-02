@@ -21,3 +21,14 @@ tr:not(.detail-view) {
 .pay-info .column {
   text-align: center;
 }
+
+#topBtn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+}
+
+.column a {
+  text-decoration: none;
+  color: black;
+}
