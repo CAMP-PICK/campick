@@ -24,6 +24,8 @@
     />
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="account.css" />
+    <!-- loader css -->
+    <link rel="stylesheet" href="../loading_spinner/spinner.css" />
   </head>
 
   <body>
@@ -37,9 +39,12 @@
       </div>
     </nav>
 
-    <div class="userSection"></div>
-    <br /><br />
-    <div class="managerSection"></div>
+    <div class="accountSection">
+      <!-- svg loader -->
+      <div class="svg-loader">
+        <img src="../loading_spinner/spinner.svg" />
+      </div>
+    </div>
 
     <!-- 회원 탈퇴 Modal -->
     <div id="image-modal" class="delete-form-container modal">
