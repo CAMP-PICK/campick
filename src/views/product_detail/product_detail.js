@@ -117,12 +117,26 @@ async function cartSubmit(e) {
 
   //장바구니로 보내기 위해 선택한 제품 정보
   const cartProduct = await Api.get(`/api/product/list/${productName}`);
+
   try {
-    console.log(cartProduct);
-    localStorage.setItem('cartProduct', JSON.stringify(cartProduct));
-    alert('장바구니로 이동합니다');
-    //장바구니 페이지로 이동
-    window.location.href = `/cart`;
+    const cart = JSON.parse(localStorage.getItem('shopping-cart'));
+    if (cart) {
+      const idx = cart.findIndex(({ _id }) => _id == cartProduct._id);
+      if (idx > -1) {
+        cart[idx]['quantity'] += 1;
+      } else {
+        cart.push({...cartProduct, quantity: 1 });
+      }
+      localStorage.setItem('shopping-cart', JSON.stringify(cart));
+    }
+    else {
+      localStorage.setItem('shopping-cart', JSON.stringify([{...cartProduct, quantity: 1 }]));
+    }
+
+    const yes = confirm('장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?');
+    if (yes) {
+      window.location.replace('/cart');
+    }
   } catch (err) {
     alert(`${err.message}`);
   }
@@ -132,20 +146,28 @@ async function cartSubmit(e) {
 async function purchaseSubmit(e) {
   e.preventDefault();
 
+  if (!localStorage.getItem('token')) {
+    alert('로그인을 먼저 해주세요!');
+    window.location.replace(`/login`);
+
+  }
+
   //장바구니로 보내기 위해 선택한 제품 정보
   const purchaseProduct = await Api.get(`/api/product/list/${productName}`);
   //장바구니로 보내기 위해 선택한 사용자 정보
   const purchaseUser = await Api.get(
     `/api/user/email/${localStorage.getItem('email')}`
   );
-  console.log(purchaseProduct);
-  console.log(purchaseUser);
   try {
-    localStorage.setItem('orderProduct', JSON.stringify(purchaseProduct));
+    localStorage.setItem('shopping-order', JSON.stringify({
+      deliveryCost: 3000,
+      grandTotal: purchaseProduct.productPrice + 3000,
+      itemsTotal: purchaseProduct.productPrice,
+      items: [{ ...purchaseProduct, quantity: 1 }]
+    }));
     localStorage.setItem('orderUser', JSON.stringify(purchaseUser));
-    alert('구매 페이지로 이동합니다');
     //제품 구매 페이지로 이동
-    window.location.href = `/order`;
+    window.location.replace(`/order`);
   } catch (err) {
     alert(`${err.message}`);
   }

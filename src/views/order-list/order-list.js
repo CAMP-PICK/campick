@@ -65,7 +65,7 @@ function renderItem({
     <div class="card">
       <div class="card-image">
         <a href="/product_detail/?name=${productName}">
-          <figure class="image is-3by2">
+          <figure class="image is-1by1">
             <img src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
           </figure>
         </a>
@@ -132,7 +132,7 @@ function detailFormatter(idx, {
         <div class="column is-3">배송비: ₩<span class="delivery-cost">${numberWithCommas(3000)}</span></div>
         <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(totalPrice)}</span></strong></div>
         <div class="column is-3">
-          <button class="button is-warning" onClick="cancelOrder('${_id}')">주문 취소</button>
+          <button class="button btn-order-cancel" onClick="cancelOrder('${_id}')">주문 취소</button>
         </div>
       </div>
     </div>

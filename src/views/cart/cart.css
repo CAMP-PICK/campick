@@ -55,3 +55,14 @@ input[type=number] {
 .card-footer {
   padding: 0;
 }
+
+.btn-delete-selected, .btn-buy,
+.btn-delete-selected:focus, .btn-buy:focus  {
+  background-color: rgb(71, 70, 70);
+  color: #fff;
+}
+
+.btn-delete-selected:hover, .btn-buy:hover {
+  background-color: rgb(148, 46, 46);
+  color: #fff;
+}
