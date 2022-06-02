@@ -20,7 +20,7 @@ const productName = urlParams.get('name');
 const fetchProductDetail = async () => {
   try {
     const productDetail = await Api.get(`/api/product/list/${productName}`);
-    console.log(productDetail.productImage);
+
     document.querySelector('#productDetailContainer').insertAdjacentHTML(
       'afterbegin',
       `

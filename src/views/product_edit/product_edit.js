@@ -203,7 +203,7 @@ async function handleSubmit(e) {
     formData.append('productLongDes', detailDescription.value);
     formData.append('productPrice', productPrice.value);
     // const inventory = inventory.value; // 제품 재고 router가 없어서 임시로 막아둠
-    formData.append('files', file.files[0]);
+    formData.append('file', file.files[0]);
 
     await fetch(`http://localhost:3000/api/product/edit/${editProductName}`, {
       method: 'POST',
