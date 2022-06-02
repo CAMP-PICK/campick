@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>쇼핑-메인</title>
+    <title>CAMPICK - MAIN</title>
+    <!-- 커스텀 css -->
+    <link rel="stylesheet" href="home.css" />
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -22,8 +24,13 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
-    <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="home.css" />
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -106,18 +113,20 @@
 
     <footer class="footer has-text-centered">
       <div class="content">
-        <p>
-          <i class="fa-brands fa-facebook-f"></i>
-          <i class="fa-brands fa-twitter"></i>
-          <i class="fa-solid fa-comment"></i>
-          <br />
-          상호 : CAMPICK | 대표 : 지재영 | 이용약관 | 개인정보취급방침 | 사이트맵
+        <p style="margin-bottom: 10px">
+          <i class="fa-brands fa-facebook-f"></i>&nbsp&nbsp
+          <i class="fa-brands fa-twitter"></i>&nbsp&nbsp
+          <i class="fa-solid fa-comment"></i>&nbsp&nbsp
+        </p>
+        <p style="font-family: 'Noto Sans KR', sans-serif">
+          <strong>ⓒ CAMPICK</strong> &nbsp|&nbsp 대표 : 지재영 &nbsp|&nbsp
+          이용약관 &nbsp|&nbsp 개인정보취급방침 &nbsp|&nbsp 사이트맵
         </p>
       </div>
     </footer>
 
     <!-- bootstrap js -->
-   <script
+    <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"
@@ -132,7 +141,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
+    <!-- 커스텀 js -->
     <script src="home.js" type="module" defer></script>
-  </body> 
+  </body>
 </html>

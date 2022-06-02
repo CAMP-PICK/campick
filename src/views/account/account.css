@@ -38,3 +38,9 @@ body::-webkit-scrollbar-track {
   text-decoration: none;
   color: black;
 }
+
+/* 회원 탈퇴 container css */
+
+#deleteForm {
+  margin: auto;
+}

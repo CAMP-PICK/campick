@@ -50,7 +50,9 @@ export const appendNavigationBar = () => {
     </span>`
           : ''
       }
-    <strong>${list.name}</strong>
+    <strong style="font-family: 'Noto Sans KR', sans-serif">${
+      list.name
+    }</strong>
   </a>`
     ).join('')}`
   );
@@ -74,7 +76,9 @@ export const appendUserNavigationBar = (token) => {
               : ''
           }
             <li>
-              <strong>${menu.name}</strong>
+              <strong style="font-family: 'Noto Sans KR', sans-serif">${
+                menu.name
+              }</strong>
             </li>
           </a>`
       ).join('')}`
@@ -95,7 +99,9 @@ export const appendUserNavigationBar = (token) => {
             : ''
         }
         <li>
-          <strong>${menu.name}</strong>
+          <strong style="font-family: 'Noto Sans KR', sans-serif">${
+            menu.name
+          }</strong>
         </li>
       </a>`
       ).join('')}`
@@ -146,7 +152,9 @@ export const appendAccountUserNavigationBar = (token) => {
               : ''
           }
             <li>
-              <strong>${menu.name}</strong>
+              <strong style="font-family: 'Noto Sans KR', sans-serif">${
+                menu.name
+              }</strong>
             </li>
           </a>`
       ).join('')}`
@@ -167,7 +175,9 @@ export const appendAccountUserNavigationBar = (token) => {
             : ''
         }
         <li>
-          <strong>${menu.name}</strong>
+          <strong style="font-family: 'Noto Sans KR', sans-serif">${
+            menu.name
+          }</strong>
         </li>
       </a>`
       ).join('')}`
