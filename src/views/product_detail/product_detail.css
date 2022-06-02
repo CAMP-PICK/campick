@@ -17,6 +17,13 @@
     white-space: pre-line;
 }
 
+/* container 관련 CSS */
+#cartorderButton {
+    width: 50%;
+    float: right;
+    text-align: left;
+}
+
 /* 버튼 관련 CSS */
 #managerButton {
     float: none;
@@ -25,8 +32,6 @@
 
 .buttons-container {
     flex-grow: 0;
-    padding-bottom: 0;
-    padding-right: 0;
 }
 
 #submitDelButton {

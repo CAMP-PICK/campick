@@ -193,13 +193,8 @@ function addEventListenerBtnBuy() {
       alert('결제 실패. 잠시후 다시 시도해 주세요.');
     });
     httpRequest.addEventListener('load', (e) => {
-      alert(
-        `결제를 완료했습니다.\n주문id: ${
-          JSON.parse(httpRequest.response)['_id']
-        }`
-      );
       localStorage.removeItem(orderName);
-      window.location.replace('/');
+      window.location.replace(`/order-finish/?orderid=${JSON.parse(httpRequest.response)['_id']}`);
     });
     httpRequest.send(
       JSON.stringify({
@@ -239,3 +234,10 @@ function init() {
 }
 
 init();
+
+//제품 상세 페이지에서 받아온 상품, 유저 정보 data
+JSON.parse(localStorage.getItem('purchaseProduct'));
+console.log(JSON.parse(localStorage.getItem('purchaseProduct')));
+JSON.parse(localStorage.getItem('purchaseUser'));
+console.log(JSON.parse(localStorage.getItem('purchaseUser')));
+// 배송비 정보가 없어서 console에서 error 발생

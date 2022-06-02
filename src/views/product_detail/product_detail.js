@@ -52,17 +52,9 @@ const fetchProductDetail = async () => {
                   ${productDetail.productLongDes}
                 </p>
               </div>
-              </div>
-              <div class="tile is-child box buttons-container">
-                <button class="button is-warning" id="addToCartButton">
-                  장바구니 추가하기
-                </button>
-                <button class="button is-info ml-2" id="purchaseButton">
-                  바로 구매하기
-                </button>
-              </div>
             </div>
-          </div>`
+          </div>
+        </div>`
     );
   } catch (err) {
     console.error(err.stack);
@@ -73,11 +65,12 @@ const fetchProductDetail = async () => {
 //버튼 querySelector로 변수 지정
 const delButton = document.querySelector('#submitDelButton');
 const editButton = document.querySelector('#submitEditButton');
+const cartButton = document.querySelector('#addToCartButton');
+const purchaseButton = document.querySelector('#purchaseButton');
 
 // 관리자 계정일때만 버튼 표시
-const data = await Api.get(`/api/user/email/${localStorage.getItem('email')}`); // 관리자 email로 로그인 확인
+const data = await Api.get(`/api/user/email/${localStorage.getItem('email')}`);
 const style = document.createElement('style');
-console.log(data);
 if (data === null || data.role !== 'manager-user') {
   style.innerHTML = `
       #managerButton {
@@ -118,8 +111,50 @@ async function editSubmit(e) {
   }
 }
 
+//장바구니 페이지 이동
+async function cartSubmit(e) {
+  e.preventDefault();
+
+  //장바구니로 보내기 위해 선택한 제품 정보
+  const cartProduct = await Api.get(`/api/product/list/${productName}`);
+  try {
+    console.log(cartProduct);
+    localStorage.setItem('cartProduct', JSON.stringify(cartProduct));
+    alert('장바구니로 이동합니다');
+    //장바구니 페이지로 이동
+    window.location.href = `/cart`;
+  } catch (err) {
+    alert(`${err.message}`);
+  }
+}
+
+//제품 구매 페이지 이동
+async function purchaseSubmit(e) {
+  e.preventDefault();
+
+  //장바구니로 보내기 위해 선택한 제품 정보
+  const purchaseProduct = await Api.get(`/api/product/list/${productName}`);
+  //장바구니로 보내기 위해 선택한 사용자 정보
+  const purchaseUser = await Api.get(
+    `/api/user/email/${localStorage.getItem('email')}`
+  );
+  console.log(purchaseProduct);
+  console.log(purchaseUser);
+  try {
+    localStorage.setItem('orderProduct', JSON.stringify(purchaseProduct));
+    localStorage.setItem('orderUser', JSON.stringify(purchaseUser));
+    alert('구매 페이지로 이동합니다');
+    //제품 구매 페이지로 이동
+    window.location.href = `/order`;
+  } catch (err) {
+    alert(`${err.message}`);
+  }
+}
+
 //호출
 delButton.addEventListener('click', deleteSubmit);
 editButton.addEventListener('click', editSubmit);
+cartButton.addEventListener('click', cartSubmit);
+purchaseButton.addEventListener('click', purchaseSubmit);
 
 await fetchProductDetail();
