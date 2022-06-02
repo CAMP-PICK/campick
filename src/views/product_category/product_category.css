@@ -24,7 +24,7 @@
 
 .mt-5 {
   display: flex;
-  justify-content: center;
+  justify-content:flex-end;
 }
 
 .button {
