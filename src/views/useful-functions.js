@@ -248,9 +248,10 @@ export const productSort = () => {
       return a.productPrice - b.productPrice;
     });
 
-    content.remove();
+    //content.remove();
+    content.innerHTML = '';
 
-    section.insertAdjacentHTML(
+    content.insertAdjacentHTML(
       'beforeend',
       `${data
         .map(
@@ -292,9 +293,9 @@ export const productSort = () => {
       if (a.productName < b.productName) return -1;
     });
 
-    content.remove();
+    content.innerHTML = '';
 
-    section.insertAdjacentHTML(
+    content.insertAdjacentHTML(
       'beforeend',
       `${data
         .map(
@@ -336,9 +337,9 @@ export const productSort = () => {
       if (a.createdAt < b.createdAt) return -1;
     });
 
-    content.remove();
+    content.innerHTML = '';
 
-    section.insertAdjacentHTML(
+    content.insertAdjacentHTML(
       'beforeend',
       `${data
         .map(

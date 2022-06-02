@@ -5,6 +5,7 @@ import {
   addCommas,
   topButton,
   productSort,
+  sortBtn,
 } from '../useful-functions.js';
 
 const token = localStorage.getItem('token');
@@ -16,6 +17,7 @@ topButton();
 appendNavigationBar();
 
 //정렬 버튼 고정
+sortBtn();
 productSort();
 
 // 로컬 스토리지 토큰으로 로그인/비로그인 상태 구분
