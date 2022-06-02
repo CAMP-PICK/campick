@@ -216,8 +216,11 @@ export const topButton = () => {
   });
 };
 
-export const productSort = () => {
-  const section = document.querySelector('.section');
+//상품 페이지 정렬 기능 구현
+const section = document.querySelector('.section');
+
+//각 카테고리 페이지에 버튼 고정
+export const sortBtn = () => {
   section.insertAdjacentHTML(
     `afterbegin`,
     `<div class="product-sort">
@@ -228,18 +231,21 @@ export const productSort = () => {
   </button>
 </div>`
   );
+};
 
+//정렬 기능 구현
+export const productSort = () => {
   const priceSort = document.querySelector('.price-sort');
+  const nameSort = document.querySelector('.name-sort');
+  const newestSort = document.querySelector('.newest-sort');
   const content = document.querySelector('#producItemContainer');
 
+  //가격순 정렬-오름차순
   priceSort.addEventListener('click', async () => {
     const res = await fetch(`http://localhost:3000/api/product/list`);
     const data = await res.json();
-    //let productList = [];
     data.sort((a, b) => {
-      if (a.productPrice > b.productPrice) return 1;
-      if (a.productPrice === b.productPrice) return 0;
-      if (a.productPrice < b.productPrice) return -1;
+      return a.productPrice - b.productPrice;
     });
 
     content.remove();
@@ -271,6 +277,94 @@ export const productSort = () => {
                 </div>  
               </div>
             `
+        )
+        .join('')}`
+    );
+  });
+
+  //이름순 정렬
+  nameSort.addEventListener('click', async () => {
+    const res = await fetch(`http://localhost:3000/api/product/list`);
+    const data = await res.json();
+    data.sort((a, b) => {
+      if (a.productName > b.productName) return 1;
+      if (a.productName === b.productName) return 0;
+      if (a.productName < b.productName) return -1;
+    });
+
+    content.remove();
+
+    section.insertAdjacentHTML(
+      'beforeend',
+      `${data
+        .map(
+          (product) =>
+            `
+            <div class="message media product-item" data-category-name="${
+              product.productCategory
+            }" data-product-name="${product.productName}">
+              <div class="media-left">
+                <figure class="image">
+                  <img src="${product.productImage}" alt="제품 이미지" />
+                </figure>
+              </div>
+              <div class="media-content">
+                  <div class="content">
+                    <p class="title">
+                      ${product.productName}
+                    </p>
+                    <p class="description">
+                      ${product.productShortDes}
+                    </p>
+                    <p class="price">${addCommas(product.productPrice)}원</p>
+                  </div>
+                </div>  
+              </div>
+            `
+        )
+        .join('')}`
+    );
+  });
+
+  //최신순 정렬
+  newestSort.addEventListener('click', async () => {
+    const res = await fetch(`http://localhost:3000/api/product/list`);
+    const data = await res.json();
+    data.sort((a, b) => {
+      if (a.createdAt > b.createdAt) return 1;
+      if (a.createdAt === b.createdAt) return 0;
+      if (a.createdAt < b.createdAt) return -1;
+    });
+
+    content.remove();
+
+    section.insertAdjacentHTML(
+      'beforeend',
+      `${data
+        .map(
+          (product) =>
+            `
+              <div class="message media product-item" data-category-name="${
+                product.productCategory
+              }" data-product-name="${product.productName}">
+                <div class="media-left">
+                  <figure class="image">
+                    <img src="${product.productImage}" alt="제품 이미지" />
+                  </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                      <p class="title">
+                        ${product.productName}
+                      </p>
+                      <p class="description">
+                        ${product.productShortDes}
+                      </p>
+                      <p class="price">${addCommas(product.productPrice)}원</p>
+                    </div>
+                  </div>  
+                </div>
+              `
         )
         .join('')}`
     );
