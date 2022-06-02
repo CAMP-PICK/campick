@@ -122,7 +122,7 @@ addAllEvents();
 
 function addAllEvents() {
   imageModalCloseBtn.addEventListener('click', closeModal);
-  showBtn.addEventListener('click', openModal);
+  if (data.role === 'basic-user') showBtn.addEventListener('click', openModal);
   deleteUserBtn.addEventListener('click', deleteUser);
 }
 
