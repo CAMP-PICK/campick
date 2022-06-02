@@ -1,46 +1,60 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>주문 완료</title>
-  <!-- Bulma -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  
-  <!-- bootstrap css -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous"
-  />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주문 완료</title>
+    <!-- Bulma -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
 
-  <!-- Fontawesome -->
-  <script src="https://kit.fontawesome.com/bc4bd911be.js" crossorigin="anonymous"></script>
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
 
-  <!-- order-finish.css -->
-  <link rel="stylesheet" href="order-finish.css">
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/bc4bd911be.js"
+      crossorigin="anonymous"
+    ></script>
 
-</head>
-<body>
-  <header>
-    <nav id="insertNavBar">
-      <div class="navbar">
-        <div class="navbar-brand" id="insertMenu"></div>
-        <div class="navBarItems navbar-end">
-          <ul id="insertItem" style="margin: 0"></ul>
+    <!-- order-finish.css -->
+    <link rel="stylesheet" href="order-finish.css" />
+  </head>
+  <body>
+    <header>
+      <nav id="insertNavBar">
+        <div class="navbar">
+          <div class="navbar-brand" id="insertMenu"></div>
+          <div class="navBarItems navbar-end">
+            <ul id="insertItem" style="margin: 0"></ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <main class="container">
+      <div class="box">
+        <div class="title">🥳 주문이 완료 되었습니다! 🥳</div>
+        <div class="subtitle"><br>주문번호:<span class="order-id"></span></div>
+        <div class="containerBtn">
+          <a href="/" class="button is-dark">
+            <b><i class="fas fa-home"></i> 홈으로 이동</b></a
+          >
+          <a href="/category" class="button is-dark">
+            <b>계속 쇼핑하기</b></a
+          >
         </div>
       </div>
-    </nav>
-  </header>
-  <main class="container">
-    <div class="box">
-      <h2>주문<br><span class="order-id"></span><br>이 완료되었습니다.</h2>
-    </div>
-    <a href="/">Home으로 이동</a>
-  </main>
-  <script src="nav-bar.js" type="module" defer></script>
-  <script src="order-finish.js"></script>
-</body>
+    </main>
+    <script src="nav-bar.js" type="module" defer></script>
+    <script src="order-finish.js"></script>
+  </body>
 </html>

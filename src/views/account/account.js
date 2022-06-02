@@ -121,7 +121,6 @@ const deleteUserBtn = document.querySelector('#deleteUserBtn');
 addAllEvents();
 
 function addAllEvents() {
-  if (logoutBtn) logoutBtn.addEventListener('click', logOut);
   imageModalCloseBtn.addEventListener('click', closeModal);
   showBtn.addEventListener('click', openModal);
   deleteUserBtn.addEventListener('click', deleteUser);
@@ -152,21 +151,5 @@ async function deleteUser(e) {
   } catch (err) {
     console.error(err.stack);
     alert(`${err.message}`);
-  }
-}
-
-async function logOut(e) {
-  e.preventDefault();
-  try {
-    localStorage.clear();
-
-    alert('로그아웃이 완료 되었습니다.');
-
-    // 기본 페이지로 이동
-    window.location.href = '/';
-  } catch (err) {
-    console.error(err.stack);
-    alert(`${err.message}`);
-    ``;
   }
 }

@@ -124,7 +124,7 @@ export const appendUserNavigationBar = (token) => {
   }
 };
 
-// user navbar
+// account user navbar
 export const appendAccountUserNavigationBar = (token) => {
   if (token) {
     document.querySelector('#insertItem').insertAdjacentHTML(
