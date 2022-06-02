@@ -1,1 +1,7 @@
-/* 공사중 */
+tr {
+  cursor: pointer;
+}
+
+.pay-info .column {
+  text-align: center;
+}

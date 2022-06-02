@@ -38,7 +38,7 @@ function renderItem ({
       <div class="card-image">
         <a href="#">
           <figure class="image is-3by2">
-            <img class="${genItemClassNames(cn.itemImg, _id)}" ${genDatasetIdAttr(_id)} src="${productImage}" alt="${productName}">
+            <img class="${genItemClassNames(cn.itemImg, _id)}" ${genDatasetIdAttr(_id)} src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
           </figure>
         </a>
       </div>

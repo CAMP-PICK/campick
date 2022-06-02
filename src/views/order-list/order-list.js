@@ -1,38 +1,169 @@
 const state = {
   email: '',
   orderList: [],
+  productLib: [],
 };
 
-function initState() {
+async function initState() {
   state.email = localStorage.getItem('email');
-  state.orderList = getOrderList();
+  state.orderList = await getOrderList();
+  state.productLib = await getProductLib();
+  state.orderList = state.orderList.map(({ orderList, ...rest }) => {
+    return {
+      ...rest,
+      orderList: orderList.map(({ _id, ...rest }) => {
+        return {
+          ...rest,
+          ...state.productLib.find(({ _id: productId }) => _id == productId ),
+        };
+      }).filter(({ _id }) => _id),
+    };
+  });
 }
 
 function getOrderList() {
-  const email = state.email;
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', `/api/order/list/${email}`, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.addEventListener('error', () => {
-    alert('주문 목록 조회 실패. 잠시후 다시 시도해 주세요.');
+  return new Promise((resolve, reject) => {
+    const email = state.email;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/api/order/list/${email}`, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.addEventListener('error', () => {
+      alert('주문 목록 조회 실패. 잠시후 다시 시도해 주세요.');
+      reject();
+    });
+    xhr.addEventListener('load', () => {
+      resolve(JSON.parse(xhr.response));
+    });
+    xhr.send();
   });
-  xhr.addEventListener('load', (e) => {
-    state.orderList = Array.from(xhr.response);
-  });
-  xhr.send();
 };
 
-function detailFormatter(idx, row) {
-  console.log(row);
-  return '<p>asdf</p>';
+function getProductLib() {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/api/product/list`, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.addEventListener('error', () => {
+      alert('상품 목록 조회 실패. 잠시후 다시 시도해 주세요.');
+      reject();
+    });
+    xhr.addEventListener('load', (e) => {
+      resolve(JSON.parse(xhr.response));
+    });
+    xhr.send();
+  });
+}
+
+function renderItem({
+  productImage,
+  productName,
+  productPrice,
+  quantity,
+}) {
+  return `
+  <div class="column is-3">
+    <div class="card">
+      <div class="card-image">
+        <a href="/product_detail/?name=${productName}">
+          <figure class="image is-3by2">
+            <img src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
+          </figure>
+        </a>
+      </div>
+      <div class="card-content">
+        <div class="columns is-mobile is-vcentered is-1">
+          <div class="column">
+            <h3 class="title is-5"><a href="#"><span>${productName}<span></a></h3>
+          </div>
+        </div>
+        <div class="columns is-mobile is-vcentered is-multiline">
+          <div class="column is-12">
+            <span>total: ₩<strong><span>${numberWithCommas(productPrice * quantity)}</span></strong></span>
+          </div>
+          <div class="column is-12">
+            <span>₩<span>${numberWithCommas(productPrice)}</span></span>
+          </div>
+          <div class="column is-12">${quantity} ea</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+function cancelOrder(id) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', `/api/order/delete`, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.addEventListener('error', () => {
+    alert('주문 취소 실패. 잠시후 다시 시도해 주세요.');
+  });
+  xhr.addEventListener('load', () => {
+    console.log(JSON.parse(xhr.response));
+    alert(`주문번호\n${id}\n취소 성공`);
+    window.location.reload();
+  });
+  xhr.send(JSON.stringify({
+    orderId: id
+  }));
+}
+
+function detailFormatter(idx, {
+  address,
+  email,
+  orderList,
+  phoneNumber,
+  recipient,
+  totalPrice,
+  _id,
+}) {
+  return `
+    <div class="box">
+      <div class="columns is-vcentered pay-info">
+        <div class="column is-1">${recipient}</div>
+        <div class="column is-5">${address}</div>
+        <div class="column is-3">${email}</div>
+        <div class="column is-3">${phoneNumber}</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="columns is-vcentered pay-info">
+        <div class="column is-3">상품 합계: ₩<span class="items-total-cost">${numberWithCommas(totalPrice - 3000)}</span></div>
+        <div class="column is-3">배송비: ₩<span class="delivery-cost">${numberWithCommas(3000)}</span></div>
+        <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(totalPrice)}</span></strong></div>
+        <div class="column is-3">
+          <button class="button is-warning" onClick="cancelOrder('${_id}')">주문 취소</button>
+        </div>
+      </div>
+    </div>
+    <div class="box item-list">
+      <div class="columns items is-multiline">
+        ${orderList.map(renderItem).join('\n')}
+      </div>
+    </div>
+  `;
+}
+
+function createdDateFormatter(value) {
+  const date = new Date(value);
+  let dayKor;
+  switch(date.getDay()) {
+    case 0: dayKor = '일'; break;
+    case 1: dayKor = '월'; break;
+    case 2: dayKor = '화'; break;
+    case 3: dayKor = '수'; break;
+    case 4: dayKor = '목'; break;
+    case 5: dayKor = '금'; break;
+    case 6: dayKor = '토'; break;
+  }
+
+  return `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일 ${dayKor}요일 ${date.getHours()}시 ${date.getMinutes()}분 ${date.getSeconds()}초`;
 }
 
 function renderTable() {
   $('#table').bootstrapTable({
-    url: `/api/order/list/${state.email}`,
+    data: state.orderList,
     pagination: true,
-    //search: true,
-    //toggle: 'table',
     detailView: true,
     detailViewByClick: true,
     detailViewIcon: false,
@@ -46,7 +177,8 @@ function renderTable() {
       title: '주문상태',
     }, {
       field: 'createdAt',
-      title: '주문일시'
+      title: '주문일시',
+      formatter: createdDateFormatter,
     }]
   });
 }
@@ -55,8 +187,8 @@ function render() {
   renderTable();
 }
 
-function init() {
-  initState();
+async function init() {
+  await initState();
   render();
 }
 

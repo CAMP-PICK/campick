@@ -52,7 +52,7 @@ function renderItem({
               _id
             )}" ${genDatasetIdAttr(
     _id
-  )} src="${productImage}" alt="${productName}">
+  )} src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
           </figure>
         </a>
       </div>
