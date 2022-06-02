@@ -218,8 +218,6 @@ export const topButton = () => {
 
 //상품 페이지 정렬 기능 구현
 const section = document.querySelector('.section');
-//카테고리 별 상품을 골라 정렬하기 위해 카테고리 정보를 url에서 받아오기
-const urlStr = window.location.pathname;
 
 //각 카테고리 페이지에 버튼 고정
 export const sortBtn = () => {
@@ -246,31 +244,16 @@ export const productSort = () => {
   priceSort.addEventListener('click', async () => {
     const res = await fetch(`http://localhost:5000/api/product/list`);
     const data = await res.json();
-
-    //urlStr을 통해 필터링 할 조건 얻기
-    const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
-    const categoryKeyword = filterCategory[0].name;
-
-    //해당 카테고리가 아닌 데이터는 없애기
-    let filterData = data.filter(
-      (el) => el.productCategory === categoryKeyword
-    );
-
-    //만약 전체상품 카테고리라면 기존 data를 입력
-    if (categoryKeyword === '전체상품') {
-      filterData = data;
-    }
-
-    //필터링한 배열로 정렬
-    filterData.sort((a, b) => {
+    data.sort((a, b) => {
       return a.productPrice - b.productPrice;
     });
 
+    //content.remove();
     content.innerHTML = '';
 
     content.insertAdjacentHTML(
       'beforeend',
-      `${filterData
+      `${data
         .map(
           (product) =>
             `
@@ -304,27 +287,7 @@ export const productSort = () => {
   nameSort.addEventListener('click', async () => {
     const res = await fetch(`http://localhost:5000/api/product/list`);
     const data = await res.json();
-
-    //urlStr을 통해 필터링 할 조건 얻기
-    const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
-    const categoryKeyword = filterCategory[0].name;
-
-    //해당 카테고리가 아닌 데이터는 없애기
-    let filterData = data.filter(
-      (el) => el.productCategory === categoryKeyword
-    );
-
-    //만약 전체상품 카테고리라면 기존 data를 입력
-    if (categoryKeyword === '전체상품') {
-      filterData = data;
-    }
-
-    //필터링한 배열로 정렬
-    filterData.sort((a, b) => {
-      return a.productPrice - b.productPrice;
-    });
-
-    filterData.sort((a, b) => {
+    data.sort((a, b) => {
       if (a.productName > b.productName) return 1;
       if (a.productName === b.productName) return 0;
       if (a.productName < b.productName) return -1;
@@ -334,7 +297,7 @@ export const productSort = () => {
 
     content.insertAdjacentHTML(
       'beforeend',
-      `${filterData
+      `${data
         .map(
           (product) =>
             `
@@ -368,27 +331,7 @@ export const productSort = () => {
   newestSort.addEventListener('click', async () => {
     const res = await fetch(`http://localhost:5000/api/product/list`);
     const data = await res.json();
-
-    //urlStr을 통해 필터링 할 조건 얻기
-    const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
-    const categoryKeyword = filterCategory[0].name;
-
-    //해당 카테고리가 아닌 데이터는 없애기
-    let filterData = data.filter(
-      (el) => el.productCategory === categoryKeyword
-    );
-
-    //만약 전체상품 카테고리라면 기존 data를 입력
-    if (categoryKeyword === '전체상품') {
-      filterData = data;
-    }
-
-    //필터링한 배열로 정렬
-    filterData.sort((a, b) => {
-      return a.productPrice - b.productPrice;
-    });
-
-    filterData.sort((a, b) => {
+    data.sort((a, b) => {
       if (a.createdAt > b.createdAt) return 1;
       if (a.createdAt === b.createdAt) return 0;
       if (a.createdAt < b.createdAt) return -1;
@@ -398,7 +341,7 @@ export const productSort = () => {
 
     content.insertAdjacentHTML(
       'beforeend',
-      `${filterData
+      `${data
         .map(
           (product) =>
             `
