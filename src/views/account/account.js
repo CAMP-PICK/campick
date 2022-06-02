@@ -38,7 +38,7 @@ if (data.role == 'manager-user') {
         <p class="subtitle">상품 정보를 등록하여, 판매를 시작할 수 있습니다.</p>
       </article>
       <article class="tile is-child box">
-        <a href="../productCategory/productCategory.html">
+        <a href="/product_category">
           <p class="title">
             <span class="icon">
               <i class="fa-solid fa-cart-plus"></i>
