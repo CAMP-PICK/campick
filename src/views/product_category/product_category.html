@@ -36,72 +36,56 @@
         </div>
       </div>
     </nav>
+
     <!-- 제품 추가 폼(Form) -->
-        <div class="category-form-container">
-          <form class="box category-user-form-box" id="categoryEditForm">
-            <p class="title is-5 has-text-dark">카테고리 관리</p>
-            <div class="field">
-              <label class="label" for="createCategoryName"
-                >추가 할 카테고리</label
-              >
-              <div class="control">
-                <input
-                  class="input"
-                  id="createCategoryName"
-                  type="text"
-                  placeholder="카테고리 이름을 작성해주세요."
-                  autocomplete="on"
-                />
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="label" for="selectCategory"
-                >변경 할 카테고리</label
-              >
-              <div class="control">
-                <div class="select is-fullwidth">
-                  <select id="selectCategory">
-                    <option value="">카테고리를 선택해 주세요.</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="label" for="editCategoryName">수정 할 이름</label>
-              <div class="control">
-                <input
-                  class="input"
-                  id="editCategoryName"
-                  type="text"
-                  placeholder="수정할 이름을 작성해주세요."
-                  autocomplete="on"
-                />
-              </div>
-            </div>
-
-            <div class="mt-5">
-              <button
-                class="button is-dark"
-                id="submitCreateButton"
-              >
-                추가하기
-              </button>
-              <button
-                class="button is-dark"
-                id="submitEditButton"
-              >
-                수정하기
-              </button>
-              <button
-                class="button is-dark"
-                id="submitDelButton"
-              >
-                삭제하기
-              </button>
-            </div>
-          </form>
+    <div class="category-form-container">
+      <form class="box category-user-form-box" id="categoryEditForm">
+        <p class="title is-5 has-text-dark">카테고리 관리</p>
+        <div class="field">
+          <label class="label" for="createCategoryName">추가 할 카테고리</label>
+          <div class="control">
+            <input
+              class="input"
+              id="createCategoryName"
+              type="text"
+              placeholder="카테고리 이름을 작성해주세요."
+              autocomplete="on"
+            />
+          </div>
         </div>
+
+        <div class="field">
+          <label class="label" for="selectCategory">변경 할 카테고리</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="selectCategory">
+                <option value="">카테고리를 선택해 주세요.</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="editCategoryName">수정 할 이름</label>
+          <div class="control">
+            <input
+              class="input"
+              id="editCategoryName"
+              type="text"
+              placeholder="수정할 이름을 작성해주세요."
+              autocomplete="on"
+            />
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <button class="button is-dark" id="submitCreateButton">
+            추가하기
+          </button>
+          <button class="button is-dark" id="submitEditButton">수정하기</button>
+          <button class="button is-dark" id="submitDelButton">삭제하기</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
