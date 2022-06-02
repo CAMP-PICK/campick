@@ -53,15 +53,15 @@ const render = () => {
         <p class="subtitle">카테고리를 추가/수정/삭제 할 수 있습니다.</p>
       </article>
       <article class="tile is-child box">
-        <a href="">
+        <a href="/admin-order-list">
           <p class="title">
             <span class="icon">
               <i class="fa-solid fa-cart-plus"></i>
             </span>
-            목록적기
+            주문 관리
           </p>
         </a>
-        <p class="subtitle">상세 설명입니다.</p>
+        <p class="subtitle">회원별 주문을 조회/수정/삭제 할 수 있습니다.</p>
       </article>
     </div>`;
   } else {

@@ -14,6 +14,7 @@ viewsRouter.use('/cart', serveStatic('cart'));
 viewsRouter.use('/mypage', serveStatic('mypage'));
 viewsRouter.use('/order', serveStatic('order'));
 viewsRouter.use('/order-list', serveStatic('order-list'));
+viewsRouter.use('/admin-order-list', serveStatic('admin-order-list'));
 viewsRouter.use('/order-finish', serveStatic('order-finish'));
 viewsRouter.use('/category', serveStatic('category'));
 viewsRouter.use('/category_tent', serveStatic('category_tent'));
