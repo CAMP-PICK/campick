@@ -40,7 +40,7 @@ export const appendNavigationBar = () => {
   document.querySelector('#insertMenu').insertAdjacentHTML(
     'afterbegin',
     `${MENU_LIST.map(
-      (list) => `<a href="${list.to}" class="button is-dark is-inverted">
+      (list) => `<a href="${list.to}" class="button is-dark is-inverted" style="margin-right: 3px">
       ${
         list.icon
           ? `<span class="icon">
