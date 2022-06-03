@@ -11,10 +11,22 @@ viewsRouter.use('/register', serveStatic('register'));
 viewsRouter.use('/login', serveStatic('login'));
 viewsRouter.use('/cart', serveStatic('cart'));
 
-viewsRouter.use('/mypage', serveStatic('mypage'))
-viewsRouter.use('/cart', serveStatic('cart'))
-viewsRouter.use('/category', serveStatic('category'))
-viewsRouter.use('/account', serveStatic('account'))
+viewsRouter.use('/mypage', serveStatic('mypage'));
+viewsRouter.use('/order', serveStatic('order'));
+viewsRouter.use('/order-list', serveStatic('order-list'));
+viewsRouter.use('/admin-order-list', serveStatic('admin-order-list'));
+viewsRouter.use('/admin-edit-order', serveStatic('admin-edit-order'));
+viewsRouter.use('/order-finish', serveStatic('order-finish'));
+viewsRouter.use('/category', serveStatic('category'));
+viewsRouter.use('/category_tent', serveStatic('category_tent'));
+viewsRouter.use('/category_lamp', serveStatic('category_lamp'));
+viewsRouter.use('/category_etc', serveStatic('category_etc'));
+
+viewsRouter.use('/product_detail', serveStatic('product_detail'));
+viewsRouter.use('/account', serveStatic('account'));
+viewsRouter.use('/product_sell', serveStatic('product_sell'));
+viewsRouter.use('/product_edit', serveStatic('product_edit'));
+viewsRouter.use('/product_category', serveStatic('product_category'));
 
 // views 폴더의 최상단 파일인 rabbit.png, api.js 등을 쓸 수 있게 함
 viewsRouter.use('/', serveStatic(''));

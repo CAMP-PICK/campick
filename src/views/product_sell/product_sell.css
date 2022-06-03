@@ -1,0 +1,37 @@
+/* 상품 판매 컨테이너 관련 CSS */
+.subtitle.is-4 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.add-product-form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.add-product-form-box {
+  width: 40rem;
+}
+
+.category-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.add-product-form-box {
+  width: 30rem;
+}
+
+.add-product-form-box .title {
+  text-align: center;
+}
+
+.add-product-form-box .button {
+  font-weight: bold;
+}
+
+.add-product-form-box .input:focus {
+  border-color: #383e56;
+}

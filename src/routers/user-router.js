@@ -3,7 +3,6 @@ import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import { loginRequired } from '../middlewares';
 import { userService } from '../services';
-
 const userRouter = Router();
 
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
@@ -41,7 +40,7 @@ userRouter.post('/register', async (req, res, next) => {
 userRouter.post('/login', async function (req, res, next) {
   try {
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
-    
+
     if (is.emptyObject(req.body)) {
       throw new Error(
         'headers의 Content-Type을 application/json으로 설정해주세요'
@@ -64,25 +63,24 @@ userRouter.post('/login', async function (req, res, next) {
 
 // 홈화면으로 돌아가기
 userRouter.get('/backhome', (req, res, next) => {
-  console.log("good")
-  res.redirect(process.env.URL_SERVER)
-})
+  res.redirect(process.env.URL_SERVER);
+});
 
 // 이메일로 사용자 정보 검색
 userRouter.get('/email/:email', async (req, res, next) => {
   try {
     const email = req.params.email;
     // console.log(email)
-    const result = await userService.getEmail(email)
+    const result = await userService.getEmail(email);
     res.status(200).json(result);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
 // 전체 유저 목록을 가져옴 (배열 형태임)
 // 미들웨어로 loginRequired 를 썼음 (이로써, jwt 토큰이 없으면 사용 불가한 라우팅이 됨)
-userRouter.get('/userlist', loginRequired, async function (req, res, next) {
+userRouter.get('/list', loginRequired, async function (req, res, next) {
   try {
     // 전체 사용자 목록을 얻음
     const users = await userService.getUsers();
@@ -94,11 +92,10 @@ userRouter.get('/userlist', loginRequired, async function (req, res, next) {
   }
 });
 
-
 // 사용자 정보 수정
 // (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
 userRouter.patch(
-  '/users/:userId',
+  '/update/:userId',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -155,7 +152,7 @@ userRouter.patch(
 );
 
 // 회원탈퇴
-userRouter.post('/userdelete',  async function (req, res, next) {
+userRouter.post('/delete', loginRequired, async function (req, res, next) {
   try {
     // 전체 사용자 목록을 얻음
     const email = req.body.email;
@@ -167,6 +164,6 @@ userRouter.post('/userdelete',  async function (req, res, next) {
   } catch (error) {
     next(error);
   }
-})
+});
 
 export { userRouter };

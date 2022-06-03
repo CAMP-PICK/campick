@@ -1,117 +1,112 @@
 import * as Api from '/api.js';
-import { validateEmail } from '/useful-functions.js';
 
-const testBtn1 = document.querySelector('#testBtn1')
-const submitButton = document.querySelector('#submitButton')
-const deleteUserBtn = document.querySelector('#deleteUserBtn')
-
-const deletePassword = document.querySelector('#deletePassword');
-
-const nameInput = document.querySelector('#nameInput');
-const passwordInput = document.querySelector('#passwordInput');
+// 요소모음
+const submitButton = document.querySelector('#submitButton');
+const fullNameInput = document.querySelector('#fullNameInput');
+const emailInput = document.querySelector('#emailInput');
+const currentPasswordInput = document.querySelector('#currentPasswordInput');
 const newPasswordInput = document.querySelector('#newPasswordInput');
-const confirmNewPasswordInput = document.querySelector('#confirmNewPasswordInput');
-const telInput = document.querySelector('#telInput');
+const newPasswordConfirmInput = document.querySelector(
+  '#newPasswordConfirmInput'
+);
+const phoneNumberInput = document.querySelector('#phoneNumberInput');
+const userAddressInput = document.querySelector('#userAddress');
+const userAddressDetailInput = document.querySelector('#userAddressDetail');
 const addressInput = document.querySelector('#addressInput');
 
-const userInfoEmail = document.querySelector('#userInfoEmail');
-const userInfoName = document.querySelector('#userInfoName');
-const userInfoPhone = document.querySelector('#userInfoPhone');
-const userInfoAddress = document.querySelector('#userInfoAddress');
+// 현재 유저 객체
+let user = {};
 
-addAllEvents();
+const init = () => {
+  fetchUserInfo();
+  addEvent();
+};
 
-function addAllEvents() {
-    testBtn1.addEventListener('click', logOut)
-    submitButton.addEventListener('click', setUser)
-    deleteUserBtn.addEventListener('click', deleteUser)
-}
+const addEvent = () => {
+  // 정보 수정 버튼을 누르면 updateUserInfo 함수 실행
+  submitButton.addEventListener('click', updateUserInfo);
+};
 
+const setUserInfo = (user) => {
+  fullNameInput.value = user.fullName;
+  emailInput.value = user.email;
+  phoneNumberInput.value = user.phoneNumber;
+  userAddressInput.value = user.address.address1;
+  userAddressDetailInput.value = user.address.address2;
+  addressInput.value = user.address.address3;
+};
 
-// 테스트 api(현재 사용 안함)
-async function userInfo() {
-    const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
-}
+const fetchUserInfo = async () => {
+  const email = localStorage.getItem('email');
+  try {
+    user = await Api.get(`/api/user/email/${email}`);
+    setUserInfo(user);
+  } catch (err) {
+    alert(`${err.message}`);
+  }
+};
 
-async function deleteUser(e) {
-    e.preventDefault();
-    const password = deletePassword.value;
-    console.log(password)
-    const email = localStorage.getItem('email');
-    console.log(userinfo)
-    try {
-        const data = { email , password}
-        await Api.post(`/api/userdelete`, data);
-        localStorage.clear()
+// 정보수정 진행
+const updateUserInfo = (e) => {
+  e.preventDefault();
+  // input에 있는 각각의 값을 받아온다.
+  const fullName = fullNameInput.value;
+  const currentPassword = currentPasswordInput.value;
+  const newPassword = newPasswordInput.value;
+  const newPasswordConfirm = newPasswordConfirmInput.value;
+  const phoneNumber = phoneNumberInput.value;
+  const userAddress = userAddressInput.value;
+  const userAddressDetail = userAddressDetailInput.value;
+  const addressCode = addressInput.value;
 
-        alert('회원 탈퇴가 완료 되었습니다.')
+  // 인풋 유효성 검사
+  const isFullNameValid = fullName.length >= 2;
+  const isPasswordValid = newPassword.length === 0 || newPassword.length >= 4;
+  const isPasswordConfirm = newPassword === newPasswordConfirm;
+  const isPhoneNumber = phoneNumber.length === 0 || phoneNumber.length === 11;
 
-        // 기본 페이지로 이동
-        window.location.href = '/';
-    } catch (err) {
-        console.error(err.stack);
-        alert(`${err.message}`);
-    }
-}
+  if (!isFullNameValid || !isPasswordValid) {
+    return alert('이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.');
+  }
 
-async function logOut(e) {
-    e.preventDefault();
-    try {
-        localStorage.clear()
+  if (!isPasswordValid) {
+    return alert('새로 변경하시는 비밀번호가 4글자 이상인지 확인해 주세요.');
+  }
 
-        alert('로그아웃이 완료 되었습니다.')
+  if (!isPasswordConfirm) {
+    return alert('변경하시는 비밀번호와 비밀번호 확인이 일치 하지 않습니다.');
+  }
 
-        // 기본 페이지로 이동
-        window.location.href = '/';
-    } catch (err) {
-        console.error(err.stack);
-        alert(`${err.message}`);
-    }
-}
+  if (!isPhoneNumber) {
+    return alert('전화번호 형식에 맞게 적어 주세요.');
+  }
 
-async function setUser(e) {
-    e.preventDefault();
+  // 변경되는 유저 정보 취합
+  const userInfo = {
+    fullName,
+    password: currentPassword,
+    newPassword,
+    address: {
+      address1: userAddress,
+      address2: userAddressDetail,
+      address3: addressCode,
+    },
+    phoneNumber,
+  };
 
-    const fullName = nameInput.value;
-    const password = passwordInput.value;
-    const newPassword = newPasswordInput.value;
-    const confirmNewPassword = confirmNewPasswordInput.value;
-    const phoneNumber = telInput.value;
-    const address = addressInput.value;
-    const data = await Api.get(`/api/email/${localStorage.getItem('email')}`);
-    const id = data._id
-    
-    // 잘 입력했는지 확인
-    const isPasswordValid = (newPassword.length === 0 || newPassword.length >= 4);
-    const isPasswordConfirm = newPassword === confirmNewPassword;
+  // 유저 정보를 수정하는 api 요청
+  patchUserInfo(userInfo);
+};
 
-    if (!isPasswordValid) {
-        return alert(
-            '새로 변경하시는 비밀번호가 4글자 이상인지 확인해 주세요.'
-        );
-    }
+// 유저 정보 수정 api
+const patchUserInfo = async (userInfo) => {
+  try {
+    await Api.patch(`/api/user/update`, user._id, userInfo);
+    alert('정상적으로 수정되었습니다.');
+    window.location.href = '/account';
+  } catch (err) {
+    alert(`${err.message}`);
+  }
+};
 
-    if (!isPasswordConfirm) {
-        return alert(
-            '변경하시는 비밀번호와 비밀번호 확인이 일치 하지 않습니다.'
-        );
-    }
-
-    // 정보 수정 api 요청
-    try {
-        const data = { fullName, newPassword, address, phoneNumber, password };
-
-        // await Api.patch(`/api/users/${id}`, data);
-        await Api.patch(`/api/users`, id, data);
-
-        alert(`회원님의 정보가 수정 되었습니다.`);
-
-        // 정보 수정 성공
-
-        // 기본 페이지로 이동
-        window.location.href = '/';
-    } catch (err) {
-        console.error(err.stack);
-        alert(`${err.message}`);
-    }
-}
+init();

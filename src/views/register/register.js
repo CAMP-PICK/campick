@@ -50,12 +50,20 @@ async function handleSubmit(e) {
   try {
     const data = { fullName, email, password };
 
-    await Api.post('/api/register', data);
+    await Api.post('/api/user/register', data);
 
     alert(`정상적으로 회원가입되었습니다.`);
 
+    const result = await Api.post('/api/user/login', { email, password });
+    const token = result.token;
+
+    // 로그인 성공, 토큰을 세션 스토리지에 저장
+    // 물론 다른 스토리지여도 됨
+    localStorage.setItem('email', email);
+    localStorage.setItem('token', token);
+
     // 로그인 페이지 이동
-    window.location.href = '/login';
+    window.location.href = '/';
   } catch (err) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);

@@ -10,6 +10,10 @@ const ProductSchema = new Schema(
       type: Number,
       required: true,
     },
+    productCategory: {
+      type: String,
+      required: false,
+    },
     productImage: {
       type: String,
       required: false,
@@ -24,6 +28,10 @@ const ProductSchema = new Schema(
     },
     productLongDes: {
       type: String,
+      required: true,
+    },
+    productStock: {
+      type: Number,
       required: true,
     },
   },

@@ -38,7 +38,8 @@ async function handleSubmit(e) {
   try {
     const data = { email, password };
 
-    const result = await Api.post('/api/login', data);
+    const result = await Api.post('/api/user/login', data);
+    const userData = await Api.get(`/api/user/email/${email}`);
     const token = result.token;
 
     // 로그인 성공, 토큰을 세션 스토리지에 저장
@@ -46,7 +47,11 @@ async function handleSubmit(e) {
     localStorage.setItem('email', email);
     localStorage.setItem('token', token);
 
-    alert(`정상적으로 로그인되었습니다.`);
+    if (userData.role === 'manager-user') {
+      alert(`관리자 계정으로 로그인 했습니다.`);
+    } else {
+      alert(`정상적으로 로그인되었습니다.`);
+    }
 
     // 로그인 성공
 

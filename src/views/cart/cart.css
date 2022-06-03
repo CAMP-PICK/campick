@@ -1,3 +1,36 @@
+/* 스크롤 디자인 변경 */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.308);
+  border-radius: 20px;
+  box-shadow: inset -2px -2px 7px rgba(110, 110, 110, 0.822);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #ededee;
+  border-radius: 20px;
+}
+
+img {
+  width: 8rem;
+}
+
+.footerContent {
+  margin: 16px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-end {
+  margin:0;
+}
+
 @media screen and (max-width: 1024px) {
   .navbar-end .navbar-item {
     text-align: center;
@@ -35,12 +68,13 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type='number'] {
   text-align: center;
   -moz-appearance: textfield;
 }
 
-.item-name, .card-footer > button.card-footer-item {
+.item-name,
+.card-footer > button.card-footer-item {
   color: #181818;
 }
 
@@ -48,6 +82,35 @@ input[type=number] {
   text-align: center;
 }
 
-.pay-info .column button{
+.pay-info .column button {
   width: 100%;
+}
+
+.card-footer {
+  padding: 0;
+}
+
+.checkbox {
+  display: fle;
+  margin-bottom: 0;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.chk-select-all {
+  width: 20px;
+  height: 20px;
+  accent-color: #363636;
+  margin-right: 5px;
+}
+
+.item-chk-select {
+  width: 20px;
+  height: 20px;
+  accent-color: #363636;
+}
+
+.checkboxcontainer {
+  display: inline-block;
 }
