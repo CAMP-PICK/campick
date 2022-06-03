@@ -20,49 +20,34 @@ const productName = urlParams.get('name');
 const fetchProductDetail = async () => {
   try {
     const productDetail = await Api.get(`/api/product/list/${productName}`);
-    const container = document.querySelector('#productDetailContainer');
-    container.innerHTML = '';
-    container.insertAdjacentHTML(
+    const content = document.querySelector('.content');
+    const imageTag = document.querySelector('.product-image');
+    const tabs = document.querySelector('.tabs');
+    console.log(imageTag);
+    console.log(tabs);
+    console.log(content);
+
+    imageTag.insertAdjacentHTML(
       'afterbegin',
-      `
-      <div class="tile is-ancestor product-detail-card" style="font-family: 'Noto Sans KR', sans-serif">
-        <div class="tile is-6 is-parent">
-          <div class="tile is-child box product-image">
-            <figure class="image is-sqaure">
-              <img id="productImageTag" src="${productDetail.productImage}" />
-            </figure>
-          </div>
-        </div>
-          <div class="tile is-parent is-vertical">
-            <div class="tile is-child box product-detail">
-              <div class="tabs">
-                <ul>
-                  <li id="manufacturerTag">${productDetail.productCategory}</li>
-                </ul>
-              </div>
-              <div class="content">
-                <p class="subtitle is-3" id="titleTag">
-                  ${productDetail.productName}
-                </p>
-                <h1 id="priceTag">${addCommas(
-                  productDetail.productPrice
-                )}원</h1>
-                <p class="detail-description" id="detailDescriptionTag">
-                  ${productDetail.productLongDes}
-                </p>
-              </div>
-            </div>
-            <div id="cartorderButton">
-              <button class="button is-dark is-inverted ml-2" id="addToCartButton">
-              <strong>장바구니 추가하기</strong>
-              </button>
-              <button class="button is-dark is-inverted ml-2" id="purchaseButton">
-              <strong>바로 구매하기</strong>
-              </button>
-            </div>
-      </div>
-          </div>
-        </div>`
+      `<figure class="image is-sqaure">
+<img id="productImageTag" src="${productDetail.productImage}" />
+</figure>`
+    );
+    tabs.insertAdjacentHTML(
+      'afterbegin',
+      `<ul>
+      <li id="manufacturerTag">${productDetail.productCategory}</li>
+    </ul>`
+    );
+    content.insertAdjacentHTML(
+      'afterbegin',
+      `<p class="subtitle is-3" id="titleTag">
+    ${productDetail.productName}
+  </p>
+  <h1 id="priceTag">${addCommas(productDetail.productPrice)}원</h1>
+  <p class="detail-description" id="detailDescriptionTag">
+    ${productDetail.productLongDes}
+  </p>`
     );
   } catch (err) {
     console.error(err.stack);
@@ -75,6 +60,12 @@ const delButton = document.querySelector('#submitDelButton');
 const editButton = document.querySelector('#submitEditButton');
 const cartButton = document.querySelector('#addToCartButton');
 const purchaseButton = document.querySelector('#purchaseButton');
+
+//호출
+delButton.addEventListener('click', deleteSubmit);
+editButton.addEventListener('click', editSubmit);
+cartButton.addEventListener('click', cartSubmit);
+purchaseButton.addEventListener('click', purchaseSubmit);
 
 // 관리자 계정일때만 버튼 표시
 const data = await Api.get(`/api/user/email/${localStorage.getItem('email')}`);
@@ -125,7 +116,7 @@ async function cartSubmit(e) {
 
   //장바구니로 보내기 위해 선택한 제품 정보
   const cartProduct = await Api.get(`/api/product/list/${productName}`);
-
+  console.log(cartProduct);
   try {
     const cart = JSON.parse(localStorage.getItem('shopping-cart'));
     if (cart) {
@@ -186,11 +177,5 @@ async function purchaseSubmit(e) {
     alert(`${err.message}`);
   }
 }
-
-//호출
-delButton.addEventListener('click', deleteSubmit);
-editButton.addEventListener('click', editSubmit);
-cartButton.addEventListener('click', cartSubmit);
-purchaseButton.addEventListener('click', purchaseSubmit);
 
 await fetchProductDetail();

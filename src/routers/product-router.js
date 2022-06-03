@@ -7,7 +7,6 @@ const productRouter = Router();
 // env
 import 'dotenv/config';
 
-//11~84 multer gcs 테스트 코드, 86줄부터 기존 코드
 const storage = new Storage();
 
 const multer = Multer({
