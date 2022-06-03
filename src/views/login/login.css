@@ -51,3 +51,7 @@ body::-webkit-scrollbar-track {
   align-items: center;
   justify-content: center;
 }
+
+.toRegister {
+  text-align: center;
+}
