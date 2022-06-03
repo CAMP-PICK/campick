@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>product_detail</title>
+    <title>CAMPICK - DETAIL</title>
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -23,6 +23,14 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 커스텀 css -->
     <link rel="stylesheet" href="product_detail.css" />
   </head>
   <body>
@@ -31,29 +39,36 @@
       <nav id="insertNavBar">
         <div class="navbar">
           <div class="navbar-brand" id="insertMenu"></div>
+          <a href="/"
+            ><img
+              src="../home/img/logo.png"
+              alt="CAMPICK-LOGO"
+              style="margin-right: 110px"
+          /></a>
           <div class="navBarItems navbar-end">
             <ul id="insertItem" style="margin: 0"></ul>
           </div>
         </div>
       </nav>
     </header>
+    <hr />
 
     <!-- 제품 상세 설명 카드 -->
-    <section class="section">
+    <section class="section" style="font-family: 'Noto Sans KR', sans-serif">
       <div id="managerButton">
-        <button class="button is-info" id="submitEditButton">
+        <button class="button is-dark is-inverted" id="submitEditButton">
           <i class="fa-solid fa-pencil"></i>
         </button>
-        <button class="button is-info" id="submitDelButton">
+        <button class="button is-dark is-inverted" id="submitDelButton">
           <i class="fa-solid fa-trash"></i>
         </button>
       </div>
       <div class="container" id="productDetailContainer">
-        <div class="tile is-child box buttons-container" id="cartorderButton">
-          <button class="button is-warning" id="addToCartButton">
+        <div id="cartorderButton">
+          <button class="button is-dark is-inverted ml-2" id="addToCartButton">
             장바구니 추가하기
           </button>
-          <button class="button is-info ml-2" id="purchaseButton">
+          <button class="button is-dark is-inverted ml-2" id="purchaseButton">
             바로 구매하기
           </button>
         </div>

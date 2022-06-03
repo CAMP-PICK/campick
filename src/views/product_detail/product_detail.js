@@ -24,7 +24,7 @@ const fetchProductDetail = async () => {
     document.querySelector('#productDetailContainer').insertAdjacentHTML(
       'afterbegin',
       `
-      <div class="tile is-ancestor product-detail-card">
+      <div class="tile is-ancestor product-detail-card" style="font-family: 'Noto Sans KR', sans-serif">
         <div class="tile is-6 is-parent">
           <div class="tile is-child box product-image">
             <figure class="image is-sqaure">
@@ -40,7 +40,7 @@ const fetchProductDetail = async () => {
                 </ul>
               </div>
               <div class="content">
-                <p class="subtitle is-3 is-family-monospace" id="titleTag">
+                <p class="subtitle is-3" id="titleTag">
                   ${productDetail.productName}
                 </p>
                 <h1 id="priceTag">${addCommas(
@@ -123,15 +123,19 @@ async function cartSubmit(e) {
       if (idx > -1) {
         cart[idx]['quantity'] += 1;
       } else {
-        cart.push({...cartProduct, quantity: 1 });
+        cart.push({ ...cartProduct, quantity: 1 });
       }
       localStorage.setItem('shopping-cart', JSON.stringify(cart));
-    }
-    else {
-      localStorage.setItem('shopping-cart', JSON.stringify([{...cartProduct, quantity: 1 }]));
+    } else {
+      localStorage.setItem(
+        'shopping-cart',
+        JSON.stringify([{ ...cartProduct, quantity: 1 }])
+      );
     }
 
-    const yes = confirm('장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?');
+    const yes = confirm(
+      '장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?'
+    );
     if (yes) {
       window.location.replace('/cart');
     }
@@ -147,7 +151,6 @@ async function purchaseSubmit(e) {
   if (!localStorage.getItem('token')) {
     alert('로그인을 먼저 해주세요!');
     window.location.replace(`/login`);
-
   }
 
   //장바구니로 보내기 위해 선택한 제품 정보
@@ -157,12 +160,15 @@ async function purchaseSubmit(e) {
     `/api/user/email/${localStorage.getItem('email')}`
   );
   try {
-    localStorage.setItem('shopping-order', JSON.stringify({
-      deliveryCost: 3000,
-      grandTotal: purchaseProduct.productPrice + 3000,
-      itemsTotal: purchaseProduct.productPrice,
-      items: [{ ...purchaseProduct, quantity: 1 }]
-    }));
+    localStorage.setItem(
+      'shopping-order',
+      JSON.stringify({
+        deliveryCost: 3000,
+        grandTotal: purchaseProduct.productPrice + 3000,
+        itemsTotal: purchaseProduct.productPrice,
+        items: [{ ...purchaseProduct, quantity: 1 }],
+      })
+    );
     localStorage.setItem('orderUser', JSON.stringify(purchaseUser));
     //제품 구매 페이지로 이동
     window.location.replace(`/order`);

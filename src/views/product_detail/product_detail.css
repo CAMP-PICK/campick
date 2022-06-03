@@ -13,6 +13,23 @@ body::-webkit-scrollbar {
     background-color: #ededee;
     border-radius: 20px;
   }
+  
+  img {
+    width: 8rem;
+  }
+  
+  .footerContent {
+    margin: 16px 0;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navbar-end {
+    margin:0;
+  }
 
 /* 이미지 관련 CSS */
 
@@ -38,12 +55,13 @@ body::-webkit-scrollbar {
     width: 50%;
     float: right;
     text-align: left;
+    margin-bottom: 20%;
 }
 
 /* 버튼 관련 CSS */
 #managerButton {
     float: none;
-    margin-left: 90%;
+    margin-left: 80%;
 }
 
 .buttons-container {
@@ -58,4 +76,12 @@ body::-webkit-scrollbar {
 #submitEditButton {
     padding-left: 0.75em;
     padding-right: 0.75em;
+}
+
+#addToCartButton {
+    border-color: gray;
+}
+
+#purchaseButton {
+    border-color: gray;
 }
