@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>upload</title>
-    <link rel="stylesheet" href="product_category.css" />
-    <script src="product_category.js" type="module"></script>
+    <title>CAMPICK - EDITCATEGORY</title>
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -25,20 +23,22 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 커스텀 css -->
+    <link rel="stylesheet" href="product_category.css" />
   </head>
   <body>
-    <!-- 헤더 -->
-    <nav id="insertNavBar">
-      <div class="navbar">
-        <div class="navbar-brand" id="insertMenu"></div>
-        <div class="navBarItems navbar-end">
-          <ul id="insertItem" style="margin: 0"></ul>
-        </div>
-      </div>
-    </nav>
-
     <!-- 제품 추가 폼(Form) -->
-    <div class="category-form-container">
+    <div
+      class="category-form-container"
+      style="font-family: 'Noto Sans KR', sans-serif"
+    >
       <form class="box category-user-form-box" id="categoryEditForm">
         <p class="title is-5 has-text-dark">카테고리 관리</p>
         <div class="field">
@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <div class="field">
+        <div class="field" style="font-family: 'Noto Sans KR', sans-serif">
           <label class="label" for="selectCategory">변경 할 카테고리</label>
           <div class="control">
             <div class="select is-fullwidth">
@@ -65,7 +65,7 @@
           </div>
         </div>
 
-        <div class="field">
+        <div class="field" style="font-family: 'Noto Sans KR', sans-serif">
           <label class="label" for="editCategoryName">수정 할 이름</label>
           <div class="control">
             <input
@@ -78,7 +78,7 @@
           </div>
         </div>
 
-        <div class="mt-5">
+        <div class="mt-5" style="font-family: 'Noto Sans KR', sans-serif">
           <button class="button is-dark" id="submitCreateButton">
             추가하기
           </button>
@@ -87,5 +87,7 @@
         </div>
       </form>
     </div>
+    <!-- 커스텀 js -->
+    <script src="product_category.js" type="module"></script>
   </body>
 </html>

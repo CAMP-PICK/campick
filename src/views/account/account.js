@@ -24,13 +24,13 @@ const init = async () => {
 const render = () => {
   if (email == 'manager@test.com') {
     accountSection.innerHTML = `<section class="section">
-      <h1 class="title">관리자 페이지</h1>
-      <h2 class="subtitle">
+      <h1 class="title" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 2em">관리자 페이지</h1>
+      <h2 class="subtitle" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 3em">
         상품 추가, 삭제 등 상품 관리를 할 수 있는 공간입니다.
       </h2>
     </section>
-    <div class="tile is-parent">
-      <article class="tile is-child box">
+    <div class="tile is-parent" style="font-family: 'Noto Sans KR', sans-serif">
+      <article class="tile is-child box" style="padding-left:3em">
         <a href="../product_sell/product_sell.html">
           <p class="title">
             <span class="icon">
@@ -41,7 +41,7 @@ const render = () => {
         </a>
         <p class="subtitle">상품 정보를 등록하여, 판매를 시작할 수 있습니다.</p>
       </article>
-      <article class="tile is-child box">
+      <article class="tile is-child box" style="padding-left:3em">
         <a href="/product_category">
           <p class="title">
             <span class="icon">
@@ -52,7 +52,7 @@ const render = () => {
         </a>
         <p class="subtitle">카테고리를 추가/수정/삭제 할 수 있습니다.</p>
       </article>
-      <article class="tile is-child box">
+      <article class="tile is-child box" style="padding-left:3em">
         <a href="/admin-order-list">
           <p class="title">
             <span class="icon">
@@ -67,13 +67,13 @@ const render = () => {
   } else {
     // 일반사용자
     accountSection.innerHTML = `<section class="section">
-      <h1 class="title">계정관리</h1>
-      <h2 class="subtitle">
+      <h1 class="title" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 2em">계정관리</h1>
+      <h2 class="subtitle" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 3em">
         주문조회, 회원정보 관리, 회원탈퇴를 할 수 있습니다.
       </h2>
     </section>
-    <div class="tile is-parent">
-      <article class="tile is-child box">
+    <div class="tile is-parent" style="font-family: 'Noto Sans KR', sans-serif">
+      <article class="tile is-child box" style="padding-left:3em">
         <a href="/order-list">
           <p class="title">
             <span class="icon">
@@ -84,7 +84,7 @@ const render = () => {
         </a>
         <p class="subtitle">지난 주문 내역을 확인, 취소할 수 있습니다.</p>
       </article>
-      <article class="tile is-child box">
+      <article class="tile is-child box" style="padding-left:3em">
         <a href="/mypage">
           <p class="title">
             <span class="icon">
@@ -95,7 +95,7 @@ const render = () => {
         </a>
         <p class="subtitle">회원 정보를 확인, 수정할 수 있습니다.</p>
       </article>
-      <article class="tile is-child box">
+      <article class="tile is-child box" style="padding-left:3em">
         <a href="#" id="deleteAccount">
           <p class="title">
             <span class="icon">

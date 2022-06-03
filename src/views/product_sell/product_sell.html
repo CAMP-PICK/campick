@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sell</title>
+    <title>CAMPICK - SELL</title>
     <link rel="stylesheet" href="product_sell.css" />
-    <script src="product_sell.js" type="module"></script>
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -25,22 +24,22 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 커스텀 css -->
+    <script src="product_sell.js" type="module"></script>
   </head>
   <body>
-    <!-- 헤더 -->
-    <header>
-      <nav id="insertNavBar">
-        <div class="navbar">
-          <div class="navbar-brand" id="insertMenu"></div>
-          <div class="navBarItems navbar-end">
-            <ul id="insertItem" style="margin: 0"></ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
     <!-- 제품 추가 폼(Form) -->
-    <div class="add-product-form-container">
+    <div
+      class="add-product-form-container"
+      style="font-family: 'Noto Sans KR', sans-serif"
+    >
       <div class="add-product-form-container">
         <form
           class="box add-product-form-box"
@@ -48,9 +47,9 @@
           class="addProductForm"
           enctype="multipart/form-data"
         >
-          <p class="title is-5 has-text-dark">제품 판매</p>
+          <p class="title is-5 has-text-dark">상품 등록</p>
           <div class="field">
-            <label class="label" for="titleInput">제품 이름</label>
+            <label class="label" for="titleInput">상품명</label>
             <div class="control">
               <input
                 class="input"
@@ -113,7 +112,7 @@
           </div>
 
           <div class="field is-fullwidth">
-            <label class="label" for="files">제품 사진</label>
+            <label class="label" for="files">상품 사진</label>
             <div class="file has-name is-fullwidth">
               <label class="file-label">
                 <input class="file-input" id="file" type="file" />

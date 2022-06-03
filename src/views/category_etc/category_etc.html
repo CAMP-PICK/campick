@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>category</title>
-    <link rel="stylesheet" href="category_etc.css" />
+    <title>CAMPICK - ETC</title>
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -24,6 +23,15 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 커스텀 css -->
+    <link rel="stylesheet" href="category_etc.css" />
   </head>
   <body>
     <!-- 헤더 -->
@@ -31,19 +39,21 @@
       <nav id="insertNavBar">
         <div class="navbar">
           <div class="navbar-brand" id="insertMenu"></div>
+          <a href="/"
+            ><img
+              src="../home/img/logo.png"
+              alt="CAMPICK-LOGO"
+              style="margin-right: 110px"
+          /></a>
           <div class="navBarItems navbar-end">
             <ul id="insertItem" style="margin: 0"></ul>
           </div>
         </div>
       </nav>
     </header>
-
     <!-- 제품 목록 -->
-    <section class="section">
-      <div
-        class="container product-item-container"
-        id="producItemContainer"
-      ></div>
+    <section class="section" style="font-family: 'Noto Sans KR', sans-serif">
+      <div class="container" id="producItemContainer"></div>
     </section>
 
     <!-- bootstrap js -->
@@ -62,6 +72,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <!-- 커스텀 js -->
     <script src="category_etc.js" type="module" defer></script>
   </body>
 </html>
