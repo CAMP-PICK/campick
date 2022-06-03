@@ -71,20 +71,21 @@ function renderItem({
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
+          <strong>
             <span>총 가격&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemTotalPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
     productPrice * quantity
-  )}</span></span>
+  )}</span></span></strong>
           </div>  
-          <div class="column is-12">
+          <div class="column is-12"><strong>
             <span><i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
     productPrice
-  )}</span></span>
+  )}</span></span></strong>
           </div>
           <div class="column is-12"><input class="input ${genItemClassNames(
             cn.itemQuantity,
