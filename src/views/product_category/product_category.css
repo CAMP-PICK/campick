@@ -30,3 +30,39 @@
 .button {
   margin : 0 3px;
 }
+
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-end {
+  margin:0;
+}
+
+.navbar img {
+  width: 8rem;
+}
+
+#insertMenu a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertMenu a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+#insertItem a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertItem a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
