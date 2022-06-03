@@ -87,6 +87,35 @@ tr:not(.detail-view) {
   color: #363636;
 }
 
-.th.inner {
-  text-align: center !important;
+.checkbox {
+  display: fle;
+  margin-bottom: 0;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.chk-select-all {
+  width: 20px;
+  height: 20px;
+  accent-color: #363636;
+  margin-right: 5px;
+}
+
+.item-chk-select {
+  width: 20px;
+  height: 20px;
+  accent-color: #363636;
+}
+
+.span {
+  text-decoration: none !important;
+}
+
+.th-inner {
+  text-align: center;
+}
+
+.box {
+  margin-bottom: 1px !important;
 }
