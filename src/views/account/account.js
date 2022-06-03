@@ -45,7 +45,7 @@ const render = () => {
         <a href="/product_category">
           <p class="title">
             <span class="icon">
-              <i class="fa-solid fa-cart-plus"></i>
+            <i class="fa-solid fa-pencil"></i>
             </span>
             카테고리 관리
           </p>
@@ -56,7 +56,7 @@ const render = () => {
         <a href="/admin-order-list">
           <p class="title">
             <span class="icon">
-              <i class="fa-solid fa-cart-plus"></i>
+            <i class="fa-solid fa-credit-card"></i>
             </span>
             주문 관리
           </p>

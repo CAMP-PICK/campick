@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>쇼핑-mypage</title>
-
+    <title>CAMPICK - MYPAGE</title>
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="mypage.css" />
     <!-- bulma css 관련 -->
     <link
       rel="stylesheet"
@@ -16,12 +17,20 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
-    <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="mypage.css" />
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- 회원정보관리 폼(Form) -->
-    <div class="edit-user-form-container">
+    <div
+      class="edit-user-form-container"
+      style="font-family: 'Noto Sans KR', sans-serif"
+    >
       <form class="box edit-user-form-box" id="editUserForm">
         <p class="title is-5 has-text-dark">회원정보 수정</p>
         <div class="field">
@@ -74,7 +83,7 @@
               placeholder="********"
               autocomplete="off"
             />
-            <p class="help">비밀번호는 4글자 이상 입력해주세요.</p>
+            <p class="help">비밀번호는 4글자 이상 입력해 주세요.</p>
           </div>
         </div>
 
@@ -103,7 +112,7 @@
               placeholder="01012345678"
               autocomplete="on"
             />
-            <p class="help">- 없이 입력해주세요.</p>
+            <p class="help">전화번호는 - 없이 입력해 주세요.</p>
           </div>
         </div>
 
@@ -143,7 +152,11 @@
             />
           </div>
         </div>
-        <button class="button is-dark is-fullwidth" id="submitButton">
+        <button
+          class="button is-dark is-fullwidth"
+          id="submitButton"
+          style="font-family: 'Noto Sans KR', sans-serif"
+        >
           정보수정
         </button>
       </form>
@@ -166,6 +179,7 @@
         }).open();
       }
     </script>
+    <!-- 커스텀 js -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="mypage.js" type="module" defer></script>
   </body>
