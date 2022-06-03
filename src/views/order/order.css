@@ -14,6 +14,23 @@ body::-webkit-scrollbar-track {
   border-radius: 20px;
 }
 
+img {
+  width: 8rem;
+}
+
+.footerContent {
+  margin: 16px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-end {
+  margin:0;
+}
+
 @media screen and (max-width: 1024px) {
   .navbar-end .navbar-item {
     text-align: center;

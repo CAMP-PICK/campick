@@ -43,7 +43,12 @@ function renderItem({
       <div class="card-image">
         <a href="#">
           <figure class="image is-1by1">
-            <img class="${genItemClassNames(cn.itemImg, _id)}" ${genDatasetIdAttr(_id)} src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
+            <img class="${genItemClassNames(
+              cn.itemImg,
+              _id
+            )}" ${genDatasetIdAttr(_id)} src="${
+    productImage.startsWith('http') ? productImage : `/uploads/${productImage}`
+  }" alt="${productName}">
           </figure>
         </a>
       </div>
@@ -66,27 +71,27 @@ function renderItem({
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
-            <span>total: ₩<strong><span class="${genItemClassNames(
+            <span><strong>총 가격&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemTotalPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
     productPrice * quantity
   )}</span></strong></span>
-          </div>
+          </div>  
           <div class="column is-12">
-            <span>₩<span class="${genItemClassNames(
+            <span><strong><i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
     productPrice
-  )}</span></span>
+  )}</span><strong></span>
           </div>
           <div class="column is-12"><input class="input ${genItemClassNames(
             cn.itemQuantity,
             _id
-          )}" ${genDatasetIdAttr(
-    _id
-  )} type="number" min="1" max="${productStock ? productStock : 999}" value="${quantity}" ></div>
+          )}" ${genDatasetIdAttr(_id)} type="number" min="1" max="${
+    productStock ? productStock : 999
+  }" value="${quantity}" ></div>
         </div>
       </div>
       <footer class="card-footer">
@@ -181,7 +186,7 @@ function initItems() {
   const itemsJSONStr = localStorage.getItem(cartName);
   state.items = JSON.parse(itemsJSONStr).map((item) => ({
     ...item,
-    selected: !!item.selected ,
+    selected: !!item.selected,
   }));
   setSelectedAll();
 }
@@ -286,7 +291,7 @@ function addEventListenerItems() {
 
 function addEventListenerBtnBuy() {
   const $0 = $cache.btnBuy;
-  $0.addEventListener('click', e => {
+  $0.addEventListener('click', (e) => {
     //비로그인시, 로그인 화면으로 전환
     const token = localStorage.getItem('token');
     if (!token) {

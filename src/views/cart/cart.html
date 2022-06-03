@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>장바구니</title>
+    <title>CAMPICK - CART</title>
 
     <!-- Bulma -->
     <link
@@ -26,6 +26,17 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- favicon -->
+    <link rel="icon" href="../home/img/favicon.ico" />
+
     <!-- cart.css -->
     <link rel="stylesheet" href="cart.css" />
 
@@ -39,10 +50,17 @@
     <!-- <script src="fakeItems.js"></script> -->
   </head>
   <body>
+    <!-- 헤더 -->
     <header>
       <nav id="insertNavBar">
         <div class="navbar">
           <div class="navbar-brand" id="insertMenu"></div>
+          <a href="/"
+            ><img
+              src="../home/img/logo.png"
+              alt="CAMPICK-LOGO"
+              style="margin-right: 110px"
+          /></a>
           <div class="navBarItems navbar-end">
             <ul id="insertItem" style="margin: 0"></ul>
           </div>
@@ -50,13 +68,13 @@
       </nav>
     </header>
 
-    <main class="container">
+    <main class="container" style="font-family: 'Noto Sans KR', sans-serif">
       <section class="box item-list">
         <div class="columns is-vcentered is-mobile">
           <div class="column is-narrow">
-            <label class="checkbox">
-              <input class="chk-select-all" type="checkbox" />
-              전체 선택
+              <strong><label class="checkbox"></label>
+              <input class="chk-select-all" type="checkbox" /></strong>
+              <strong>전체 선택</strong>
             </label>
           </div>
           <div class="column is-narrow">
@@ -73,18 +91,18 @@
       </section>
       <footer class="box pay-info">
         <div class="columns is-vcentered">
-          <div class="column is-3">
-            상품 합계: ₩<span class="items-total-cost"
-              ><!-- 상품 합계 금액 위치--></span
+          <div class="column is-3"><strong>
+            상품 합계&nbsp:&nbsp <i class="fa-solid fa-won-sign"></i>&nbsp<span class="items-total-cost"
+              ><!-- 상품 합계 금액 위치--></strong></span
             >
           </div>
-          <div class="column is-3">
-            배송비: ₩<span class="delivery-cost"><!-- 배송비 위치--></span>
+          <div class="column is-3"><strong>
+            배송비&nbsp:&nbsp <i class="fa-solid fa-won-sign"></i>&nbsp<span class="delivery-cost"><!-- 배송비 위치--></strong></span>
           </div>
-          <div class="column is-3">
-            총 합계: ₩<strong
-              ><span class="grand-total-cost"
-                ><!-- 총 합계 금액 위치 --></span
+          <div class="column is-3"><strong
+            >
+            총 합계&nbsp:&nbsp <i class="fa-solid fa-won-sign"></i>&nbsp<span class="grand-total-cost"
+                ><!-- 총 합계 금액 위치 --></strong></span
               ></strong
             >
           </div>
@@ -95,6 +113,6 @@
       </footer>
     </main>
     <script src="nav-bar.js" type="module" defer></script>
-    <script src="cart.js"></script>
+    <script src="cart.js" type="module" defer></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>주문 완료</title>
+    <title>CAMPICK - FINISH</title>
     <!-- Bulma -->
     <link
       rel="stylesheet"
@@ -25,36 +25,43 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- favicon -->
+    <link rel="icon" href="../home/img/favicon.ico" />
+
     <!-- order-finish.css -->
     <link rel="stylesheet" href="order-finish.css" />
   </head>
   <body>
-    <header>
-      <nav id="insertNavBar">
-        <div class="navbar">
-          <div class="navbar-brand" id="insertMenu"></div>
-          <div class="navBarItems navbar-end">
-            <ul id="insertItem" style="margin: 0"></ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    
-    <main class="container">
+    <main class="container" style="font-family: 'Noto Sans KR', sans-serif">
       <div class="box">
-        <div class="title">🥳 주문이 완료 되었습니다! 🥳</div>
-        <div class="subtitle"><br>주문번호:<span class="order-id"></span></div>
+        <div class="title">🥳주문이 완료 되었습니다!🥳</div>
+        <div class="subtitle">
+          <br />주문번호:<span class="order-id"></span>
+        </div>
         <div class="containerBtn">
-          <a href="/" class="button is-dark">
+          <a href="/" class="button is-dark" style="text-decoration: none">
             <b><i class="fas fa-home"></i> 홈으로 이동</b></a
           >
-          <a href="/category" class="button is-dark">
+          <a
+            href="/category"
+            class="button is-dark"
+            style="text-decoration: none"
+          >
             <b>계속 쇼핑하기</b></a
           >
         </div>
       </div>
     </main>
     <script src="nav-bar.js" type="module" defer></script>
-    <script src="order-finish.js"></script>
+    <!-- 커스텀 js -->
+    <script src="order-finish.js" type="module" defer></script>
   </body>
 </html>
