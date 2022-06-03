@@ -24,11 +24,11 @@ body::-webkit-scrollbar-track {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  margin-top: 3rem;
 }
 
 .register-product-form-box {
-  width: 50rem;
+  width: 35rem;
 }
 
 .register-product-form-box .title {

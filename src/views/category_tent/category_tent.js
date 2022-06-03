@@ -43,7 +43,7 @@ const fetchProductList = async () => {
         .map(
           (tent) =>
             `
-            <div class="message media product-item" data-category-name="${
+            <div class="message product-item imageSort" data-category-name="${
               tent.productCategory
             }" data-product-name="${tent.productName}">
               <div class="media-left">
