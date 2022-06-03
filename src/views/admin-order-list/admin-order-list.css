@@ -14,19 +14,21 @@ body::-webkit-scrollbar-track {
   border-radius: 20px;
 }
 
-img {
-  width: 8rem;
+tr:not(.detail-view) {
+  cursor: pointer;
 }
 
-.footerContent {
-  margin: 16px 0;
+.pay-info .column {
+  text-align: center;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
+#topBtn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
 }
 
-.navbar-end {
-  margin:0;
+.column a {
+  text-decoration: none;
+  color: black;
 }
