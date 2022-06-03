@@ -143,6 +143,7 @@ const deleteUser = async () => {
 
   try {
     const data = { email, password };
+    await Api.post('/api/order/alldelete', { email });
     await Api.post('/api/user/delete', data);
     localStorage.clear();
 
