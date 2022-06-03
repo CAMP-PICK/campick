@@ -181,8 +181,9 @@ function initItems() {
   const itemsJSONStr = localStorage.getItem(cartName);
   state.items = JSON.parse(itemsJSONStr).map((item) => ({
     ...item,
-    selected: true,
+    selected: !!item.selected ,
   }));
+  setSelectedAll();
 }
 
 function render() {
@@ -227,6 +228,7 @@ function addEventListenerItems() {
       const id = $target.dataset.id;
       const index = state.items.findIndex(({ _id }) => id === _id);
       state.items[index]['selected'] = $target.checked;
+      localStorage.setItem(cartName, JSON.stringify(state.items));
       setSelectedAll();
       render();
     }
@@ -240,6 +242,7 @@ function addEventListenerItems() {
       if (newValue > state.items[index]['productStock'])
         newValue = state.items[index]['productStock'];
       state.items[index]['quantity'] = newValue;
+      localStorage.setItem(cartName, JSON.stringify(state.items));
       render();
     }
   });
@@ -257,6 +260,7 @@ function addEventListenerItems() {
         newValue > state.items[index]['productStock']
           ? state.items[index]['productStock']
           : newValue;
+      localStorage.setItem(cartName, JSON.stringify(state.items));
       render();
     }
 
@@ -266,6 +270,7 @@ function addEventListenerItems() {
       const index = state.items.findIndex(({ _id }) => id === _id);
       let newValue = state.items[index]['quantity'] - 1;
       state.items[index]['quantity'] = newValue < 1 ? 1 : newValue;
+      localStorage.setItem(cartName, JSON.stringify(state.items));
       render();
     }
 
@@ -273,6 +278,7 @@ function addEventListenerItems() {
     if ($target.classList.contains(cn.deleteItem)) {
       const id = $target.dataset.id;
       state.items = state.items.filter(({ _id }) => id !== _id);
+      localStorage.setItem(cartName, JSON.stringify(state.items));
       render();
     }
   });
