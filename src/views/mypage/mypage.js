@@ -30,10 +30,10 @@ const addEvent = () => {
 const setUserInfo = (user) => {
   fullNameInput.value = user.fullName;
   emailInput.value = user.email;
-  // phoneNumberInput.value = user.phoneNumber;
-  // userAddressInput.value = user.userAddress;
-  // userAddressDetailInput.value = user.userAddressDetail;
-  // addressInput.value = user.addressCode;
+  phoneNumberInput.value = user.phoneNumber;
+  userAddressInput.value = user.address.address1;
+  userAddressDetailInput.value = user.address.address2;
+  addressInput.value = user.address.address3;
 };
 
 const fetchUserInfo = async () => {
