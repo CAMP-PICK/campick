@@ -46,24 +46,24 @@ function renderItem({
   )}" ${genDatasetIdAttr(_id)}>
     <div class="card">
       <div class="card-image">
-        <a href="#">
+        <a href="/product_detail/?name=${productName}">
           <figure class="image is-1by1">
             <img class="${genItemClassNames(
               cn.itemImg,
               _id
-            )}" ${genDatasetIdAttr(
-    _id
-  )} src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
+            )}" ${genDatasetIdAttr(_id)} src="${
+    productImage.startsWith('http') ? productImage : `/uploads/${productImage}`
+  }" alt="${productName}">
           </figure>
         </a>
       </div>
       <div class="card-content">
         <div class="columns is-mobile is-vcentered is-1">
           <div class="column">
-            <h3 class="title is-5"><a href="#"><span class="${genItemClassNames(
-              cn.itemName,
-              _id
-            )}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
+            <h3 class="title is-5"><a href="/product_detail/?name=${productName}"><span class="${genItemClassNames(
+    cn.itemName,
+    _id
+  )}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
           </div>
           <div class="column is-narrow">
             <input class="${genItemClassNames(
@@ -76,7 +76,7 @@ function renderItem({
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
-            <span>total: ₩<strong><span class="${genItemClassNames(
+            <span><strong>총 가격 : <i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemTotalPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
@@ -84,19 +84,19 @@ function renderItem({
   )}</span></strong></span>
           </div>
           <div class="column is-12">
-            <span>₩<span class="${genItemClassNames(
+            <span><strong><i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
     productPrice
-  )}</span></span>
+  )}</span></strong></span>
           </div>
           <div class="column is-12"><input class="input ${genItemClassNames(
             cn.itemQuantity,
             _id
-          )}" ${genDatasetIdAttr(
-    _id
-  )} type="number" min="1" max="${productStock ? productStock : 999}" value="${quantity}" ></div>
+          )}" ${genDatasetIdAttr(_id)} type="number" min="1" max="${
+    productStock ? productStock : 999
+  }" value="${quantity}" ></div>
         </div>
       </div>
       <footer class="card-footer">
@@ -197,11 +197,14 @@ function initState() {
   const orderJSONStr = localStorage.getItem(editName);
   state = {
     ...state,
-    ...JSON.parse(orderJSONStr)
+    ...JSON.parse(orderJSONStr),
   };
 
   state.orderListTotal = state.totalPrice - state.deliveryCost;
-  state.orderList = state.orderList.map(order => ({ ...order, selected: true }));
+  state.orderList = state.orderList.map((order) => ({
+    ...order,
+    selected: true,
+  }));
   state.selectedAll = true;
   $cache.state.value = state.state;
 
@@ -228,7 +231,9 @@ function addEventListenerBtnEdit() {
     }
 
     if (state.orderList.length == 0) {
-      const yes = confirm('상품이 하나도 없습니다.\n이 경우 주문이 삭제 됩니다.\n계속 하시겠습니까?');
+      const yes = confirm(
+        '상품이 하나도 없습니다.\n이 경우 주문이 삭제 됩니다.\n계속 하시겠습니까?'
+      );
       if (!yes) {
         window.location.reload();
       } else {
@@ -244,9 +249,11 @@ function addEventListenerBtnEdit() {
           window.location.replace('/admin-order-list');
           return;
         });
-        xhr.send(JSON.stringify({
-          orderId: state._id
-        }));
+        xhr.send(
+          JSON.stringify({
+            orderId: state._id,
+          })
+        );
       }
       return;
     } else {
@@ -271,12 +278,9 @@ function addEventListenerBtnEdit() {
         window.location.replace(`/admin-order-list`);
         return;
       });
-      httpRequest.send(
-        JSON.stringify(body)
-      );
+      httpRequest.send(JSON.stringify(body));
     }
   });
-  
 }
 
 function addEventListenerBtnZip() {

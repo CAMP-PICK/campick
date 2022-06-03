@@ -120,14 +120,16 @@ function renderItem({ productImage, productName, productPrice, quantity }) {
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
-            <span>total: ₩<strong><span>${numberWithCommas(
-              productPrice * quantity
-            )}</span></strong></span>
+          <span><strong>총 가격 : <i class="fa-solid fa-won-sign"></i>&nbsp<span>${numberWithCommas(
+            productPrice * quantity
+          )}</span></strong></span>
           </div>
           <div class="column is-12">
-            <span>₩<span>${numberWithCommas(productPrice)}</span></span>
+            <span><strong><i class="fa-solid fa-won-sign"></i>&nbsp<span>${numberWithCommas(
+              productPrice
+            )}</span></strong></span>
           </div>
-          <div class="column is-12">${quantity} ea</div>
+          <div class="column is-12"><strong>${quantity}개</strong></div>
         </div>
       </div>
     </div>
