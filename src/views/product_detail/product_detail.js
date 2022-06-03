@@ -20,8 +20,9 @@ const productName = urlParams.get('name');
 const fetchProductDetail = async () => {
   try {
     const productDetail = await Api.get(`/api/product/list/${productName}`);
-
-    document.querySelector('#productDetailContainer').insertAdjacentHTML(
+    const container = document.querySelector('#productDetailContainer');
+    container.innerHTML = '';
+    container.insertAdjacentHTML(
       'afterbegin',
       `
       <div class="tile is-ancestor product-detail-card" style="font-family: 'Noto Sans KR', sans-serif">
@@ -51,6 +52,15 @@ const fetchProductDetail = async () => {
                 </p>
               </div>
             </div>
+            <div id="cartorderButton">
+              <button class="button is-dark is-inverted ml-2" id="addToCartButton">
+              <strong>장바구니 추가하기</strong>
+              </button>
+              <button class="button is-dark is-inverted ml-2" id="purchaseButton">
+              <strong>바로 구매하기</strong>
+              </button>
+            </div>
+      </div>
           </div>
         </div>`
     );
