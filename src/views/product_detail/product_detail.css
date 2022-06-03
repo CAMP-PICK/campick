@@ -85,8 +85,9 @@ justify-content: space-between;
 
 /* 버튼 관련 CSS */
 #managerButton {
-  float: none;
-  margin-left: 80%;
+  /* float: none; */
+  margin-left: 30px;
+  margin-right: 0;
 }
 
 .buttons-container {
