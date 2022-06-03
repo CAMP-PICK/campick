@@ -254,7 +254,7 @@ export const productSort = () => {
 
   //가격순 정렬-오름차순
   priceSort.addEventListener('click', async () => {
-    const res = await fetch(`http://localhost:5000/api/product/list`);
+    const res = await fetch(`http://localhost:5001/api/product/list`);
     const data = await res.json();
 
     //urlStr을 통해 필터링 할 조건 얻기
@@ -312,7 +312,7 @@ export const productSort = () => {
 
   //이름순 정렬
   nameSort.addEventListener('click', async () => {
-    const res = await fetch(`http://localhost:5000/api/product/list`);
+    const res = await fetch(`http://localhost:5001/api/product/list`);
     const data = await res.json();
 
     //urlStr을 통해 필터링 할 조건 얻기
@@ -376,7 +376,7 @@ export const productSort = () => {
 
   //최신순 정렬
   newestSort.addEventListener('click', async () => {
-    const res = await fetch(`http://localhost:5000/api/product/list`);
+    const res = await fetch(`http://localhost:5001/api/product/list`);
     const data = await res.json();
 
     //urlStr을 통해 필터링 할 조건 얻기
