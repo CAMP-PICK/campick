@@ -34,7 +34,7 @@ async function currentProductList() {
 
   //수정 페이지에 기존 상품 데이터 입력
   form.innerHTML = `
-  <p class="title is-5 has-text-primary">제품을 수정해 보세요</p>
+  <p class="title is-5 has-text-dark">제품 수정</p>
   <div class="field">
     <label class="label" for="titleInput">제품 이름</label>
     <div class="control">
@@ -154,7 +154,7 @@ async function currentProductList() {
   ></div>
 
   <div class="mt-5">
-    <button class="button is-primary is-fullwidth" id="submitButton" type="submit">
+    <button class="button is-dark is-fullwidth" id="submitButton" type="submit">
       수정
     </button>
   </div>
