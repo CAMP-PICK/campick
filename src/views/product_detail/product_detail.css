@@ -52,10 +52,12 @@ body::-webkit-scrollbar {
 
 /* container 관련 CSS */
 #cartorderButton {
-    width: 50%;
+    display: flex;
+    align-items: center;
+    width: 100%;
     float: right;
     text-align: left;
-    margin-bottom: 20%;
+    margin-bottom: 5.5%;
 }
 
 /* 버튼 관련 CSS */

@@ -214,7 +214,7 @@ export const topButton = () => {
   const body = document.querySelector('body');
   body.insertAdjacentHTML(
     'afterbegin',
-    '<button id="topBtn" class="button is-dark is-small is-rounded"><i class="fa-solid fa-arrow-up"></i></button>'
+    '<button id="topBtn" class="button is-dark is-small is-rounded" style="position: fixed; bottom:50px; right: 50px; z-index:1"><i class="fa-solid fa-arrow-up"></i></button>'
   );
   const topBtn = document.querySelector('#topBtn');
   topBtn.addEventListener('click', () => {
@@ -399,9 +399,9 @@ export const productSort = () => {
     });
 
     filterData.sort((a, b) => {
-      if (a.createdAt > b.createdAt) return 1;
+      if (a.createdAt > b.createdAt) return -1;
       if (a.createdAt === b.createdAt) return 0;
-      if (a.createdAt < b.createdAt) return -1;
+      if (a.createdAt < b.createdAt) return 1;
     });
 
     content.innerHTML = '';
