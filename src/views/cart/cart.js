@@ -95,7 +95,7 @@ function renderItem({
         </div>
       </div>
       <footer class="card-footer">
-        <button class="button is-ghost card-footer-item ${genItemClassNames(
+        <button style="text-decoration: none" class="button is-ghost card-footer-item ${genItemClassNames(
           cn.plusItem,
           _id
         )}" ${genDatasetIdAttr(_id)}>
@@ -110,7 +110,7 @@ function renderItem({
             <span class="a11y-text-hidden">수량 1 증가</span>
           </span>
         </button>
-        <button class="button is-ghost card-footer-item ${genItemClassNames(
+        <button style="text-decoration: none;" class="button is-ghost card-footer-item ${genItemClassNames(
           cn.minusItem,
           _id
         )}" ${genDatasetIdAttr(_id)}>
@@ -125,7 +125,7 @@ function renderItem({
             <span class="a11y-text-hidden">수량 1 감소</span>
           </span>
         </button>
-        <button class="button is-ghost card-footer-item ${genItemClassNames(
+        <button  style="text-decoration: none;" class="button is-ghost card-footer-item ${genItemClassNames(
           cn.deleteItem,
           _id
         )}" ${genDatasetIdAttr(_id)}>
