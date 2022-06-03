@@ -128,12 +128,9 @@ function detailFormatter(idx, {
     </div>
     <div class="box">
       <div class="columns is-vcentered pay-info">
-        <div class="column is-3">상품 합계: ₩<span class="items-total-cost">${numberWithCommas(totalPrice - 3000)}</span></div>
-        <div class="column is-3">배송비: ₩<span class="delivery-cost">${numberWithCommas(3000)}</span></div>
-        <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(totalPrice)}</span></strong></div>
-        <div class="column is-3">
-          <button class="button is-dark btn-order-cancel" onClick="cancelOrder('${_id}')"><b>주문 취소</b></button>
-        </div>
+        <div class="column is-4">상품 합계: ₩<span class="items-total-cost">${numberWithCommas(totalPrice - 3000)}</span></div>
+        <div class="column is-4">배송비: ₩<span class="delivery-cost">${numberWithCommas(3000)}</span></div>
+        <div class="column is-4">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(totalPrice)}</span></strong></div>
       </div>
     </div>
     <div class="box item-list">

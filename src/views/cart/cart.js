@@ -210,6 +210,7 @@ function addEventListenerDelSelected() {
   const $0 = $cache.btnDelSelected;
   $0.addEventListener('click', (e) => {
     state.items = state.items.filter(({ selected }) => !selected);
+    localStorage.removeItem('shopping-cart');
     render();
   });
 }
