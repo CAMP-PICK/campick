@@ -67,7 +67,7 @@ function renderItem({
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
-            <span><strong>총 가격&nbsp: &nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
+            <span><strong>총 가격&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemTotalPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
