@@ -179,6 +179,10 @@ function renderTable() {
       field: 'createdAt',
       title: '주문일시',
       formatter: createdDateFormatter,
+    }, {
+      field: 'updatedAt',
+      title: '수정일시',
+      formatter: createdDateFormatter,
     }]
   });
 }

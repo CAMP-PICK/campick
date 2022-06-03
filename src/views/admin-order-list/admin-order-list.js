@@ -128,11 +128,11 @@ function cancelOrder(id) {
   xhr.open('POST', `/api/order/delete`, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.addEventListener('error', () => {
-    alert('주문 취소 실패. 잠시후 다시 시도해 주세요.');
+    alert('주문 삭제 실패. 잠시후 다시 시도해 주세요.');
   });
   xhr.addEventListener('load', () => {
     console.log(JSON.parse(xhr.response));
-    alert(`주문번호\n${id}\n취소 성공`);
+    alert(`주문번호\n${id}\n삭제 성공`);
     window.location.reload();
   });
   xhr.send(JSON.stringify({
@@ -140,15 +140,16 @@ function cancelOrder(id) {
   }));
 }
 
-function detailFormatter(idx, {
-  address,
-  email,
-  orderList,
-  phoneNumber,
-  recipient,
-  totalPrice,
-  _id,
-}) {
+function detailFormatter(idx, data) {
+  const {
+    address,
+    email,
+    orderList,
+    phoneNumber,
+    recipient,
+    totalPrice,
+    _id,
+  } = data;
   return `
     <div class="box">
       <div class="columns is-vcentered pay-info">
@@ -164,7 +165,8 @@ function detailFormatter(idx, {
         <div class="column is-3">배송비: ₩<span class="delivery-cost">${numberWithCommas(3000)}</span></div>
         <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(totalPrice)}</span></strong></div>
         <div class="column is-3">
-          <button class="button is-dark btn-order-cancel" onClick="cancelOrder('${_id}')"><b>주문 취소</b></button>
+          <button class="button is-dark btn-order-cancel" onClick="cancelOrder('${_id}')"><b>주문 삭제</b></button>
+          <button class="button is-dark btn-order-edit" onClick="editOrder(state.orderList[${idx}])"><b>주문 수정</b></button>
         </div>
       </div>
     </div>
@@ -174,6 +176,11 @@ function detailFormatter(idx, {
       </div>
     </div>
   `;
+}
+
+function editOrder(order) {
+  localStorage.setItem('to-edit-order', JSON.stringify(order));
+  window.location.replace('/admin-edit-order');
 }
 
 function createdDateFormatter(value) {
@@ -219,6 +226,10 @@ function renderTable() {
     }, {
       field: 'createdAt',
       title: '주문일시',
+      formatter: createdDateFormatter,
+    }, {
+      field: 'updatedAt',
+      title: '수정일시',
       formatter: createdDateFormatter,
     }]
   });
