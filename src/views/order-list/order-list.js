@@ -74,19 +74,21 @@ function renderItem({ productImage, productName, productPrice, quantity }) {
       <div class="card-content">
         <div class="columns is-mobile is-vcentered is-1">
           <div class="column">
-            <h3 class="title is-5"><a href="#"><span>${productName}<span></a></h3>
+            <h3 class="title is-5"><a href="/product_detail/?name=${productName}"><span>${productName}<span></a></h3>
           </div>
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
-            <span>total: ₩<strong><span>${numberWithCommas(
+            <span><strong>총 가격&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span>${numberWithCommas(
               productPrice * quantity
             )}</span></strong></span>
           </div>
           <div class="column is-12">
-            <span>₩<span>${numberWithCommas(productPrice)}</span></span>
+            <span><strong><i class="fa-solid fa-won-sign"></i>&nbsp<span>${numberWithCommas(
+              productPrice
+            )}</span></strong></span>
           </div>
-          <div class="column is-12">${quantity} ea</div>
+          <div class="column is-12"><strong>${quantity}개</strong></div>
         </div>
       </div>
     </div>
@@ -128,13 +130,13 @@ function detailFormatter(
     </div>
     <div class="box" style="font-family: 'Noto Sans KR', sans-serif">
       <div class="columns is-vcentered pay-info">
-        <div class="column is-4">상품 합계: ₩<span class="items-total-cost">${numberWithCommas(
+        <div class="column is-4"><strong>상품 합계&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="items-total-cost">${numberWithCommas(
           totalPrice - 3000
-        )}</span></div>
-        <div class="column is-4">배송비: ₩<span class="delivery-cost">${numberWithCommas(
+        )}</span></strong></div>
+        <div class="column is-4"><strong>배송비&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="delivery-cost">${numberWithCommas(
           3000
-        )}</span></div>
-        <div class="column is-4">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(
+        )}</span></strong></div>
+        <div class="column is-4"><strong>총 합계&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="grand-total-cost">${numberWithCommas(
           totalPrice
         )}</span></strong></div>
       </div>
