@@ -137,7 +137,8 @@ const fetchUser = () => {
   }
 };
 
-const deleteUser = async () => {
+const deleteUser = async (e) => {
+  e.preventDefault();
   const email = localStorage.getItem('email');
   const password = deletePassword.value;
 
