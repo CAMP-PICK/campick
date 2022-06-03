@@ -86,3 +86,7 @@ tr:not(.detail-view) {
 .page-link {
   color: #363636;
 }
+
+.th.inner {
+  text-align: center !important;
+}
