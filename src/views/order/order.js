@@ -50,9 +50,9 @@ function renderItem({
             <img class="${genItemClassNames(
               cn.itemImg,
               _id
-            )}" ${genDatasetIdAttr(
-    _id
-  )} src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
+            )}" ${genDatasetIdAttr(_id)} src="${
+    productImage.startsWith('http') ? productImage : `/uploads/${productImage}`
+  }" alt="${productName}">
           </figure>
         </a>
       </div>
@@ -85,9 +85,9 @@ function renderItem({
           <div class="column is-12"><input disabled class="input ${genItemClassNames(
             cn.itemQuantity,
             _id
-          )}" ${genDatasetIdAttr(
-    _id
-  )} type="number" min="1" max="${productStock ? productStock : 999}" value="${quantity}" ></div>
+          )}" ${genDatasetIdAttr(_id)} type="number" min="1" max="${
+    productStock ? productStock : 999
+  }" value="${quantity}" ></div>
         </div>
       </div>
     </div>
@@ -131,9 +131,12 @@ function getUserInfo(email) {
     console.log('유저 정보 가져오기 실패.');
   });
   httpRequest.addEventListener('load', (e) => {
-    const { fullName, phoneNumber } = JSON.parse(httpRequest.response);
+    const { fullName, phoneNumber, address } = JSON.parse(httpRequest.response);
     $cache.recipient.value = fullName;
     $cache.email.value = email;
+    $cache.zipCode.value = address.address3;
+    $cache.addr1.value = address.address1;
+    $cache.addr2.value = address.address2;
     if (phoneNumber) {
       let phoneArr = new Array(3);
       if (phoneNumber.length > 10) {
@@ -194,7 +197,9 @@ function addEventListenerBtnBuy() {
     });
     httpRequest.addEventListener('load', (e) => {
       localStorage.removeItem(orderName);
-      window.location.replace(`/order-finish/?orderid=${JSON.parse(httpRequest.response)['_id']}`);
+      window.location.replace(
+        `/order-finish/?orderid=${JSON.parse(httpRequest.response)['_id']}`
+      );
     });
     httpRequest.send(
       JSON.stringify({
