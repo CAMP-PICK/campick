@@ -34,7 +34,7 @@ const fetchProductList = async () => {
         .map(
           (product) =>
             `
-            <div class="message media product-item" data-category-name="${
+            <div class="message product-item imageSort" data-category-name="${
               product.productCategory
             }" data-product-name="${product.productName}">
               <div class="media-left">
