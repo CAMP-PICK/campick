@@ -50,9 +50,7 @@ export const appendNavigationBar = () => {
     </span>`
           : ''
       }
-    <strong style="font-family: 'Noto Sans KR', sans-serif">${
-      list.name
-    }</strong>
+    <strong>${list.name}</strong>
   </a>`
     ).join('')}`
   );
@@ -76,9 +74,7 @@ export const appendUserNavigationBar = (token) => {
               : ''
           }
             <li>
-              <strong style="font-family: 'Noto Sans KR', sans-serif">${
-                menu.name
-              }</strong>
+              <strong>${menu.name}</strong>
             </li>
           </a>`
       ).join('')}`
@@ -99,9 +95,7 @@ export const appendUserNavigationBar = (token) => {
             : ''
         }
         <li>
-          <strong style="font-family: 'Noto Sans KR', sans-serif">${
-            menu.name
-          }</strong>
+          <strong>${menu.name}</strong>
         </li>
       </a>`
       ).join('')}`
@@ -152,9 +146,7 @@ export const appendAccountUserNavigationBar = (token) => {
               : ''
           }
             <li>
-              <strong style="font-family: 'Noto Sans KR', sans-serif">${
-                menu.name
-              }</strong>
+              <strong>${menu.name}</strong>
             </li>
           </a>`
       ).join('')}`
@@ -175,9 +167,7 @@ export const appendAccountUserNavigationBar = (token) => {
             : ''
         }
         <li>
-          <strong style="font-family: 'Noto Sans KR', sans-serif">${
-            menu.name
-          }</strong>
+          <strong>${menu.name}</strong>
         </li>
       </a>`
       ).join('')}`
@@ -236,9 +226,9 @@ export const sortBtn = () => {
   section.insertAdjacentHTML(
     `afterbegin`,
     `<div class="product-sort">
-  <button class="button is-small sort-btn name-sort" style="font-family: 'Noto Sans KR', sans-serif">이름순 정렬</button>
-  <button class="button is-small sort-btn price-sort" style="font-family: 'Noto Sans KR', sans-serif">가격순 정렬</button>
-  <button class="button is-small sort-btn newest-sort" style="font-family: 'Noto Sans KR', sans-serif">
+  <button class="button is-small sort-btn name-sort">이름순 정렬</button>
+  <button class="button is-small sort-btn price-sort">가격순 정렬</button>
+  <button class="button is-small sort-btn newest-sort">
     최신순 정렬
   </button>
 </div>`
