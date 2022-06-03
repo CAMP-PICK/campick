@@ -72,3 +72,11 @@ tr:not(.detail-view) {
   text-decoration: none;
   color:#1864ab
 }
+
+.th-inner {
+  text-align: center;
+}
+
+.box {
+  margin-bottom: 1px !important;
+}

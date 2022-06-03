@@ -23,9 +23,6 @@ const fetchProductDetail = async () => {
     const content = document.querySelector('.content');
     const imageTag = document.querySelector('.product-image');
     const tabs = document.querySelector('.tabs');
-    console.log(imageTag);
-    console.log(tabs);
-    console.log(content);
 
     imageTag.insertAdjacentHTML(
       'afterbegin',
