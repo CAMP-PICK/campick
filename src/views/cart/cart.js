@@ -41,7 +41,7 @@ function renderItem({
   )}" ${genDatasetIdAttr(_id)}>
     <div class="card">
       <div class="card-image">
-        <a href="#">
+        <a href="/product_detail/?name=${productName}">
           <figure class="image is-1by1">
             <img class="${genItemClassNames(
               cn.itemImg,
@@ -55,10 +55,10 @@ function renderItem({
       <div class="card-content">
         <div class="columns is-mobile is-vcentered is-1">
           <div class="column">
-            <h3 class="title is-5"><a href="#"><span class="${genItemClassNames(
-              cn.itemName,
-              _id
-            )}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
+            <h3 class="title is-5"><a href="/product_detail/?name=${productName}"><span class="${genItemClassNames(
+    cn.itemName,
+    _id
+  )}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
           </div>
           <div class="column is-narrow">
             <input class="${genItemClassNames(
@@ -71,20 +71,21 @@ function renderItem({
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
-            <span><strong>총 가격&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
+          <strong>
+            <span>총 가격&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemTotalPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
     productPrice * quantity
-  )}</span></strong></span>
+  )}</span></span></strong>
           </div>  
-          <div class="column is-12">
-            <span><strong><i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
+          <div class="column is-12"><strong>
+            <span><i class="fa-solid fa-won-sign"></i>&nbsp<span class="${genItemClassNames(
               cn.itemPrice,
               _id
             )}" ${genDatasetIdAttr(_id)}>${numberWithCommas(
     productPrice
-  )}</span><strong></span>
+  )}</span></span></strong>
           </div>
           <div class="column is-12"><input class="input ${genItemClassNames(
             cn.itemQuantity,
@@ -95,7 +96,7 @@ function renderItem({
         </div>
       </div>
       <footer class="card-footer">
-        <button class="button is-ghost card-footer-item ${genItemClassNames(
+        <button style="text-decoration: none" class="button is-ghost card-footer-item ${genItemClassNames(
           cn.plusItem,
           _id
         )}" ${genDatasetIdAttr(_id)}>
@@ -110,7 +111,7 @@ function renderItem({
             <span class="a11y-text-hidden">수량 1 증가</span>
           </span>
         </button>
-        <button class="button is-ghost card-footer-item ${genItemClassNames(
+        <button style="text-decoration: none;" class="button is-ghost card-footer-item ${genItemClassNames(
           cn.minusItem,
           _id
         )}" ${genDatasetIdAttr(_id)}>
@@ -125,7 +126,7 @@ function renderItem({
             <span class="a11y-text-hidden">수량 1 감소</span>
           </span>
         </button>
-        <button class="button is-ghost card-footer-item ${genItemClassNames(
+        <button  style="text-decoration: none;" class="button is-ghost card-footer-item ${genItemClassNames(
           cn.deleteItem,
           _id
         )}" ${genDatasetIdAttr(_id)}>

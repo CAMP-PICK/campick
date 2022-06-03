@@ -6,22 +6,13 @@
 
 .add-product-form-container {
   display: flex;
-  justify-content: center;
-}
-
-.add-product-form-box {
-  width: 40rem;
-}
-
-.category-form-container {
-  display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  margin-top: 3rem;
 }
 
 .add-product-form-box {
-  width: 30rem;
+  width: 35rem;
 }
 
 .add-product-form-box .title {

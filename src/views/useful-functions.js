@@ -236,10 +236,10 @@ export const sortBtn = () => {
   section.insertAdjacentHTML(
     `afterbegin`,
     `<div class="product-sort">
-  <button class="button is-small sort-btn name-sort" style="font-family: 'Noto Sans KR', sans-serif">이름순 정렬</button>
-  <button class="button is-small sort-btn price-sort" style="font-family: 'Noto Sans KR', sans-serif">가격순 정렬</button>
+  <button class="button is-small sort-btn name-sort" style="font-family: 'Noto Sans KR', sans-serif"><b>이름순 정렬</b></button>
+  <button class="button is-small sort-btn price-sort" style="font-family: 'Noto Sans KR', sans-serif"><b>가격순 정렬</b></button>
   <button class="button is-small sort-btn newest-sort" style="font-family: 'Noto Sans KR', sans-serif">
-    최신순 정렬
+    <b>최신순 정렬</b>
   </button>
 </div>`
   );
@@ -284,7 +284,7 @@ export const productSort = () => {
         .map(
           (product) =>
             `
-            <div class="message media product-item" data-category-name="${
+            <div class="message product-item imageSort" data-category-name="${
               product.productCategory
             }" data-product-name="${product.productName}">
               <div class="media-left">
@@ -348,7 +348,7 @@ export const productSort = () => {
         .map(
           (product) =>
             `
-            <div class="message media product-item" data-category-name="${
+            <div class="message product-item imageSort" data-category-name="${
               product.productCategory
             }" data-product-name="${product.productName}">
               <div class="media-left">
@@ -412,7 +412,7 @@ export const productSort = () => {
         .map(
           (product) =>
             `
-              <div class="message media product-item" data-category-name="${
+              <div class="message product-item imageSort" data-category-name="${
                 product.productCategory
               }" data-product-name="${product.productName}">
                 <div class="media-left">

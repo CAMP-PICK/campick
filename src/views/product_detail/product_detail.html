@@ -55,22 +55,51 @@
     </header>
     <!-- 제품 상세 설명 카드 -->
     <section class="section" style="font-family: 'Noto Sans KR', sans-serif">
-      <div id="managerButton">
-        <button class="button is-dark is-inverted" id="submitEditButton">
-          <i class="fa-solid fa-pencil"></i>
-        </button>
-        <button class="button is-dark is-inverted" id="submitDelButton">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-      </div>
       <div class="container" id="productDetailContainer">
-        <div id="cartorderButton">
-          <button class="button is-dark is-inverted ml-2" id="addToCartButton">
-            <strong>장바구니 추가하기</strong>
-          </button>
-          <button class="button is-dark is-inverted ml-2" id="purchaseButton">
-            <strong>바로 구매하기</strong>
-          </button>
+        <div
+          class="tile is-ancestor product-detail-card"
+          style="font-family: 'Noto Sans KR', sans-serif"
+        >
+          <div class="tile is-6 is-parent">
+            <div class="tile is-child box product-image">
+              <!-- js에서 입력될값 -->
+            </div>
+          </div>
+          <div class="tile is-parent is-vertical">
+            <div class="tile is-child box product-detail">
+              <div class="tabs">
+                <!-- js에서 입력될값 -->
+              </div>
+              <div class="content">
+                <!-- js에서 입력될값 -->
+              </div>
+            </div>
+            <div id="cartorderButton">
+              <button
+                class="button is-dark is-inverted ml-2"
+                id="addToCartButton"
+              >
+                <strong>장바구니 추가하기</strong>
+              </button>
+              <button
+                class="button is-dark is-inverted ml-2"
+                id="purchaseButton"
+              >
+                <strong>바로 구매하기</strong>
+              </button>
+              <div id="managerButton">
+                <button
+                  class="button is-dark"
+                  id="submitEditButton"
+                >
+                  <i class="fa-solid fa-pencil"></i>
+                </button>
+                <button class="button is-dark" id="submitDelButton">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
