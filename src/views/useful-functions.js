@@ -42,7 +42,7 @@ export const appendNavigationBar = () => {
     `${MENU_LIST.map(
       (list) => `<a href="${
         list.to
-      }" class="button is-dark is-inverted" style="margin-right: 3px">
+      }" class="button is-ghost" style="margin-right: 3px">
       ${
         list.icon
           ? `<span class="icon">
@@ -67,7 +67,7 @@ export const appendUserNavigationBar = (token) => {
         (menu) =>
           `<a href="${menu.to}" id="${
             menu.id
-          }" class="button is-dark is-inverted" style="margin-right: 3px">
+          }" class="button is-ghost" style="margin-right: 3px">
           ${
             menu.icon
               ? `<span class="icon">
@@ -90,7 +90,7 @@ export const appendUserNavigationBar = (token) => {
         (menu) => `
       <a href="${menu.to}" id="${
           menu.id
-        }" class="button is-dark is-inverted" style="margin-right: 3px">
+        }" class="button is-ghost" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -143,7 +143,7 @@ export const appendAccountUserNavigationBar = (token) => {
         (menu) =>
           `<a href="${menu.to}" id="${
             menu.id
-          }" class="button is-dark is-inverted" style="margin-right: 3px">
+          }" class="button is-ghost" style="margin-right: 3px">
           ${
             menu.icon
               ? `<span class="icon">
@@ -166,7 +166,7 @@ export const appendAccountUserNavigationBar = (token) => {
         (menu) => `
       <a href="${menu.to}" id="${
           menu.id
-        }" class="button is-dark is-inverted" style="margin-right: 3px">
+        }" class="button is-ghost" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">

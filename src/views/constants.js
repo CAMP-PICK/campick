@@ -20,8 +20,7 @@ export const USER_MENUS = [
 ];
 
 export const MENU_LIST = [
-  { name: '홈', to: '/', icon: 'fas fa-solid fa-house' },
-  { name: '전체상품', to: '/category' },
+  { name: '전체상품', to: '/category', icon: 'fa-solid fa-bars' },
   { name: '텐트', to: '/category_tent' },
   { name: '램프', to: '/category_lamp' },
   { name: '기타', to: '/category_etc' },
