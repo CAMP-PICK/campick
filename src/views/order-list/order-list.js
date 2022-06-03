@@ -11,12 +11,14 @@ async function initState() {
   state.orderList = state.orderList.map(({ orderList, ...rest }) => {
     return {
       ...rest,
-      orderList: orderList.map(({ _id, ...rest }) => {
-        return {
-          ...rest,
-          ...state.productLib.find(({ _id: productId }) => _id == productId ),
-        };
-      }).filter(({ _id }) => _id),
+      orderList: orderList
+        .map(({ _id, ...rest }) => {
+          return {
+            ...rest,
+            ...state.productLib.find(({ _id: productId }) => _id == productId),
+          };
+        })
+        .filter(({ _id }) => _id),
     };
   });
 }
@@ -36,7 +38,7 @@ function getOrderList() {
     });
     xhr.send();
   });
-};
+}
 
 function getProductLib() {
   return new Promise((resolve, reject) => {
@@ -54,19 +56,18 @@ function getProductLib() {
   });
 }
 
-function renderItem({
-  productImage,
-  productName,
-  productPrice,
-  quantity,
-}) {
+function renderItem({ productImage, productName, productPrice, quantity }) {
   return `
-  <div class="column is-3">
+  <div class="column is-3" style="font-family: 'Noto Sans KR', sans-serif">
     <div class="card">
       <div class="card-image">
         <a href="/product_detail/?name=${productName}">
           <figure class="image is-1by1">
-            <img src="${productImage.startsWith('http') ? productImage : `/uploads/${productImage}`}" alt="${productName}">
+            <img src="${
+              productImage.startsWith('http')
+                ? productImage
+                : `/uploads/${productImage}`
+            }" alt="${productName}">
           </figure>
         </a>
       </div>
@@ -78,7 +79,9 @@ function renderItem({
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">
           <div class="column is-12">
-            <span>total: ₩<strong><span>${numberWithCommas(productPrice * quantity)}</span></strong></span>
+            <span>total: ₩<strong><span>${numberWithCommas(
+              productPrice * quantity
+            )}</span></strong></span>
           </div>
           <div class="column is-12">
             <span>₩<span>${numberWithCommas(productPrice)}</span></span>
@@ -103,22 +106,19 @@ function cancelOrder(id) {
     alert(`주문번호\n${id}\n취소 성공`);
     window.location.reload();
   });
-  xhr.send(JSON.stringify({
-    orderId: id
-  }));
+  xhr.send(
+    JSON.stringify({
+      orderId: id,
+    })
+  );
 }
 
-function detailFormatter(idx, {
-  address,
-  email,
-  orderList,
-  phoneNumber,
-  recipient,
-  totalPrice,
-  _id,
-}) {
+function detailFormatter(
+  idx,
+  { address, email, orderList, phoneNumber, recipient, totalPrice, _id }
+) {
   return `
-    <div class="box">
+    <div class="box" style="font-family: 'Noto Sans KR', sans-serif">
       <div class="columns is-vcentered pay-info">
         <div class="column is-1">${recipient}</div>
         <div class="column is-5">${address}</div>
@@ -126,14 +126,20 @@ function detailFormatter(idx, {
         <div class="column is-3">${phoneNumber}</div>
       </div>
     </div>
-    <div class="box">
+    <div class="box" style="font-family: 'Noto Sans KR', sans-serif">
       <div class="columns is-vcentered pay-info">
-        <div class="column is-4">상품 합계: ₩<span class="items-total-cost">${numberWithCommas(totalPrice - 3000)}</span></div>
-        <div class="column is-4">배송비: ₩<span class="delivery-cost">${numberWithCommas(3000)}</span></div>
-        <div class="column is-4">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(totalPrice)}</span></strong></div>
+        <div class="column is-4">상품 합계: ₩<span class="items-total-cost">${numberWithCommas(
+          totalPrice - 3000
+        )}</span></div>
+        <div class="column is-4">배송비: ₩<span class="delivery-cost">${numberWithCommas(
+          3000
+        )}</span></div>
+        <div class="column is-4">총 합계: ₩<strong><span class="grand-total-cost">${numberWithCommas(
+          totalPrice
+        )}</span></strong></div>
       </div>
     </div>
-    <div class="box item-list">
+    <div class="box item-list" style="font-family: 'Noto Sans KR', sans-serif">
       <div class="columns items is-multiline">
         ${orderList.map(renderItem).join('\n')}
       </div>
@@ -144,14 +150,28 @@ function detailFormatter(idx, {
 function createdDateFormatter(value) {
   const date = new Date(value);
   let dayKor;
-  switch(date.getDay()) {
-    case 0: dayKor = '일'; break;
-    case 1: dayKor = '월'; break;
-    case 2: dayKor = '화'; break;
-    case 3: dayKor = '수'; break;
-    case 4: dayKor = '목'; break;
-    case 5: dayKor = '금'; break;
-    case 6: dayKor = '토'; break;
+  switch (date.getDay()) {
+    case 0:
+      dayKor = '일';
+      break;
+    case 1:
+      dayKor = '월';
+      break;
+    case 2:
+      dayKor = '화';
+      break;
+    case 3:
+      dayKor = '수';
+      break;
+    case 4:
+      dayKor = '목';
+      break;
+    case 5:
+      dayKor = '금';
+      break;
+    case 6:
+      dayKor = '토';
+      break;
   }
 
   return `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일 ${dayKor}요일 ${date.getHours()}시 ${date.getMinutes()}분 ${date.getSeconds()}초`;
@@ -166,21 +186,26 @@ function renderTable() {
     detailViewIcon: false,
     detailFormatter: 'detailFormatter',
     uniqueId: '_id',
-    columns: [{
-      field: '_id',
-      title: '주문번호',
-    }, {
-      field: 'state',
-      title: '주문상태',
-    }, {
-      field: 'createdAt',
-      title: '주문일시',
-      formatter: createdDateFormatter,
-    }, {
-      field: 'updatedAt',
-      title: '수정일시',
-      formatter: createdDateFormatter,
-    }]
+    columns: [
+      {
+        field: '_id',
+        title: '주문번호',
+      },
+      {
+        field: 'state',
+        title: '주문상태',
+      },
+      {
+        field: 'createdAt',
+        title: '주문일시',
+        formatter: createdDateFormatter,
+      },
+      {
+        field: 'updatedAt',
+        title: '수정일시',
+        formatter: createdDateFormatter,
+      },
+    ],
   });
 }
 

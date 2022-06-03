@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>주문</title>
+  <title>CAMPICK - ORDER</title>
 
   <!-- Bulma -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -16,7 +16,6 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous"
   />
-
   <!-- Fontawesome -->
   <script src="https://kit.fontawesome.com/bc4bd911be.js" crossorigin="anonymous"></script>
 
@@ -26,6 +25,17 @@
   <!-- Daum Post Code -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+  <!-- 구글 폰트 Noto Sans Korean -->
+  <link rel="preconnect" 
+  href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+        rel="stylesheet" />
+  
+  <!-- favicon -->
+      <link rel="icon" href="../home/img/favicon.ico">
+  
   <!-- javascript 상수값들 -->
   <script src="consts.js"></script>
 
@@ -34,17 +44,25 @@
 
 </head>
 <body>
-  <header>
-    <nav id="insertNavBar">
-      <div class="navbar">
-        <div class="navbar-brand" id="insertMenu"></div>
-        <div class="navBarItems navbar-end">
-          <ul id="insertItem" style="margin: 0"></ul>
+    <!-- 헤더 -->
+    <header>
+      <nav id="insertNavBar">
+        <div class="navbar">
+          <div class="navbar-brand" id="insertMenu"></div>
+          <a href="/"
+            ><img
+              src="../home/img/logo.png"
+              alt="CAMPICK-LOGO"
+              style="margin-right: 110px"
+          /></a>
+          <div class="navBarItems navbar-end">
+            <ul id="insertItem" style="margin: 0"></ul>
+          </div>
         </div>
-      </div>
-    </nav>
-  </header>
-  <main class="container">
+      </nav>
+    </header>
+
+  <main class="container" style="font-family: 'Noto Sans KR', sans-serif">
     <section class="box">
       <form id="order-form" class="columns form order-form is-multiline">
         <div class="field column is-4">
@@ -134,9 +152,9 @@
     </section>
     <footer class="box pay-info">
       <div class="columns is-vcentered">
-        <div class="column is-3">상품 합계: ₩<span class="items-total-cost"><!-- 상품 합계 금액 위치--></span></div>
-        <div class="column is-3">배송비: ₩<span class="delivery-cost"><!-- 배송비 위치--></span></div>
-        <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost"><!-- 총 합계 금액 위치 --></span></strong></div>
+        <div class="column is-3"><strong>상품 합계&nbsp: <i class="fa-solid fa-won-sign"></i>&nbsp<span class="items-total-cost"><!-- 상품 합계 금액 위치--></span></strong></div>
+        <div class="column is-3"><strong>배송비&nbsp: <i class="fa-solid fa-won-sign"></i>&nbsp<span class="delivery-cost"><!-- 배송비 위치--></span></strong></div>
+        <div class="column is-3"><strong>총 합계&nbsp: <i class="fa-solid fa-won-sign"></i>&nbsp<span class="grand-total-cost"><!-- 총 합계 금액 위치 --></span></strong></div>
         <div class="column is-3">
           <button class="button is-dark btn-buy"><b>결제하기</b></button>
         </div>
