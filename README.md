@@ -1,5 +1,5 @@
 # CAMPIC
-![CAMPIC 로고](/logo.png)
+![CAMPIC 로고](/logo.png)<br>
 최근 **hot**한 트렌드 중 하나인 캠핑! 많은 분들이 **지친 일상에서 벗어나 힐링**을 하기 위해 캠핑을 떠나고 있는데요. <br> 캠핑 전문가도, 캠린이도 모두 **CAMPICK**과 함께라면 캠핑을 떠날 준비는 걱정 없습니다! <br> 필요한 물품은 모두 이 곳에서 구매해보세요🤩<br>
 [쇼핑몰 바로 가기](http://kdt-sw2-seoul-team01.elicecoding.com/)
 
