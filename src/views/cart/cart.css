@@ -25,7 +25,7 @@ body::-webkit-scrollbar-track {
 }
 
 .navbar-end {
-  margin:0;
+  margin: 0;
 }
 
 .navbar img {
@@ -38,9 +38,9 @@ body::-webkit-scrollbar-track {
   transition: color 0.4s ease-in-out;
 }
 
-#insertMenu a:hover{
+#insertMenu a:hover {
   text-decoration: none;
-  color:#1864ab
+  color: #1864ab;
 }
 
 #insertItem a {
@@ -49,9 +49,9 @@ body::-webkit-scrollbar-track {
   transition: color 0.4s ease-in-out;
 }
 
-#insertItem a:hover{
+#insertItem a:hover {
   text-decoration: none;
-  color:#1864ab
+  color: #1864ab;
 }
 
 @media screen and (max-width: 1024px) {
@@ -125,7 +125,6 @@ input[type='number'] {
   width: 20px;
   height: 20px;
   accent-color: #363636;
-  margin-right: 5px;
 }
 
 .item-chk-select {
@@ -136,4 +135,12 @@ input[type='number'] {
 
 .checkboxcontainer {
   display: inline-block;
+}
+
+.checkContet {
+  padding: 0;
+}
+
+.btn-delete-all {
+  margin-right:10px;
 }

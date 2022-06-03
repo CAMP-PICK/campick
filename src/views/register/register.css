@@ -34,5 +34,9 @@ body::-webkit-scrollbar-track {
 }
 
 .register-user-form-box .input:focus {
-  border-color: #383E56;
+  border-color: #383e56;
+}
+
+.toLogin {
+  text-align: center;
 }
