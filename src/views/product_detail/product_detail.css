@@ -80,8 +80,12 @@ body::-webkit-scrollbar {
 
 #addToCartButton {
     border-color: gray;
+    width: 160px;
+    height: 40px;
 }
 
 #purchaseButton {
     border-color: gray;
+    width: 160px;
+    height: 40px;
 }
