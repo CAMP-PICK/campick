@@ -39,12 +39,11 @@ body::-webkit-scrollbar-track {
 
 .product-sort {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 1.2rem;
 }
 
 .sort-btn {
-  margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 
@@ -52,4 +51,9 @@ body::-webkit-scrollbar-track {
   position: fixed;
   right: 2rem;
   bottom: 2rem;
+}
+
+#producItemContainer {
+  margin: 0;
+  padding: 0;
 }
