@@ -68,3 +68,21 @@ tr:not(.detail-view) {
   text-decoration: none;
   color:#1864ab
 }
+
+.page-item.active .page-link {
+  background-color: #363636;
+  border-color: #363636;
+}
+
+.dropdown-item.active { 
+  background-color: #363636;
+}
+
+.btn-secondary {
+  background-color: #363636;
+  border-color: #363636;
+}
+
+.page-link {
+  color: #363636;
+}
