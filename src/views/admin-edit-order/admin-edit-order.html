@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAMPICK - EDIT ORDER</title>
+  <title>CAMPICK - EDITORDER</title>
 
   <!-- Bulma -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -32,28 +32,37 @@
   <!-- javascript utility 함수들 -->
   <script src="utils.js"></script>
 
-      <!-- 구글 폰트 Noto Sans Korean -->
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-        rel="stylesheet"
-      />
-
+  <!-- 구글 폰트 Noto Sans Korean -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet" />
+ 
+  <!-- favicon -->
+  <link rel="icon" href="../home/img/favicon.ico">
+ 
 </head>
 <body>
-  <header>
+   <!-- 헤더 -->
+   <header>
     <nav id="insertNavBar">
       <div class="navbar">
         <div class="navbar-brand" id="insertMenu"></div>
+        <a href="/"
+          ><img
+            src="../home/img/logo.png"
+            alt="CAMPICK-LOGO"
+            style="margin: 0 13px"
+        /></a>
         <div class="navBarItems navbar-end">
           <ul id="insertItem" style="margin: 0"></ul>
         </div>
       </div>
     </nav>
   </header>
+
   <main class="container">
-    <section class="box">
+    <section class="box" style="font-family: 'Noto Sans KR', sans-serif"
+    >
       <form id="order-form" class="columns form order-form is-multiline">
         <div class="field column is-4">
           <label for="recipient" class="label">받는 사람</label>
@@ -154,7 +163,9 @@
         </div>
       </form>
     </section>
-    <section class="box item-list">
+    <section class="box item-list" style="font-family: 'Noto Sans KR', sans-serif"
+    >
+      <!-- 기존에 있던 버튼 코드 -->
       <div class="columns is-vcentered is-mobile">
         <div class="column is-narrow ">
           <label class="checkbox">
@@ -166,17 +177,19 @@
           <button class="button is-dark btn-delete-selected"><b>선택 삭제</b></button>
         </div>
       </div>
+
       <hr>
       <div class="columns items is-multiline">
         <!-- items 위치 -->
-          <!-- item 위치 -->
+        <!-- item 위치 -->
       </div>
     </section>
-    <footer class="box pay-info">
+    <footer class="box pay-info" style="font-family: 'Noto Sans KR', sans-serif"
+    >
       <div class="columns is-vcentered">
-        <div class="column is-3">상품 합계: ₩<span class="items-total-cost"><!-- 상품 합계 금액 위치--></span></div>
-        <div class="column is-3">배송비: ₩<span class="delivery-cost"><!-- 배송비 위치--></span></div>
-        <div class="column is-3">총 합계: ₩<strong><span class="grand-total-cost"><!-- 총 합계 금액 위치 --></span></strong></div>
+        <div class="column is-3"><strong>상품 합계&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="items-total-cost"><!-- 상품 합계 금액 위치--></span></strong></div>
+        <div class="column is-3"><strong>배송비&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="delivery-cost"><!-- 배송비 위치--></span></strong></div>
+        <div class="column is-3"><strong>총 합계&nbsp:&nbsp<i class="fa-solid fa-won-sign"></i>&nbsp<span class="grand-total-cost"><!-- 총 합계 금액 위치 --></span></strong></div>
         <div class="column is-3">
           <button class="button is-dark btn-edit"><b>수정 하기</b></button>
         </div>
