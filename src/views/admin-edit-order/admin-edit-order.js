@@ -66,12 +66,9 @@ function renderItem({
   )}" ${genDatasetIdAttr(_id)}>${productName}<span></a></h3>
           </div>
           <div class="column is-narrow">
-            <input class="${genItemClassNames(
-              cn.itemSelect,
-              _id
-            )}" ${genDatasetIdAttr(_id)} type="checkbox" ${
-    selected ? 'checked' : ''
-  }>
+            <input class="chk-select-all" type="checkbox" ${
+              selected ? 'checked' : ''
+            }>
           </div>
         </div>
         <div class="columns is-mobile is-vcentered is-multiline">

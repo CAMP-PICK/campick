@@ -167,23 +167,25 @@
     >
       <!-- 기존에 있던 버튼 코드 -->
       <div class="columns is-vcentered is-mobile">
-        <div class="column is-narrow ">
-          <label class="checkbox">
-            <input class="chk-select-all" type="checkbox">
-            전체 선택
-          </label>
+        <div class="column is-narrow checkContet">
+            <strong><label class="checkbox"></label>
+            <input class="chk-select-all" type="checkbox" /></strong>
+
         </div>
-        <div class="column is-narrow">
-          <button class="button is-dark btn-delete-selected"><b>선택 삭제</b></button>
+        <div class="column is-narrow deleteBtn">
+          <div class="button btn-delete-all"><strong>전체선택</strong></div>
+          <div class="button is-danger btn-delete-selected">
+            <b>삭제</b>
+          </div>
         </div>
       </div>
 
-      <hr>
       <div class="columns items is-multiline">
         <!-- items 위치 -->
         <!-- item 위치 -->
       </div>
     </section>
+
     <footer class="box pay-info" style="font-family: 'Noto Sans KR', sans-serif"
     >
       <div class="columns is-vcentered">
