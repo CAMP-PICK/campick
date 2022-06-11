@@ -51,7 +51,7 @@ async function handleSubmit(e) {
     formData.append('productStock', inventory.value);
     formData.append('file', file.files[0]);
 
-    await fetch(`http://localhost:5001/api/product/create`, {
+    await fetch(`/api/product/create`, {
       method: 'POST',
       body: formData,
     })
