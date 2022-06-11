@@ -4,6 +4,7 @@ import {
   MENU_LIST,
   USER_MENUS_ACCOUNT,
 } from './constants.js';
+import * as Api from '/api.js';
 
 // 문자열+숫자로 이루어진 랜덤 5글자 반환
 export const randomId = () => {
@@ -254,9 +255,7 @@ export const productSort = () => {
 
   //가격순 정렬-오름차순
   priceSort.addEventListener('click', async () => {
-    //const res = await fetch(`http://localhost:5001/api/product/list`);
-    const res = await Api.get(`/api/product/list`)
-    const data = await res.json();
+    const data = await Api.get(`/api/product/list`)
 
     //urlStr을 통해 필터링 할 조건 얻기
     const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
@@ -313,9 +312,7 @@ export const productSort = () => {
 
   //이름순 정렬
   nameSort.addEventListener('click', async () => {
-    //const res = await fetch(`http://localhost:5001/api/product/list`);
-    const res = await Api.get(`/api/product/list`)
-    const data = await res.json();
+    const data = await Api.get(`/api/product/list`)
 
     //urlStr을 통해 필터링 할 조건 얻기
     const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
@@ -378,9 +375,7 @@ export const productSort = () => {
 
   //최신순 정렬
   newestSort.addEventListener('click', async () => {
-    //const res = await fetch(`http://localhost:5001/api/product/list`);
-    const res = await Api.get(`/api/product/list`)
-    const data = await res.json();
+    const data = await Api.get(`/api/product/list`)
 
     //urlStr을 통해 필터링 할 조건 얻기
     const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
