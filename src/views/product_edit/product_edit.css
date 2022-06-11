@@ -1,0 +1,44 @@
+/* 스크롤 디자인 변경 */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.308);
+  border-radius: 20px;
+  box-shadow: inset -2px -2px 7px rgba(110, 110, 110, 0.822);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #ededee;
+  border-radius: 20px;
+}
+
+/* 상품 등록 컨테이너 관련 CSS */
+.subtitle.is-4 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.register-product-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.register-product-form-box {
+  width: 35rem;
+}
+
+.register-product-form-box .title {
+  text-align: center;
+}
+
+.register-product-form-box .button {
+  font-weight: bold;
+}
+
+.register-product-form-box .input:focus {
+  border-color: #383e56;
+}

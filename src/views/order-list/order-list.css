@@ -1,0 +1,82 @@
+/* 스크롤 디자인 변경 */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.308);
+  border-radius: 20px;
+  box-shadow: inset -2px -2px 7px rgba(110, 110, 110, 0.822);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #ededee;
+  border-radius: 20px;
+}
+
+.footerContent {
+  margin: 16px 0;
+}
+
+tr:not(.detail-view) {
+  cursor: pointer;
+}
+
+.pay-info .column {
+  text-align: center;
+}
+
+#topBtn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+}
+
+.column a {
+  text-decoration: none;
+  color: black;
+}
+
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-end {
+  margin:0;
+}
+
+.navbar img {
+  width: 8rem;
+}
+
+#insertMenu a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertMenu a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+#insertItem a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertItem a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+.th-inner {
+  text-align: center;
+}
+
+.box {
+  margin-bottom: 1px !important;
+}

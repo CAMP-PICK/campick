@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAMPICK - ADMIN ORDERLIST</title>
+
+    <!-- Bulma -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!-- bootstrap table css-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <!-- bootstrap js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- bootstrap table js -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/bc4bd911be.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- order.css -->
+    <link rel="stylesheet" href="admin-order-list.css" />
+    <!-- favicon -->
+    <link rel="icon" href="../home/img/favicon.ico" />
+
+    <!-- javascript 상수값들 -->
+    <script src="consts.js"></script>
+
+    <!-- javascript utility 함수들 -->
+    <script src="utils.js"></script>
+    <script src="https://unpkg.com/fxjs/dist/fx.es5.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav id="insertNavBar">
+        <div class="navbar">
+          <div class="navbar-brand" id="insertMenu"></div>
+          <a href="/"
+            ><img
+              src="../home/img/logo.png"
+              alt="CAMPICK-LOGO"
+              style="margin: 0 13px"
+          /></a>
+          <div class="navBarItems navbar-end">
+            <ul id="insertItem" style="margin: 0"></ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container" style="font-family: 'Noto Sans KR', sans-serif">
+      <div class="box">
+        <table id="table" class="table"></table>
+      </div>
+    </main>
+    <script src="nav-bar.js" type="module" defer></script>
+    <script src="admin-order-list.js"></script>
+  </body>
+</html>

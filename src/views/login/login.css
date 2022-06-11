@@ -1,0 +1,57 @@
+/* 스크롤 디자인 변경 */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.308);
+  border-radius: 20px;
+  box-shadow: inset -2px -2px 7px rgba(110, 110, 110, 0.822);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #ededee;
+  border-radius: 20px;
+}
+
+.login-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+}
+
+.login-form-box {
+  width: 30rem;
+}
+
+.login-form-box .title {
+  text-align: center;
+}
+
+.login-form-box .button {
+  font-weight: bold;
+}
+
+.navbar {
+  padding: 8px 16px;
+}
+
+.navbar-brand {
+  margin: 0;
+  padding: 5px 0;
+}
+
+.login-form-container .input:focus {
+  border-color: #383E56;
+}
+
+#kakao-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toRegister {
+  text-align: center;
+}

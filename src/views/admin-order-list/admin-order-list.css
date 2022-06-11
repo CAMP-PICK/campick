@@ -1,0 +1,121 @@
+/* 스크롤 디자인 변경 */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.308);
+  border-radius: 20px;
+  box-shadow: inset -2px -2px 7px rgba(110, 110, 110, 0.822);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #ededee;
+  border-radius: 20px;
+}
+
+tr:not(.detail-view) {
+  cursor: pointer;
+}
+
+.pay-info .column {
+  text-align: center;
+}
+
+#topBtn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+}
+
+.column a {
+  text-decoration: none;
+  color: black;
+}
+
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-end {
+  margin:0;
+}
+
+.navbar img {
+  width: 8rem;
+}
+
+#insertMenu a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertMenu a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+#insertItem a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertItem a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+.page-item.active .page-link {
+  background-color: #363636;
+  border-color: #363636;
+}
+
+.dropdown-item.active { 
+  background-color: #363636;
+}
+
+.btn-secondary {
+  background-color: #363636;
+  border-color: #363636;
+}
+
+.page-link {
+  color: #363636;
+}
+
+.checkbox {
+  display: fle;
+  margin-bottom: 0;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.chk-select-all {
+  width: 20px;
+  height: 20px;
+  accent-color: #363636;
+  margin-right: 5px;
+}
+
+.item-chk-select {
+  width: 20px;
+  height: 20px;
+  accent-color: #363636;
+}
+
+.span {
+  text-decoration: none !important;
+}
+
+.th-inner {
+  text-align: center;
+}
+
+.box {
+  margin-bottom: 1px !important;
+}

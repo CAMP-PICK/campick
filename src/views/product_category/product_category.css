@@ -1,0 +1,124 @@
+/* 스크롤 디자인 변경 */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.308);
+  border-radius: 20px;
+  box-shadow: inset -2px -2px 7px rgba(110, 110, 110, 0.822);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #ededee;
+  border-radius: 20px;
+}
+
+.footerContent {
+  margin: 16px 0;
+}
+
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-end {
+  margin:0;
+}
+
+.navbar img {
+  width: 8rem;
+}
+
+#insertMenu a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertMenu a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+#insertItem a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertItem a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+/* 상품 등록 컨테이너 관련 CSS */
+.category-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.category-user-form-box {
+  width: 30rem;
+}
+
+.category-user-form-box .title {
+  text-align: center;
+}
+
+.category-user-form-box .button {
+  font-weight: bold;
+}
+
+.category-user-form-box .input:focus {
+  border-color: #383e56;
+}
+
+.mt-5 {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  margin : 0 3px;
+}
+
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-end {
+  margin:0;
+}
+
+.navbar img {
+  width: 8rem;
+}
+
+#insertMenu a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertMenu a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+#insertItem a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertItem a:hover{
+  text-decoration: none;
+  color:#1864ab
+}

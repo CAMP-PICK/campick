@@ -1,0 +1,119 @@
+/* 스크롤 디자인 변경 */
+body::-webkit-scrollbar {
+  width: 6px;
+  }
+  
+body::-webkit-scrollbar-thumb {
+background-color: rgba(0, 0, 0, 0.308);
+border-radius: 20px;
+box-shadow: inset -2px -2px 7px rgba(110, 110, 110, 0.822);
+}
+
+body::-webkit-scrollbar-track {
+background-color: #ededee;
+border-radius: 20px;
+}
+
+.footerContent {
+margin: 16px 0;
+}
+
+/* navbar */
+.navbar {
+display: flex;
+justify-content: space-between;
+}
+
+.navbar-end {
+  margin:0;
+}
+
+.navbar img {
+  width: 8rem;
+}
+
+#insertMenu a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertMenu a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+#insertItem a {
+  text-decoration: none;
+  color: #303030;
+  transition: color 0.4s ease-in-out;
+}
+
+#insertItem a:hover{
+  text-decoration: none;
+  color:#1864ab
+}
+
+/* 이미지 관련 CSS */
+
+.image img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+/* 제품 설명 관련 CSS */
+.product-detail-card .box {
+  box-shadow: none;
+  max-width: 100%;
+}
+
+.detail-description {
+  margin-top: 2rem;
+  white-space: pre-line;
+}
+
+/* container 관련 CSS */
+#cartorderButton {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  float: right;
+  text-align: left;
+  margin-bottom: 7%;
+}
+
+/* 버튼 관련 CSS */
+#managerButton {
+  /* float: none; */
+  margin-left: 30px;
+  margin-right: 0;
+}
+
+.buttons-container {
+  flex-grow: 0;
+}
+
+#submitDelButton {
+  z-index: 1;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+#submitEditButton {
+  z-index: 1;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+#addToCartButton {
+  border-color: gray;
+  width: 160px;
+  height: 40px;
+}
+
+#purchaseButton {
+  border-color: gray;
+  width: 160px;
+  height: 40px;
+}

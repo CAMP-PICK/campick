@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAMPICK - MYPAGE</title>
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="mypage.css" />
+    <!-- bulma css 관련 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- favicon -->
+    <link rel="icon" href="../home/img/favicon.ico" />
+  </head>
+  <body>
+    <!-- 회원정보관리 폼(Form) -->
+    <div
+      class="edit-user-form-container"
+      style="font-family: 'Noto Sans KR', sans-serif"
+    >
+      <form class="box edit-user-form-box" id="editUserForm">
+        <p class="title is-5 has-text-dark">회원정보 수정</p>
+        <div class="field">
+          <label class="label" for="fullNameInput">이름</label>
+          <div class="control">
+            <input
+              class="input"
+              id="fullNameInput"
+              type="text"
+              placeholder="김캠핑"
+              autocomplete="on"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="emailInput">이메일</label>
+          <div class="control">
+            <input
+              class="input"
+              id="emailInput"
+              type="email"
+              placeholder="abc@example.com"
+              autocomplete="on"
+              disabled
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="currentPasswordInput">기존 비밀번호</label>
+          <div class="control">
+            <input
+              class="input"
+              id="currentPasswordInput"
+              type="password"
+              placeholder="********"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="newPasswordInput">새 비밀번호</label>
+          <div class="control">
+            <input
+              class="input"
+              id="newPasswordInput"
+              type="password"
+              placeholder="********"
+              autocomplete="off"
+            />
+            <p class="help">비밀번호는 4글자 이상 입력해 주세요.</p>
+          </div>
+        </div>
+
+        <div class="field mb-5">
+          <label class="label" for="newPasswordConfirmInput"
+            >새 비밀번호 확인</label
+          >
+          <div class="control">
+            <input
+              class="input"
+              id="newPasswordConfirmInput"
+              type="password"
+              placeholder="********"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="phoneNumberInput">전화번호</label>
+          <div class="control">
+            <input
+              class="input"
+              id="phoneNumberInput"
+              type="tel"
+              placeholder="01012345678"
+              autocomplete="on"
+            />
+            <p class="help">전화번호는 - 없이 입력해 주세요.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="addressInput">주소</label>
+          <div class="control">
+            <div id="postColumn" class="columns is-gapless">
+              <div class="column is-one-quarter">
+                <input
+                  class="input"
+                  id="addressInput"
+                  type="text"
+                  autocomplete="on"
+                  placeholder="우편번호"
+                  readonly
+                  onclick="findAddr()"
+                  size=""
+                />
+              </div>
+              <div class="column">
+                <input
+                  class="input"
+                  id="userAddress"
+                  type="text"
+                  autocomplete="on"
+                  placeholder="도로명주소"
+                  readonly
+                />
+              </div>
+            </div>
+            <input
+              class="input"
+              id="userAddressDetail"
+              type="text"
+              autocomplete="on"
+              placeholder="상세주소"
+            />
+          </div>
+        </div>
+        <button
+          class="button is-dark is-fullwidth"
+          id="submitButton"
+          style="font-family: 'Noto Sans KR', sans-serif"
+        >
+          정보수정
+        </button>
+      </form>
+    </div>
+
+    <!-- 주소 찾기 Api -->
+    <script>
+      function findAddr() {
+        new daum.Postcode({
+          oncomplete: function (data) {
+            const roadAddr = data.roadAddress;
+            const jibunAddr = data.jibunAddress;
+            document.getElementById('addressInput').value = data.zonecode;
+            if (roadAddr !== '') {
+              document.getElementById('userAddress').value = roadAddr;
+            } else if (jibunAddr !== '') {
+              document.getElementById('userAddress').value = jibunAddr;
+            }
+          },
+        }).open();
+      }
+    </script>
+    <!-- 커스텀 js -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="mypage.js" type="module" defer></script>
+  </body>
+</html>

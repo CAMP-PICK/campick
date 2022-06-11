@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CAMPICK - ACCOUNT</title>
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- loader css -->
+    <link rel="stylesheet" href="../loading_spinner/spinner.css" />
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 커스텀 css -->
+    <link rel="stylesheet" href="account.css" />
+    <!-- favicon -->
+    <link rel="icon" href="../home/img/favicon.ico" />
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <header>
+      <nav id="insertNavBar">
+        <div class="navbar">
+          <div class="navbar-brand" id="insertMenu"></div>
+          <a href="/"
+            ><img
+              src="../home/img/logo.png"
+              alt="CAMPICK-LOGO"
+              style="margin-right:75px"
+          /></a>
+          <div class="navBarItems navbar-end">
+            <ul id="insertItem" style="margin: 0"></ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="accountSection">
+      <!-- svg loader -->
+      <div class="svg-loader">
+        <img src="../loading_spinner/spinner.svg" />
+      </div>
+    </div>
+
+    <!-- 회원 탈퇴 Modal -->
+    <div
+      id="image-modal"
+      class="delete-form-container modal"
+      style="font-family: 'Noto Sans KR', sans-serif"
+    >
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <form class="box delete-form-box" id="deleteForm">
+          <br />
+          <p class="title is-5 has-text-dark">회원 탈퇴</p>
+          <hr />
+          <div class="content">
+            <strong>
+              삭제된 계정의 정보는 복구될 수 없습니다.<br /><br />
+              다시 한번 확인해 주시고, 회원 탈퇴 진행을 원하시면<br />
+              비밀번호를 입력한 후 계정 삭제 버튼을 눌러주세요.
+            </strong>
+          </div>
+          <div class="field mb-5">
+            <label class="label" for="deletePassword">비밀번호 확인</label>
+            <div class="control">
+              <input
+                class="input"
+                id="deletePassword"
+                type="password"
+                placeholder="********"
+                autocomplete="off"
+              />
+            </div>
+            <br />
+            <button class="button is-danger" id="deleteUserBtn">
+              계정 삭제
+            </button>
+            <button class="button" id="image-modal-close">취소</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- 커스텀 js -->
+    <script src="account.js" type="module" defer></script>
+  </body>
+</html>
