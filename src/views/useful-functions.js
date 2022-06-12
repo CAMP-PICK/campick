@@ -1,9 +1,4 @@
-import {
-  GUEST_MENUS,
-  USER_MENUS,
-  MENU_LIST,
-  USER_MENUS_ACCOUNT,
-} from './constants.js';
+import { GUEST_MENUS, USER_MENUS, MENU_LIST, USER_MENUS_ACCOUNT } from './constants.js';
 import * as Api from '/api.js';
 
 // 문자열+숫자로 이루어진 랜덤 5글자 반환
@@ -41,9 +36,7 @@ export const appendNavigationBar = () => {
   document.querySelector('#insertMenu').insertAdjacentHTML(
     'afterbegin',
     `${MENU_LIST.map(
-      (list) => `<a href="${
-        list.to
-      }" class="button is-ghost" style="margin-right: 3px">
+      (list) => `<a href="${list.to}" class="button is-ghost" style="margin-right: 3px">
       ${
         list.icon
           ? `<span class="icon">
@@ -51,9 +44,7 @@ export const appendNavigationBar = () => {
     </span>`
           : ''
       }
-    <strong style="font-family: 'Noto Sans KR', sans-serif">${
-      list.name
-    }</strong>
+    <strong style="font-family: 'Noto Sans KR', sans-serif">${list.name}</strong>
   </a>`
     ).join('')}`
   );
@@ -66,9 +57,7 @@ export const appendUserNavigationBar = (token) => {
       'afterbegin',
       `${USER_MENUS.map(
         (menu) =>
-          `<a href="${menu.to}" id="${
-            menu.id
-          }" class="button is-ghost" style="margin-right: 3px">
+          `<a href="${menu.to}" id="${menu.id}" class="button is-ghost" style="margin-right: 3px">
           ${
             menu.icon
               ? `<span class="icon">
@@ -77,9 +66,7 @@ export const appendUserNavigationBar = (token) => {
               : ''
           }
             <li>
-              <strong style="font-family: 'Noto Sans KR', sans-serif">${
-                menu.name
-              }</strong>
+              <strong style="font-family: 'Noto Sans KR', sans-serif">${menu.name}</strong>
             </li>
           </a>`
       ).join('')}`
@@ -89,9 +76,7 @@ export const appendUserNavigationBar = (token) => {
       'afterbegin',
       `${GUEST_MENUS.map(
         (menu) => `
-      <a href="${menu.to}" id="${
-          menu.id
-        }" class="button is-ghost" style="margin-right: 3px">
+      <a href="${menu.to}" id="${menu.id}" class="button is-ghost" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -100,9 +85,7 @@ export const appendUserNavigationBar = (token) => {
             : ''
         }
         <li>
-          <strong style="font-family: 'Noto Sans KR', sans-serif">${
-            menu.name
-          }</strong>
+          <strong style="font-family: 'Noto Sans KR', sans-serif">${menu.name}</strong>
         </li>
       </a>`
       ).join('')}`
@@ -142,9 +125,7 @@ export const appendAccountUserNavigationBar = (token) => {
       'afterbegin',
       `${USER_MENUS_ACCOUNT.map(
         (menu) =>
-          `<a href="${menu.to}" id="${
-            menu.id
-          }" class="button is-ghost" style="margin-right: 3px">
+          `<a href="${menu.to}" id="${menu.id}" class="button is-ghost" style="margin-right: 3px">
           ${
             menu.icon
               ? `<span class="icon">
@@ -153,9 +134,7 @@ export const appendAccountUserNavigationBar = (token) => {
               : ''
           }
             <li>
-              <strong style="font-family: 'Noto Sans KR', sans-serif">${
-                menu.name
-              }</strong>
+              <strong style="font-family: 'Noto Sans KR', sans-serif">${menu.name}</strong>
             </li>
           </a>`
       ).join('')}`
@@ -165,9 +144,7 @@ export const appendAccountUserNavigationBar = (token) => {
       'afterbegin',
       `${GUEST_MENUS.map(
         (menu) => `
-      <a href="${menu.to}" id="${
-          menu.id
-        }" class="button is-ghost" style="margin-right: 3px">
+      <a href="${menu.to}" id="${menu.id}" class="button is-ghost" style="margin-right: 3px">
         ${
           menu.icon
             ? `<span class="icon">
@@ -176,9 +153,7 @@ export const appendAccountUserNavigationBar = (token) => {
             : ''
         }
         <li>
-          <strong style="font-family: 'Noto Sans KR', sans-serif">${
-            menu.name
-          }</strong>
+          <strong style="font-family: 'Noto Sans KR', sans-serif">${menu.name}</strong>
         </li>
       </a>`
       ).join('')}`
@@ -255,16 +230,14 @@ export const productSort = () => {
 
   //가격순 정렬-오름차순
   priceSort.addEventListener('click', async () => {
-    const data = await Api.get(`/api/product/list`)
+    const data = await Api.get(`/api/product/list`);
 
     //urlStr을 통해 필터링 할 조건 얻기
     const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
     const categoryKeyword = filterCategory[0].name;
 
     //해당 카테고리가 아닌 데이터는 없애기
-    let filterData = data.filter(
-      (el) => el.productCategory === categoryKeyword
-    );
+    let filterData = data.filter((el) => el.productCategory === categoryKeyword);
 
     //만약 전체상품 카테고리라면 기존 data를 입력
     if (categoryKeyword === '전체상품') {
@@ -284,9 +257,7 @@ export const productSort = () => {
         .map(
           (product) =>
             `
-            <div class="message product-item imageSort" data-category-name="${
-              product.productCategory
-            }" data-product-name="${product.productName}">
+            <div class="message product-item imageSort" data-category-name="${product.productCategory}" data-product-name="${product.productName}">
               <div class="media-left">
                 <figure class="image">
                   <img src="${product.productImage}" alt="제품 이미지" />
@@ -308,20 +279,29 @@ export const productSort = () => {
         )
         .join('')}`
     );
+    //제품 클릭 시 제품 상세페이지로 이동
+    const attachEvent = () => {
+      const items = document.querySelectorAll('.product-item');
+      items.forEach((item) => {
+        item.addEventListener('click', function () {
+          const productName = this.getAttribute('data-product-name');
+          window.location.href = `/product_detail/?name=${productName}`;
+        });
+      });
+    };
+    attachEvent();
   });
 
   //이름순 정렬
   nameSort.addEventListener('click', async () => {
-    const data = await Api.get(`/api/product/list`)
+    const data = await Api.get(`/api/product/list`);
 
     //urlStr을 통해 필터링 할 조건 얻기
     const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
     const categoryKeyword = filterCategory[0].name;
 
     //해당 카테고리가 아닌 데이터는 없애기
-    let filterData = data.filter(
-      (el) => el.productCategory === categoryKeyword
-    );
+    let filterData = data.filter((el) => el.productCategory === categoryKeyword);
 
     //만약 전체상품 카테고리라면 기존 data를 입력
     if (categoryKeyword === '전체상품') {
@@ -347,9 +327,7 @@ export const productSort = () => {
         .map(
           (product) =>
             `
-            <div class="message product-item imageSort" data-category-name="${
-              product.productCategory
-            }" data-product-name="${product.productName}">
+            <div class="message product-item imageSort" data-category-name="${product.productCategory}" data-product-name="${product.productName}">
               <div class="media-left">
                 <figure class="image">
                   <img src="${product.productImage}" alt="제품 이미지" />
@@ -371,20 +349,29 @@ export const productSort = () => {
         )
         .join('')}`
     );
+    //제품 클릭 시 제품 상세페이지로 이동
+    const attachEvent = () => {
+      const items = document.querySelectorAll('.product-item');
+      items.forEach((item) => {
+        item.addEventListener('click', function () {
+          const productName = this.getAttribute('data-product-name');
+          window.location.href = `/product_detail/?name=${productName}`;
+        });
+      });
+    };
+    attachEvent();
   });
 
   //최신순 정렬
   newestSort.addEventListener('click', async () => {
-    const data = await Api.get(`/api/product/list`)
+    const data = await Api.get(`/api/product/list`);
 
     //urlStr을 통해 필터링 할 조건 얻기
     const filterCategory = MENU_LIST.filter((menu) => menu.to + '/' == urlStr);
     const categoryKeyword = filterCategory[0].name;
 
     //해당 카테고리가 아닌 데이터는 없애기
-    let filterData = data.filter(
-      (el) => el.productCategory === categoryKeyword
-    );
+    let filterData = data.filter((el) => el.productCategory === categoryKeyword);
 
     //만약 전체상품 카테고리라면 기존 data를 입력
     if (categoryKeyword === '전체상품') {
@@ -410,9 +397,7 @@ export const productSort = () => {
         .map(
           (product) =>
             `
-              <div class="message product-item imageSort" data-category-name="${
-                product.productCategory
-              }" data-product-name="${product.productName}">
+              <div class="message product-item imageSort" data-category-name="${product.productCategory}" data-product-name="${product.productName}">
                 <div class="media-left">
                   <figure class="image">
                     <img src="${product.productImage}" alt="제품 이미지" />
@@ -434,5 +419,16 @@ export const productSort = () => {
         )
         .join('')}`
     );
+    //제품 클릭 시 제품 상세페이지로 이동
+    const attachEvent = () => {
+      const items = document.querySelectorAll('.product-item');
+      items.forEach((item) => {
+        item.addEventListener('click', function () {
+          const productName = this.getAttribute('data-product-name');
+          window.location.href = `/product_detail/?name=${productName}`;
+        });
+      });
+    };
+    attachEvent();
   });
 };
