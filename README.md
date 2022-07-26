@@ -1,7 +1,7 @@
 # CAMPIC
 ![CAMPIC 로고](/logo.png)<br>
 최근 **hot**한 트렌드 중 하나인 캠핑! 많은 분들이 **지친 일상에서 벗어나 힐링**을 하기 위해 캠핑을 떠나고 있는데요. <br> 캠핑 전문가도, 캠린이도 모두 **CAMPICK**과 함께라면 캠핑을 떠날 준비는 걱정 없습니다! <br> 필요한 물품은 모두 이 곳에서 구매해보세요🤩<br>
-[쇼핑몰 바로 가기](http://kdt-sw2-seoul-team01.elicecoding.com/)
+[쇼핑몰 바로 가기](https://shopping-mall-campick.herokuapp.com/)
 
 # 서비스 구성 안내
 ## 1. 서비스 소개
@@ -41,10 +41,10 @@
   - 관리자는 사용자들의 주문 내역을 모두 조회하고 수정하고 삭제할 수 있습니다.
 ## 2. 서비스 구성도
   **일반 사용자**
-  ![일반_사용자](/uploads/3da6243b7b9d835582f8e61db6515bf8/일반_사용자.png)
+  ![일반_사용자](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team1/shopping-mall/uploads/3da6243b7b9d835582f8e61db6515bf8/%EC%9D%BC%EB%B0%98_%EC%82%AC%EC%9A%A9%EC%9E%90.png)
   
   **관리자**
-  ![관리자](/uploads/9dbc697e670304083d97ca4f4220e778/관리자.png)<br>
+  ![관리자](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team1/shopping-mall/uploads/9dbc697e670304083d97ca4f4220e778/%EA%B4%80%EB%A6%AC%EC%9E%90.png)<br>
 ## 3. 프로젝트 팀원 역할 분담
 | 이름 | 담당 업무 |
 | ------ | ------ |
