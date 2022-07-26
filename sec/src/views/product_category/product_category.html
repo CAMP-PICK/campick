@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAMPICK - EDIT CATEGORY</title>
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 구글 폰트 Noto Sans Korean -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 커스텀 css -->
+    <link rel="stylesheet" href="product_category.css" />
+    <!-- favicon -->
+    <link rel="icon" href="../home/img/favicon.ico" />
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header>
+      <nav id="insertNavBar">
+        <div class="navbar">
+          <div class="navbar-brand" id="insertMenu"></div>
+          <a href="/"
+            ><img
+              src="../home/img/logo.png"
+              alt="CAMPICK-LOGO"
+              style="margin: 0 13px"
+          /></a>
+          <div class="navBarItems navbar-end">
+            <ul id="insertItem" style="margin: 0"></ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- 제품 추가 폼(Form) -->
+    <div
+      class="category-form-container"
+      style="font-family: 'Noto Sans KR', sans-serif"
+    >
+      <form class="box category-user-form-box" id="categoryEditForm">
+        <p class="title is-5 has-text-dark">카테고리 관리</p>
+        <div class="field">
+          <label class="label" for="createCategoryName">추가 할 카테고리</label>
+          <div class="control">
+            <input
+              class="input"
+              id="createCategoryName"
+              type="text"
+              placeholder="카테고리 이름을 작성해주세요."
+              autocomplete="on"
+            />
+          </div>
+        </div>
+
+        <div class="field" style="font-family: 'Noto Sans KR', sans-serif">
+          <label class="label" for="selectCategory">변경 할 카테고리</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="selectCategory">
+                <option value="">카테고리를 선택해 주세요.</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field" style="font-family: 'Noto Sans KR', sans-serif">
+          <label class="label" for="editCategoryName">수정 할 이름</label>
+          <div class="control">
+            <input
+              class="input"
+              id="editCategoryName"
+              type="text"
+              placeholder="수정할 이름을 작성해주세요."
+              autocomplete="on"
+            />
+          </div>
+        </div>
+
+        <div class="mt-5" style="font-family: 'Noto Sans KR', sans-serif">
+          <button class="button is-dark" id="submitCreateButton">
+            추가하기
+          </button>
+          <button class="button is-dark" id="submitEditButton">수정하기</button>
+          <button class="button is-dark" id="submitDelButton">삭제하기</button>
+        </div>
+      </form>
+    </div>
+    <!-- 커스텀 js -->
+    <script src="product_category.js" type="module"></script>
+  </body>
+</html>

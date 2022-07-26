@@ -1,0 +1,6 @@
+# Dependencies
+package-lock.json
+.env
+node_modules/
+.DS_Store
+key.json
